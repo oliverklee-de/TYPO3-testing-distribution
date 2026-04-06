@@ -1,11 +1,11 @@
 
 -- Dump of TYPO3 Connection "Default"
 /*M!999999\- enable the sandbox mode */ 
--- MariaDB dump 10.19  Distrib 10.11.18-MariaDB, for debian-linux-gnu (x86_64)
+-- MariaDB dump 10.19  Distrib 10.11.19-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: db    Database: db
 -- ------------------------------------------------------
--- Server version	10.6.27-MariaDB-ubu2204-log
+-- Server version	10.6.28-MariaDB-ubu2204-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -2511,7 +2511,7 @@ INSERT INTO `sys_registry` VALUES
 (40,'installUpdateRows','rowUpdatersDone','a:5:{i:0;s:69:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\WorkspaceVersionRecordsMigration\";i:1;s:66:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\L18nDiffsourceToJsonMigration\";i:2;s:77:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\WorkspaceMovePlaceholderRemovalMigration\";i:3;s:76:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\WorkspaceNewPlaceholderRemovalMigration\";i:4;s:69:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\SysRedirectRootPageMoveMigration\";}'),
 (41,'installUpdate','TYPO3\\CMS\\Install\\Updates\\BackendUserLanguageMigration','i:1;'),
 (42,'installUpdate','TYPO3\\CMS\\Install\\Updates\\SysLogChannel','i:1;'),
-(43,'core','sys_refindex_lastUpdate','i:1787312903;'),
+(43,'core','sys_refindex_lastUpdate','i:1789480908;'),
 (45,'extensionDataImport','typo3/cms-redirects/ext_tables_static+adt.sql','s:0:\"\";'),
 (46,'extensionDataImport','typo3/cms-seo/ext_tables_static+adt.sql','s:0:\"\";'),
 (50,'languagePacks','de-feuserextrafields','i:1699807937;'),
@@ -11206,6 +11206,7 @@ CREATE TABLE `tx_seminars_attendances` (
   `invoice_date` int(10) unsigned NOT NULL DEFAULT 0,
   `invoice_number` varchar(8) DEFAULT NULL,
   `customer_number` varchar(8) DEFAULT NULL,
+  `certificate_access_allowed` smallint(5) unsigned NOT NULL DEFAULT 1,
   PRIMARY KEY (`uid`),
   KEY `seminar` (`seminar`),
   KEY `user` (`user`),
@@ -11220,13 +11221,13 @@ CREATE TABLE `tx_seminars_attendances` (
 LOCK TABLES `tx_seminars_attendances` WRITE;
 /*!40000 ALTER TABLE `tx_seminars_attendances` DISABLE KEYS */;
 INSERT INTO `tx_seminars_attendances` VALUES
-(1,12,1628003260,1628003260,0,0,'Anna Attendee / TCCD, 20.-23.11.2021',1,7,0,'Standardpreis: € 500,00',1,0,500.00,NULL,0,0,1,'Anna Enterprises','Anna A. Attendee',0,'Bertha-von-Suttner-Platz 1','53111','Bonn','Germany','+29 228 111111','attendee@example.com',0,'','','',NULL,0,NULL,0,'','',0,0,1,NULL,0,NULL,0,NULL,NULL),
-(2,12,1628016412,1628016412,0,0,NULL,4,7,0,'Standardpreis: 0,00 €',1,1,0.00,'',0,0,0,'','Joe Attendee',0,'','','','','','joe@example.com',0,'','','','',0,'',0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL),
-(3,12,1628016433,1628016433,0,0,NULL,5,7,0,'Standardpreis: 0,00 €',1,1,0.00,'',0,0,0,'','Max Attendee',0,'','','','','','max@example.com',0,'','','','',0,'',0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL),
-(4,12,1671044582,1671044495,0,0,'Event with waiting list / Anton R. Admin, 01.01.2030',6,11,0,'Standardpreis: 0,00 €\r\n\r\n',1,1,0.00,'',0,0,0,'Admin Inc.','Anton R. Admin',0,'Admin Avenue 4','53111','Bonn','Germany','+49 228 12345678','admin@example.com',0,'','','',NULL,0,NULL,0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL),
-(5,12,1671044607,1671044565,0,0,'Event with waiting list / Anna A. Attendee, 01.01.2030',1,11,1,'Standardpreis: 0,00 €',1,1,0.00,'',0,0,0,'Anna Enterprises','Anna A. Attendee',0,'Bertha-von-Suttner-Platz 1','53111','Bonn','Germany','+29 228 111111','attendee@example.com',0,'','','',NULL,0,NULL,0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL),
-(6,12,1671226186,1671226135,0,0,'Event for unregistration / Anna A. Attendee, 01.01.2030',1,12,0,'Standardpreis: 0,00 €\r\n\r\n',1,1,0.00,'',0,0,0,'Anna Enterprises','Anna A. Attendee',0,'Bertha-von-Suttner-Platz 1','53111','Bonn','Germany','+29 228 111111','attendee@example.com',0,'','','',NULL,0,NULL,0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL),
-(7,12,1738690037,1733656335,0,0,'Infinite registrations! / Anna A. Attendee, 01.01.2025',1,10,2,'Standardpreis 200,00 €',1,1,200.00,'',0,0,2,'Anna Enterprises','Anna A. Attendee',0,'Bertha-von-Suttner-Platz 1','53111','Bonn','Germany','+29 228 111111','attendee@example.com',0,'','','',NULL,0,NULL,0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL);
+(1,12,1628003260,1628003260,0,0,'Anna Attendee / TCCD, 20.-23.11.2021',1,7,0,'Standardpreis: € 500,00',1,0,500.00,NULL,0,0,1,'Anna Enterprises','Anna A. Attendee',0,'Bertha-von-Suttner-Platz 1','53111','Bonn','Germany','+29 228 111111','attendee@example.com',0,'','','',NULL,0,NULL,0,'','',0,0,1,NULL,0,NULL,0,NULL,NULL,1),
+(2,12,1628016412,1628016412,0,0,NULL,4,7,0,'Standardpreis: 0,00 €',1,1,0.00,'',0,0,0,'','Joe Attendee',0,'','','','','','joe@example.com',0,'','','','',0,'',0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL,1),
+(3,12,1628016433,1628016433,0,0,NULL,5,7,0,'Standardpreis: 0,00 €',1,1,0.00,'',0,0,0,'','Max Attendee',0,'','','','','','max@example.com',0,'','','','',0,'',0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL,1),
+(4,12,1671044582,1671044495,0,0,'Event with waiting list / Anton R. Admin, 01.01.2030',6,11,0,'Standardpreis: 0,00 €\r\n\r\n',1,1,0.00,'',0,0,0,'Admin Inc.','Anton R. Admin',0,'Admin Avenue 4','53111','Bonn','Germany','+49 228 12345678','admin@example.com',0,'','','',NULL,0,NULL,0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL,1),
+(5,12,1671044607,1671044565,0,0,'Event with waiting list / Anna A. Attendee, 01.01.2030',1,11,1,'Standardpreis: 0,00 €',1,1,0.00,'',0,0,0,'Anna Enterprises','Anna A. Attendee',0,'Bertha-von-Suttner-Platz 1','53111','Bonn','Germany','+29 228 111111','attendee@example.com',0,'','','',NULL,0,NULL,0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL,1),
+(6,12,1671226186,1671226135,0,0,'Event for unregistration / Anna A. Attendee, 01.01.2030',1,12,0,'Standardpreis: 0,00 €\r\n\r\n',1,1,0.00,'',0,0,0,'Anna Enterprises','Anna A. Attendee',0,'Bertha-von-Suttner-Platz 1','53111','Bonn','Germany','+29 228 111111','attendee@example.com',0,'','','',NULL,0,NULL,0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL,1),
+(7,12,1738690037,1733656335,0,0,'Infinite registrations! / Anna A. Attendee, 01.01.2025',1,10,2,'Standardpreis 200,00 €',1,1,200.00,'',0,0,2,'Anna Enterprises','Anna A. Attendee',0,'Bertha-von-Suttner-Platz 1','53111','Bonn','Germany','+29 228 111111','attendee@example.com',0,'','','',NULL,0,NULL,0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL,1);
 /*!40000 ALTER TABLE `tx_seminars_attendances` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -11630,6 +11631,9 @@ CREATE TABLE `tx_seminars_seminars` (
   `additional_email_text` text DEFAULT NULL,
   `download_start_date` int(10) unsigned NOT NULL DEFAULT 0,
   `billing_start` int(10) unsigned NOT NULL DEFAULT 0,
+  `product_number` varchar(20) DEFAULT NULL,
+  `product_name` varchar(1000) DEFAULT NULL,
+  `certificate_configuration` int(10) unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`uid`),
   KEY `object_type` (`object_type`),
   KEY `topic` (`topic`),
@@ -11649,25 +11653,25 @@ CREATE TABLE `tx_seminars_seminars` (
 LOCK TABLES `tx_seminars_seminars` WRITE;
 /*!40000 ALTER TABLE `tx_seminars_seminars` DISABLE KEYS */;
 INSERT INTO `tx_seminars_seminars` VALUES
-(1,13,1634124323,1628002174,0,0,0,0,1,'TCCD',0,'TYPO3 CMS Certified Developer',1,'TCCD-Training de luxe!','<p>I\'m baby leggings artisan tbh enamel pin art party raclette hot chicken intelligentsia readymade, cardigan XOXO. Cray sriracha normcore organic. Fixie live-edge quinoa cred four loko poke tumeric art party whatever air plant. Hella asymmetrical locavore direct trade shaman. Actually green juice waistcoat succulents.</p>',1,'',0,0,0,0,0,0,0,0,0,'',0,'',0,0,0,0,0,0,500.00,450.00,400.00,375.00,'',1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,'',0,0,1,0,0,0,0,0,0,'tccd/1',0,NULL,NULL,0,0),
-(2,13,1634124328,1628002285,0,0,0,0,1,'TCCI',0,'TYPO3 CMS Certified Integrator',1,'TCCI - so einfach geht TYPO3!','<p>Farm-to-table adaptogen vice YOLO four dollar toast bespoke. Hammock helvetica asymmetrical next level. Deep v hoodie ramps fam lo-fi unicorn paleo hot chicken fanny pack affogato trust fund chartreuse twee offal iceland. Photo booth godard everyday carry heirloom chillwave 90\'s craft beer, direct trade kogi skateboard dreamcatcher butcher.</p>',0,'',0,0,0,0,0,0,0,0,0,'',0,'',0,0,0,0,0,0,650.00,0.00,0.00,0.00,'',0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,'',0,0,0,1,0,0,0,0,0,'tcci/2',0,NULL,NULL,0,0),
-(3,14,1654092629,1628002505,0,0,0,0,0,'Einzelveranstaltung mit Anmeldeopotionen',0,'',0,'','',0,'',0,1964419200,1964448000,0,0,1647334800,0,1647334800,0,'',1,'Raum \"Brandenburg\"',3,6,1,0,0,0,0.00,0.00,0.00,0.00,'',1,1,0,0,0,1,0,4,12,0,0,2,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'einzelveranstaltung-mit-anmeldeopotionen/3',0,NULL,NULL,0,0),
-(4,14,1736879058,1628002652,0,0,0,0,0,'Einzelveranstaltung mit Zeitslots',0,'',0,'','<p>Mustache direct trade master cleanse, fashion axe aesthetic farm-to-table vexillologist drinking vinegar austin 90\'s ramps 8-bit biodiesel snackwave taxidermy. Whatever banh mi chartreuse chicharrones. Unicorn bespoke sriracha pabst, art party typewriter messenger bag vexillologist banh mi intelligentsia. Bicycle rights four dollar toast kickstarter sustainable vegan tumblr, quinoa tumeric fingerstache. Artisan tilde sartorial, quinoa raw denim banh mi pitchfork offal bitters dreamcatcher actually keffiyeh. Palo santo air plant XOXO pug woke shaman.</p>',0,'',0,1964505600,1964606400,2,0,0,0,0,0,'',2,'Raum 13',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'einzelveranstaltung-mit-zeitslots/4',0,NULL,NULL,0,0),
-(5,14,1634124392,1628002667,0,0,0,0,2,'TCCD-Termin',1,'',0,'','',0,'',0,0,0,0,0,0,0,0,0,'',0,'',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,2,0,'',0,0,0,0,0,0,0,0,0,'tccd/5',0,NULL,NULL,0,0),
-(6,14,1736847886,1628002703,0,0,0,0,2,'TCCI-Termin',2,'',0,'','',0,'',0,1944399480,1955375880,0,0,0,0,0,0,'',0,'',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,0,0,4,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'tcci/6',0,NULL,NULL,0,0),
-(7,14,1736847866,1628002743,0,0,0,0,2,'TCCD-Termin mit Datum',1,'',0,'','',0,'',0,1952956740,1953215940,0,0,0,0,0,0,'',1,'',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,0,0,8,0,0,0,1,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'tccd/7',0,NULL,NULL,0,0),
-(8,30,1667052715,1628014468,0,0,0,0,0,'Frontend-created event',0,'',0,'','There is no spoon. And the cake is a lie.',2,'',0,1680336000,1680451200,0,0,0,1677625200,0,0,NULL,1,'',0,0,2,0,0,0,250.00,175.00,0.00,0.00,'',0,1,0,0,0,1,0,2,25,0,0,0,0,0,3,0,0,'',0,0,0,0,0,0,0,0,0,'frontend-created-event/8',0,NULL,NULL,0,0),
-(9,30,1671225712,1667052765,0,0,0,0,0,'Created in the FE, too',0,NULL,0,NULL,'',4,NULL,0,0,0,0,0,0,0,0,0,NULL,0,NULL,0,0,0,0,0,0,0.00,0.00,0.00,0.00,NULL,0,1,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,NULL,0,0,0,0,0,0,0,0,0,'created-in-the-fe-too/9',0,NULL,NULL,0,0),
-(10,14,1670000681,1670000681,0,0,0,0,0,'Infinite registrations!',0,'',0,'','<p>This event allows an infinite number of registrations.</p>',1,'',0,1735722000,1735750800,0,0,0,0,0,0,'',0,'',4,6,0,0,0,0,200.00,175.00,150.00,125.00,'',2,1,0,0,0,1,1,0,0,0,0,0,1,0,0,2,1,'',0,0,0,0,0,0,0,0,0,'infinite-registrations/10',0,NULL,NULL,0,0),
-(11,14,1671044582,1671044468,0,0,0,0,0,'Event with waiting list',0,'',0,'','',0,'',0,1893488400,1893517200,0,0,0,0,0,0,'',0,'',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,0,0,1,1,0,0,2,0,0,0,0,'',0,0,0,0,1,0,0,0,0,'event-with-waiting-list/11',0,NULL,NULL,0,0),
-(12,14,1671226186,1671225968,0,0,0,0,0,'Event for unregistration',0,'',0,'','',0,'',0,1893488400,1893517200,0,0,0,0,1893484800,0,'',0,'',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,1,0,0,0,0,0,1,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'event-for-unregistration/12',0,NULL,NULL,0,0),
-(13,14,1726243424,1726243290,0,0,0,0,0,'Online-Veranstaltung mit E-Mail-Text',0,'',0,'','',0,'',0,1903852800,1903881600,0,0,0,0,0,0,'',0,'',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,1,0,99,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'online-veranstaltung-mit-e-mail-text/13',2,'https://www.example.com','Bitte achten Sie beim Webinar darauf, dass Ihre Kamera eingeschaltet ist.\r\n\r\nUnd wir machen genügend Kaffeepausen - also keine Panik! :->',0,0),
-(14,14,1733251409,1733243746,0,0,0,0,0,'Vergangene Veranstaltung',0,'',0,'','',0,'',0,1680336000,1680364800,0,0,0,0,0,0,'',2,'',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'vergangene-veranstaltung/14',0,NULL,'',0,0),
-(15,14,1737120591,1736876080,0,0,0,0,0,'Einzelveranstaltung ohne Anmeldung',0,'',0,'','',0,'',0,1901260800,1901289600,0,0,0,0,0,0,'',0,'',0,0,2,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'einzelveranstaltung-ohne-anmeldung/15',0,NULL,'',0,0),
-(16,14,1737546278,1737546278,0,0,0,0,0,'Ausgebucht ohne Warteliste',0,'',0,'','',0,'',0,1948608000,1948636800,0,0,0,0,0,0,'',0,'',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,0,0,10,0,10,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'ausgebucht-ohne-warteliste/16',0,NULL,'',0,0),
-(17,14,1738760613,1738760568,0,0,0,0,0,'Vor-Ort-Event',0,'',0,'','',0,'',0,2059027200,2059056000,0,0,0,0,0,0,'',1,'',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'vor-ort-event/17',0,NULL,'',0,0),
-(18,14,1738760602,1738760582,0,0,0,0,0,'Online-Event',0,'',0,'','',0,'',0,2059027200,2059056000,0,0,0,0,0,0,'',0,'',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'online-event/18',2,NULL,'',0,0),
-(19,14,1738760650,1738760626,0,0,0,0,0,'Hybrid-Event',0,'',0,'','',0,'',0,2059027200,2059056000,0,0,0,0,0,0,'',1,'',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'hybrid-event/19',1,NULL,'',0,0);
+(1,13,1634124323,1628002174,0,0,0,0,1,'TCCD',0,'TYPO3 CMS Certified Developer',1,'TCCD-Training de luxe!','<p>I\'m baby leggings artisan tbh enamel pin art party raclette hot chicken intelligentsia readymade, cardigan XOXO. Cray sriracha normcore organic. Fixie live-edge quinoa cred four loko poke tumeric art party whatever air plant. Hella asymmetrical locavore direct trade shaman. Actually green juice waistcoat succulents.</p>',1,'',0,0,0,0,0,0,0,0,0,'',0,'',0,0,0,0,0,0,500.00,450.00,400.00,375.00,'',1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,'',0,0,1,0,0,0,0,0,0,'tccd/1',0,NULL,NULL,0,0,NULL,NULL,0),
+(2,13,1634124328,1628002285,0,0,0,0,1,'TCCI',0,'TYPO3 CMS Certified Integrator',1,'TCCI - so einfach geht TYPO3!','<p>Farm-to-table adaptogen vice YOLO four dollar toast bespoke. Hammock helvetica asymmetrical next level. Deep v hoodie ramps fam lo-fi unicorn paleo hot chicken fanny pack affogato trust fund chartreuse twee offal iceland. Photo booth godard everyday carry heirloom chillwave 90\'s craft beer, direct trade kogi skateboard dreamcatcher butcher.</p>',0,'',0,0,0,0,0,0,0,0,0,'',0,'',0,0,0,0,0,0,650.00,0.00,0.00,0.00,'',0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,'',0,0,0,1,0,0,0,0,0,'tcci/2',0,NULL,NULL,0,0,NULL,NULL,0),
+(3,14,1654092629,1628002505,0,0,0,0,0,'Einzelveranstaltung mit Anmeldeopotionen',0,'',0,'','',0,'',0,1964419200,1964448000,0,0,1647334800,0,1647334800,0,'',1,'Raum \"Brandenburg\"',3,6,1,0,0,0,0.00,0.00,0.00,0.00,'',1,1,0,0,0,1,0,4,12,0,0,2,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'einzelveranstaltung-mit-anmeldeopotionen/3',0,NULL,NULL,0,0,NULL,NULL,0),
+(4,14,1736879058,1628002652,0,0,0,0,0,'Einzelveranstaltung mit Zeitslots',0,'',0,'','<p>Mustache direct trade master cleanse, fashion axe aesthetic farm-to-table vexillologist drinking vinegar austin 90\'s ramps 8-bit biodiesel snackwave taxidermy. Whatever banh mi chartreuse chicharrones. Unicorn bespoke sriracha pabst, art party typewriter messenger bag vexillologist banh mi intelligentsia. Bicycle rights four dollar toast kickstarter sustainable vegan tumblr, quinoa tumeric fingerstache. Artisan tilde sartorial, quinoa raw denim banh mi pitchfork offal bitters dreamcatcher actually keffiyeh. Palo santo air plant XOXO pug woke shaman.</p>',0,'',0,1964505600,1964606400,2,0,0,0,0,0,'',2,'Raum 13',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'einzelveranstaltung-mit-zeitslots/4',0,NULL,NULL,0,0,NULL,NULL,0),
+(5,14,1634124392,1628002667,0,0,0,0,2,'TCCD-Termin',1,'',0,'','',0,'',0,0,0,0,0,0,0,0,0,'',0,'',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,2,0,'',0,0,0,0,0,0,0,0,0,'tccd/5',0,NULL,NULL,0,0,NULL,NULL,0),
+(6,14,1736847886,1628002703,0,0,0,0,2,'TCCI-Termin',2,'',0,'','',0,'',0,1944399480,1955375880,0,0,0,0,0,0,'',0,'',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,0,0,4,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'tcci/6',0,NULL,NULL,0,0,NULL,NULL,0),
+(7,14,1736847866,1628002743,0,0,0,0,2,'TCCD-Termin mit Datum',1,'',0,'','',0,'',0,1952956740,1953215940,0,0,0,0,0,0,'',1,'',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,0,0,8,0,0,0,1,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'tccd/7',0,NULL,NULL,0,0,NULL,NULL,0),
+(8,30,1667052715,1628014468,0,0,0,0,0,'Frontend-created event',0,'',0,'','There is no spoon. And the cake is a lie.',2,'',0,1680336000,1680451200,0,0,0,1677625200,0,0,NULL,1,'',0,0,2,0,0,0,250.00,175.00,0.00,0.00,'',0,1,0,0,0,1,0,2,25,0,0,0,0,0,3,0,0,'',0,0,0,0,0,0,0,0,0,'frontend-created-event/8',0,NULL,NULL,0,0,NULL,NULL,0),
+(9,30,1671225712,1667052765,0,0,0,0,0,'Created in the FE, too',0,NULL,0,NULL,'',4,NULL,0,0,0,0,0,0,0,0,0,NULL,0,NULL,0,0,0,0,0,0,0.00,0.00,0.00,0.00,NULL,0,1,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,NULL,0,0,0,0,0,0,0,0,0,'created-in-the-fe-too/9',0,NULL,NULL,0,0,NULL,NULL,0),
+(10,14,1670000681,1670000681,0,0,0,0,0,'Infinite registrations!',0,'',0,'','<p>This event allows an infinite number of registrations.</p>',1,'',0,1735722000,1735750800,0,0,0,0,0,0,'',0,'',4,6,0,0,0,0,200.00,175.00,150.00,125.00,'',2,1,0,0,0,1,1,0,0,0,0,0,1,0,0,2,1,'',0,0,0,0,0,0,0,0,0,'infinite-registrations/10',0,NULL,NULL,0,0,NULL,NULL,0),
+(11,14,1671044582,1671044468,0,0,0,0,0,'Event with waiting list',0,'',0,'','',0,'',0,1893488400,1893517200,0,0,0,0,0,0,'',0,'',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,0,0,1,1,0,0,2,0,0,0,0,'',0,0,0,0,1,0,0,0,0,'event-with-waiting-list/11',0,NULL,NULL,0,0,NULL,NULL,0),
+(12,14,1671226186,1671225968,0,0,0,0,0,'Event for unregistration',0,'',0,'','',0,'',0,1893488400,1893517200,0,0,0,0,1893484800,0,'',0,'',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,1,0,0,0,0,0,1,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'event-for-unregistration/12',0,NULL,NULL,0,0,NULL,NULL,0),
+(13,14,1726243424,1726243290,0,0,0,0,0,'Online-Veranstaltung mit E-Mail-Text',0,'',0,'','',0,'',0,1903852800,1903881600,0,0,0,0,0,0,'',0,'',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,1,0,99,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'online-veranstaltung-mit-e-mail-text/13',2,'https://www.example.com','Bitte achten Sie beim Webinar darauf, dass Ihre Kamera eingeschaltet ist.\r\n\r\nUnd wir machen genügend Kaffeepausen - also keine Panik! :->',0,0,NULL,NULL,0),
+(14,14,1733251409,1733243746,0,0,0,0,0,'Vergangene Veranstaltung',0,'',0,'','',0,'',0,1680336000,1680364800,0,0,0,0,0,0,'',2,'',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'vergangene-veranstaltung/14',0,NULL,'',0,0,NULL,NULL,0),
+(15,14,1737120591,1736876080,0,0,0,0,0,'Einzelveranstaltung ohne Anmeldung',0,'',0,'','',0,'',0,1901260800,1901289600,0,0,0,0,0,0,'',0,'',0,0,2,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'einzelveranstaltung-ohne-anmeldung/15',0,NULL,'',0,0,NULL,NULL,0),
+(16,14,1737546278,1737546278,0,0,0,0,0,'Ausgebucht ohne Warteliste',0,'',0,'','',0,'',0,1948608000,1948636800,0,0,0,0,0,0,'',0,'',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,0,0,10,0,10,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'ausgebucht-ohne-warteliste/16',0,NULL,'',0,0,NULL,NULL,0),
+(17,14,1738760613,1738760568,0,0,0,0,0,'Vor-Ort-Event',0,'',0,'','',0,'',0,2059027200,2059056000,0,0,0,0,0,0,'',1,'',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'vor-ort-event/17',0,NULL,'',0,0,NULL,NULL,0),
+(18,14,1738760602,1738760582,0,0,0,0,0,'Online-Event',0,'',0,'','',0,'',0,2059027200,2059056000,0,0,0,0,0,0,'',0,'',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'online-event/18',2,NULL,'',0,0,NULL,NULL,0),
+(19,14,1738760650,1738760626,0,0,0,0,0,'Hybrid-Event',0,'',0,'','',0,'',0,2059027200,2059056000,0,0,0,0,0,0,'',1,'',0,0,0,0,0,0,0.00,0.00,0.00,0.00,'',0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,0,'hybrid-event/19',1,NULL,'',0,0,NULL,NULL,0);
 /*!40000 ALTER TABLE `tx_seminars_seminars` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -12353,6 +12357,45 @@ INSERT INTO `tx_seminars_timeslots` VALUES
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tx_seminarspremium_domain_model_event_certificateconfiguration`
+--
+
+DROP TABLE IF EXISTS `tx_seminarspremium_domain_model_event_certificateconfiguration`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminarspremium_domain_model_event_certificateconfiguration` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `tstamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `crdate` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `t3ver_oid` int(10) unsigned NOT NULL DEFAULT 0,
+  `t3ver_wsid` int(10) unsigned NOT NULL DEFAULT 0,
+  `t3ver_state` smallint(6) NOT NULL DEFAULT 0,
+  `t3ver_stage` int(11) NOT NULL DEFAULT 0,
+  `pdf_template` int(10) unsigned NOT NULL DEFAULT 0,
+  `name_x_position` int(10) unsigned NOT NULL DEFAULT 0,
+  `name_y_position` int(10) unsigned NOT NULL DEFAULT 10,
+  `name_font_size` int(10) unsigned NOT NULL DEFAULT 24,
+  `name_maximum_width` int(10) unsigned NOT NULL DEFAULT 210,
+  `name_text_alignment` tinytext NOT NULL DEFAULT 'C',
+  `download_availability_start` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`,`deleted`),
+  KEY `t3ver_oid` (`t3ver_oid`,`t3ver_wsid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminarspremium_domain_model_event_certificateconfiguration`
+--
+
+LOCK TABLES `tx_seminarspremium_domain_model_event_certificateconfiguration` WRITE;
+/*!40000 ALTER TABLE `tx_seminarspremium_domain_model_event_certificateconfiguration` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminarspremium_domain_model_event_certificateconfiguration` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tx_tea_domain_model_tea`
 --
 
@@ -12412,4 +12455,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-08-21 13:49:18
+-- Dump completed on 2026-09-15 16:01:55

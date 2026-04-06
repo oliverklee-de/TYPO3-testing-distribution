@@ -22,6 +22,7 @@
 		"oliverklee/oelib": "dev-main",
 		"oliverklee/onetimeaccount": "dev-main",
 		"oliverklee/seminars": "dev-main",
+		"oliverklee/seminars-premium": "dev-main",
 		"oliverklee/site-dev": "@dev",
 		"ttn/tea": "4.1.0",
 		"typo3/cms-adminpanel": "^12.4",
@@ -77,6 +78,14 @@
 		{
 			"type": "path",
 			"url": "src/extensions/*"
+		},
+		{
+			"type": "vcs",
+			"url": "https://github.com/oliverklee/seminars-early-access.git"
+		},
+		{
+			"type": "vcs",
+			"url": "https://github.com/oliverklee-de/seminars-premium.git"
 		}
 	],
 	"prefer-stable": true,
