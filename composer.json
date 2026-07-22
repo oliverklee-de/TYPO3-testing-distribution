@@ -22,6 +22,7 @@
 		"oliverklee/feuserextrafields": "dev-main",
 		"oliverklee/oelib": "dev-main",
 		"oliverklee/onetimeaccount": "dev-main",
+		"oliverklee/seminars": "dev-early-access-13lts",
 		"oliverklee/site-dev": "@dev",
 		"ttn/tea": "dev-main",
 		"typo3/cms-adminpanel": "^13.4",
