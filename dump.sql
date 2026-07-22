@@ -1,6 +1,6 @@
 
 -- Dump of TYPO3 Connection "Default"
-/*M!999999\- enable the sandbox mode */ 
+/*M!999999\- enable the sandbox mode */
 -- MariaDB dump 10.19  Distrib 10.11.18-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: db    Database: db
@@ -288,6 +288,9 @@ CREATE TABLE `fe_users` (
   `vat_in` varchar(15) NOT NULL DEFAULT '',
   `department` varchar(128) NOT NULL DEFAULT '',
   `membership_number` varchar(8) NOT NULL DEFAULT '',
+  `tx_seminars_registration` int(10) unsigned NOT NULL DEFAULT 0,
+  `default_organizer` int(10) unsigned NOT NULL DEFAULT 0,
+  `available_topics` text DEFAULT NULL,
   PRIMARY KEY (`uid`),
   KEY `parent` (`pid`,`username`(100)),
   KEY `username` (`username`(100)),
@@ -303,11 +306,11 @@ CREATE TABLE `fe_users` (
 LOCK TABLES `fe_users` WRITE;
 /*!40000 ALTER TABLE `fe_users` DISABLE KEYS */;
 INSERT INTO `fe_users` VALUES
-(1,4,1670000836,1627917285,0,0,0,0,'','0','attendee','$argon2i$v=19$m=65536,t=16,p=1$ODBXYmZrYkQ2akMwa1lHYg$iWz2uY5XHXAhjqG69uFSQDWvy/y1G931gk/s19sfBxo','1','Anna A. Attendee','Anna','Ariana','Attendee','Bertha-von-Suttner-Platz 1','+29 228 111111','','attendee@example.com','a:1:{s:49:\"tx_seminars_registration_editor_method_of_payment\";s:1:\"1\";}','','53111','Bonn','Germany','','Anna Enterprises',0,1757318006,1757318069,'','',0,0,'',0,NULL,'Hello Anna!',0,NULL,0,0,0,'','',''),
-(3,4,1627922848,1627922848,0,0,0,0,'','0','editor','$argon2i$v=19$m=65536,t=16,p=1$N3IuWjhQUXBzRlkyUy45Wg$ktEw18UKASsqun0SoZDh8pG8ELNjo+wyrG6mbmoO8bw','1,4','Eddi Editor','Eddi','','Editor','','','','editor@example.com',NULL,'','','','','','',0,1757317982,1757317982,'','',0,0,'',0,NULL,'',0,NULL,0,0,0,'','',''),
-(4,4,1628002830,1628002830,0,0,0,0,'','0','attendee1','$argon2i$v=19$m=65536,t=16,p=1$emEybmJQYi91N2NNUUVYcQ$8fJzJXhtMf2S8g0BWWgyT42ARYE25QogTLZFFGmHNRc','1','Joe Attendee','Joe','','Attendee','','','','joe@example.com',NULL,'','','','','','',0,0,0,'','',0,0,'',0,NULL,'',0,NULL,0,0,0,'','',''),
-(5,4,1628002865,1628002862,0,0,0,0,'','0','attendee2','$argon2i$v=19$m=65536,t=16,p=1$THlYU0p2NDNseEd5N3RhNQ$eUEKyg2qTgUPr4oWcFacQ/s4J+9u4QQfQYPVQWdR1HM','1','Max Attendee','Max','','Attendee','','','','max@example.com',NULL,'','','','','','',0,0,0,'','',0,0,'',0,NULL,'',0,NULL,0,0,0,'','',''),
-(6,4,1670000977,1670000977,0,0,0,0,'','0','admin','$argon2i$v=19$m=65536,t=16,p=1$cjR4ZVR1NXlLMUJIYkZoUQ$7HXMQwbSppGCYiBAYbMuyHOsi1FRWttEBCwQqF/t53U','4,3,1','Anton R. Admin','Anton','R.','Admin','Admin Avenue 4','+49 228 12345678','','admin@example.com',NULL,'','53111','Bonn','Germany','','Admin Inc.',0,1671044482,1671044482,'','',99,0,'',0,'','Bonjour Anton!',0,NULL,0,0,0,'','','');
+(1,4,1670000836,1627917285,0,0,0,0,'','0','attendee','$argon2i$v=19$m=65536,t=16,p=1$ODBXYmZrYkQ2akMwa1lHYg$iWz2uY5XHXAhjqG69uFSQDWvy/y1G931gk/s19sfBxo','1','Anna A. Attendee','Anna','Ariana','Attendee','Bertha-von-Suttner-Platz 1','+29 228 111111','','attendee@example.com','a:1:{s:49:\"tx_seminars_registration_editor_method_of_payment\";s:1:\"1\";}','','53111','Bonn','Germany','','Anna Enterprises',0,1757318006,1757318069,'','',0,0,'',0,NULL,'Hello Anna!',0,NULL,0,0,0,'','','',0,0,NULL),
+(3,4,1627922848,1627922848,0,0,0,0,'','0','editor','$argon2i$v=19$m=65536,t=16,p=1$N3IuWjhQUXBzRlkyUy45Wg$ktEw18UKASsqun0SoZDh8pG8ELNjo+wyrG6mbmoO8bw','1,4','Eddi Editor','Eddi','','Editor','','','','editor@example.com',NULL,'','','','','','',0,1757317982,1757317982,'','',0,0,'',0,NULL,'',0,NULL,0,0,0,'','','',0,0,NULL),
+(4,4,1628002830,1628002830,0,0,0,0,'','0','attendee1','$argon2i$v=19$m=65536,t=16,p=1$emEybmJQYi91N2NNUUVYcQ$8fJzJXhtMf2S8g0BWWgyT42ARYE25QogTLZFFGmHNRc','1','Joe Attendee','Joe','','Attendee','','','','joe@example.com',NULL,'','','','','','',0,0,0,'','',0,0,'',0,NULL,'',0,NULL,0,0,0,'','','',0,0,NULL),
+(5,4,1628002865,1628002862,0,0,0,0,'','0','attendee2','$argon2i$v=19$m=65536,t=16,p=1$THlYU0p2NDNseEd5N3RhNQ$eUEKyg2qTgUPr4oWcFacQ/s4J+9u4QQfQYPVQWdR1HM','1','Max Attendee','Max','','Attendee','','','','max@example.com',NULL,'','','','','','',0,0,0,'','',0,0,'',0,NULL,'',0,NULL,0,0,0,'','','',0,0,NULL),
+(6,4,1670000977,1670000977,0,0,0,0,'','0','admin','$argon2i$v=19$m=65536,t=16,p=1$cjR4ZVR1NXlLMUJIYkZoUQ$7HXMQwbSppGCYiBAYbMuyHOsi1FRWttEBCwQqF/t53U','4,3,1','Anton R. Admin','Anton','R.','Admin','Admin Avenue 4','+49 228 12345678','','admin@example.com',NULL,'','53111','Bonn','Germany','','Admin Inc.',0,1671044482,1671044482,'','',99,0,'',0,'','Bonjour Anton!',0,NULL,0,0,0,'','','',0,0,NULL);
 /*!40000 ALTER TABLE `fe_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -457,6 +460,183 @@ INSERT INTO `pages` VALUES
 (48,16,1737120546,1737120537,0,0,0,0,'',2304,NULL,0,0,0,0,NULL,'{\"doktype\":\"\",\"title\":\"\",\"slug\":\"\",\"nav_title\":\"\",\"subtitle\":\"\",\"seo_title\":\"\",\"description\":\"\",\"no_index\":\"\",\"no_follow\":\"\",\"canonical_link\":\"\",\"sitemap_changefreq\":\"\",\"sitemap_priority\":\"\",\"og_title\":\"\",\"og_description\":\"\",\"og_image\":\"\",\"twitter_title\":\"\",\"twitter_description\":\"\",\"twitter_image\":\"\",\"twitter_card\":\"\",\"abstract\":\"\",\"keywords\":\"\",\"author\":\"\",\"author_email\":\"\",\"lastUpdated\":\"\",\"layout\":\"\",\"newUntil\":\"\",\"backend_layout\":\"\",\"backend_layout_next_level\":\"\",\"content_from_pid\":\"\",\"target\":\"\",\"cache_timeout\":\"\",\"cache_tags\":\"\",\"is_siteroot\":\"\",\"no_search\":\"\",\"php_tree_stop\":\"\",\"module\":\"\",\"media\":\"\",\"tsconfig_includes\":\"\",\"TSconfig\":\"\",\"l18n_cfg\":\"\",\"hidden\":\"\",\"nav_hide\":\"\",\"starttime\":\"\",\"endtime\":\"\",\"extendToSubpages\":\"\",\"fe_group\":\"\",\"fe_login_mode\":\"\",\"editlock\":\"\",\"categories\":\"\",\"rowDescription\":\"\"}',0,0,0,0,2,0,31,27,0,'Speaker-Infos','/seminars/speaker-infos',1,NULL,0,0,'',0,0,'',0,'',0,0,NULL,0,'',0,NULL,0,1737120546,NULL,'',0,'','','',1,0,0,0,0,'','',NULL,0,'',0,0,'',NULL,0,'',NULL,0,'summary','',0.5,'',0),
 (49,16,1757318045,1757318033,0,0,0,0,'-2',896,NULL,0,0,0,0,NULL,'{\"doktype\":\"\",\"title\":\"\",\"slug\":\"\",\"nav_title\":\"\",\"subtitle\":\"\",\"seo_title\":\"\",\"description\":\"\",\"no_index\":\"\",\"no_follow\":\"\",\"canonical_link\":\"\",\"sitemap_changefreq\":\"\",\"sitemap_priority\":\"\",\"og_title\":\"\",\"og_description\":\"\",\"og_image\":\"\",\"twitter_title\":\"\",\"twitter_description\":\"\",\"twitter_image\":\"\",\"twitter_card\":\"\",\"abstract\":\"\",\"keywords\":\"\",\"author\":\"\",\"author_email\":\"\",\"lastUpdated\":\"\",\"layout\":\"\",\"newUntil\":\"\",\"backend_layout\":\"\",\"backend_layout_next_level\":\"\",\"content_from_pid\":\"\",\"target\":\"\",\"cache_timeout\":\"\",\"cache_tags\":\"\",\"is_siteroot\":\"\",\"no_search\":\"\",\"php_tree_stop\":\"\",\"module\":\"\",\"media\":\"\",\"tsconfig_includes\":\"\",\"TSconfig\":\"\",\"l18n_cfg\":\"\",\"hidden\":\"\",\"nav_hide\":\"\",\"starttime\":\"\",\"endtime\":\"\",\"extendToSubpages\":\"\",\"fe_group\":\"\",\"fe_login_mode\":\"\",\"editlock\":\"\",\"categories\":\"\",\"rowDescription\":\"\"}',0,0,0,0,2,0,31,27,0,'My Registrations','/seminars/my-registrations',1,NULL,0,0,'',0,0,'',0,'',0,0,NULL,0,'',0,NULL,0,1757318045,NULL,'',0,'','','',0,0,0,0,0,'','',NULL,0,'',0,0,'',NULL,0,'',NULL,0,'summary','',0.5,'',0);
 /*!40000 ALTER TABLE `pages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `static_countries`
+--
+
+DROP TABLE IF EXISTS `static_countries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `static_countries` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `cn_iso_2` varchar(2) NOT NULL DEFAULT '',
+  `cn_iso_3` varchar(3) NOT NULL DEFAULT '',
+  `cn_iso_nr` int(11) NOT NULL DEFAULT 0,
+  `cn_parent_territory_uid` int(11) NOT NULL DEFAULT 0,
+  `cn_parent_tr_iso_nr` int(11) NOT NULL DEFAULT 0,
+  `cn_official_name_local` varchar(128) NOT NULL DEFAULT '',
+  `cn_official_name_en` varchar(128) NOT NULL DEFAULT '',
+  `cn_capital` varchar(45) NOT NULL DEFAULT '',
+  `cn_tldomain` varchar(2) NOT NULL DEFAULT '',
+  `cn_currency_uid` int(11) NOT NULL DEFAULT 0,
+  `cn_currency_iso_3` varchar(3) NOT NULL DEFAULT '',
+  `cn_currency_iso_nr` int(11) NOT NULL DEFAULT 0,
+  `cn_phone` int(11) NOT NULL DEFAULT 0,
+  `cn_eu_member` smallint(6) NOT NULL DEFAULT 0,
+  `cn_uno_member` smallint(6) NOT NULL DEFAULT 0,
+  `cn_address_format` smallint(6) NOT NULL DEFAULT 0,
+  `cn_zone_flag` smallint(6) NOT NULL DEFAULT 0,
+  `cn_short_local` varchar(70) NOT NULL DEFAULT '',
+  `cn_short_en` varchar(50) NOT NULL DEFAULT '',
+  `cn_country_zones` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`,`deleted`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `static_countries`
+--
+
+LOCK TABLES `static_countries` WRITE;
+/*!40000 ALTER TABLE `static_countries` DISABLE KEYS */;
+/*!40000 ALTER TABLE `static_countries` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `static_country_zones`
+--
+
+DROP TABLE IF EXISTS `static_country_zones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `static_country_zones` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `zn_country_iso_2` varchar(2) NOT NULL DEFAULT '',
+  `zn_country_iso_3` varchar(3) NOT NULL DEFAULT '',
+  `zn_country_iso_nr` int(11) NOT NULL DEFAULT 0,
+  `zn_code` varchar(45) NOT NULL DEFAULT '',
+  `zn_name_local` varchar(128) NOT NULL DEFAULT '',
+  `zn_name_en` varchar(50) NOT NULL DEFAULT '',
+  `zn_country_uid` int(11) NOT NULL DEFAULT 0,
+  `zn_country_table` varchar(20) NOT NULL DEFAULT 'static_countries',
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`,`deleted`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `static_country_zones`
+--
+
+LOCK TABLES `static_country_zones` WRITE;
+/*!40000 ALTER TABLE `static_country_zones` DISABLE KEYS */;
+/*!40000 ALTER TABLE `static_country_zones` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `static_currencies`
+--
+
+DROP TABLE IF EXISTS `static_currencies`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `static_currencies` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `cu_iso_3` varchar(3) NOT NULL DEFAULT '',
+  `cu_iso_nr` int(11) NOT NULL DEFAULT 0,
+  `cu_name_en` varchar(50) NOT NULL DEFAULT '',
+  `cu_symbol_left` varchar(12) NOT NULL DEFAULT '',
+  `cu_symbol_right` varchar(12) NOT NULL DEFAULT '',
+  `cu_thousands_point` varchar(1) NOT NULL DEFAULT '',
+  `cu_decimal_point` varchar(1) NOT NULL DEFAULT '',
+  `cu_decimal_digits` smallint(6) NOT NULL DEFAULT 0,
+  `cu_sub_name_en` varchar(20) NOT NULL DEFAULT '',
+  `cu_sub_divisor` int(11) NOT NULL DEFAULT 1,
+  `cu_sub_symbol_left` varchar(12) NOT NULL DEFAULT '',
+  `cu_sub_symbol_right` varchar(12) NOT NULL DEFAULT '',
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`,`deleted`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `static_currencies`
+--
+
+LOCK TABLES `static_currencies` WRITE;
+/*!40000 ALTER TABLE `static_currencies` DISABLE KEYS */;
+/*!40000 ALTER TABLE `static_currencies` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `static_languages`
+--
+
+DROP TABLE IF EXISTS `static_languages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `static_languages` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `lg_iso_2` varchar(2) NOT NULL DEFAULT '',
+  `lg_name_local` varchar(99) NOT NULL DEFAULT '',
+  `lg_name_en` varchar(50) NOT NULL DEFAULT '',
+  `lg_typo3` varchar(2) NOT NULL DEFAULT '',
+  `lg_country_iso_2` varchar(2) NOT NULL DEFAULT '',
+  `lg_collate_locale` varchar(5) NOT NULL DEFAULT '',
+  `lg_sacred` smallint(6) NOT NULL DEFAULT 0,
+  `lg_constructed` smallint(6) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`,`deleted`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `static_languages`
+--
+
+LOCK TABLES `static_languages` WRITE;
+/*!40000 ALTER TABLE `static_languages` DISABLE KEYS */;
+/*!40000 ALTER TABLE `static_languages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `static_territories`
+--
+
+DROP TABLE IF EXISTS `static_territories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `static_territories` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `tr_iso_nr` int(11) NOT NULL DEFAULT 0,
+  `tr_parent_territory_uid` int(11) NOT NULL DEFAULT 0,
+  `tr_parent_iso_nr` int(11) NOT NULL DEFAULT 0,
+  `tr_name_en` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`,`deleted`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `static_territories`
+--
+
+LOCK TABLES `static_territories` WRITE;
+/*!40000 ALTER TABLE `static_territories` DISABLE KEYS */;
+/*!40000 ALTER TABLE `static_territories` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -969,7 +1149,7 @@ CREATE TABLE `sys_registry` (
   `entry_value` mediumblob DEFAULT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `entry_identifier` (`entry_namespace`,`entry_key`)
-) ENGINE=InnoDB AUTO_INCREMENT=129 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1052,7 +1232,8 @@ INSERT INTO `sys_registry` VALUES
 (125,'installUpdate','GeorgRinger\\News\\Updates\\PopulateTagSlugs','i:1;'),
 (126,'installUpdate','GeorgRinger\\News\\Updates\\RelatedLinkIntegerDefault','i:1;'),
 (127,'installUpdate','GeorgRinger\\News\\Updates\\TitleFieldDefault','i:1;'),
-(128,'installUpdate','TYPO3\\CMS\\Install\\Updates\\IndexedSearchCTypeMigration','i:1;');
+(128,'installUpdate','TYPO3\\CMS\\Install\\Updates\\IndexedSearchCTypeMigration','i:1;'),
+(129,'installUpdate','TYPO3\\CMS\\Extensionmanager\\Updates\\FeLoginModeExtractionUpdate','i:1;');
 /*!40000 ALTER TABLE `sys_registry` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -9912,6 +10093,1041 @@ INSERT INTO `tx_oelib_domain_model_germanzipcode` VALUES
 (8288,0,0,'99996','Mühlhausen',10.578722,51.293247),
 (8289,0,0,'99998','Weinbergen',10.590576,51.236069);
 /*!40000 ALTER TABLE `tx_oelib_domain_model_germanzipcode` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_attendances`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_attendances`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_attendances` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `tstamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `crdate` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `hidden` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `title` tinytext DEFAULT NULL,
+  `user` int(10) unsigned NOT NULL DEFAULT 0,
+  `seminar` int(10) unsigned NOT NULL DEFAULT 0,
+  `registration_queue` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `price` tinytext DEFAULT NULL,
+  `price_code` tinytext DEFAULT NULL,
+  `seats` int(10) unsigned NOT NULL DEFAULT 0,
+  `registered_themselves` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `total_price` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `attendees_names` text DEFAULT NULL,
+  `additional_persons` int(10) unsigned NOT NULL DEFAULT 0,
+  `invoice_date` int(10) unsigned NOT NULL DEFAULT 0,
+  `datepaid` int(10) unsigned NOT NULL DEFAULT 0,
+  `invoice_number` varchar(8) DEFAULT NULL,
+  `customer_number` varchar(8) DEFAULT NULL,
+  `method_of_payment` int(10) unsigned NOT NULL DEFAULT 0,
+  `separate_billing_address` smallint(5) unsigned NOT NULL DEFAULT 1,
+  `company` varchar(80) DEFAULT '',
+  `name` varchar(80) NOT NULL DEFAULT '',
+  `gender` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `address` varchar(40) DEFAULT '',
+  `zip` varchar(10) NOT NULL DEFAULT '',
+  `city` varchar(40) NOT NULL DEFAULT '',
+  `country` varchar(40) NOT NULL DEFAULT '',
+  `telephone` varchar(40) NOT NULL DEFAULT '',
+  `email` varchar(50) NOT NULL DEFAULT '',
+  `been_there` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `interests` text DEFAULT NULL,
+  `expectations` text DEFAULT NULL,
+  `background_knowledge` text DEFAULT NULL,
+  `accommodation` text DEFAULT NULL,
+  `lodgings` int(10) unsigned NOT NULL DEFAULT 0,
+  `food` text DEFAULT NULL,
+  `foods` int(10) unsigned NOT NULL DEFAULT 0,
+  `known_from` text DEFAULT NULL,
+  `notes` text DEFAULT NULL,
+  `kids` int(10) unsigned NOT NULL DEFAULT 0,
+  `checkboxes` int(10) unsigned NOT NULL DEFAULT 0,
+  `attendance_mode` int(10) unsigned NOT NULL DEFAULT 0,
+  `order_reference` tinytext DEFAULT NULL,
+  PRIMARY KEY (`uid`),
+  KEY `seminar` (`seminar`),
+  KEY `user` (`user`),
+  KEY `parent` (`pid`,`deleted`,`hidden`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_attendances`
+--
+
+LOCK TABLES `tx_seminars_attendances` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_attendances` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_attendances` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_attendances_checkboxes_mm`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_attendances_checkboxes_mm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_attendances_checkboxes_mm` (
+  `uid_local` int(10) unsigned NOT NULL DEFAULT 0,
+  `uid_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid_local`,`uid_foreign`),
+  KEY `uid_local` (`uid_local`),
+  KEY `uid_foreign` (`uid_foreign`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_attendances_checkboxes_mm`
+--
+
+LOCK TABLES `tx_seminars_attendances_checkboxes_mm` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_attendances_checkboxes_mm` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_attendances_checkboxes_mm` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_attendances_foods_mm`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_attendances_foods_mm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_attendances_foods_mm` (
+  `uid_local` int(10) unsigned NOT NULL DEFAULT 0,
+  `uid_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid_local`,`uid_foreign`),
+  KEY `uid_local` (`uid_local`),
+  KEY `uid_foreign` (`uid_foreign`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_attendances_foods_mm`
+--
+
+LOCK TABLES `tx_seminars_attendances_foods_mm` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_attendances_foods_mm` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_attendances_foods_mm` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_attendances_lodgings_mm`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_attendances_lodgings_mm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_attendances_lodgings_mm` (
+  `uid_local` int(10) unsigned NOT NULL DEFAULT 0,
+  `uid_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid_local`,`uid_foreign`),
+  KEY `uid_local` (`uid_local`),
+  KEY `uid_foreign` (`uid_foreign`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_attendances_lodgings_mm`
+--
+
+LOCK TABLES `tx_seminars_attendances_lodgings_mm` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_attendances_lodgings_mm` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_attendances_lodgings_mm` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_categories`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_categories` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `tstamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `crdate` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `title` tinytext DEFAULT NULL,
+  `single_view_page` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`,`deleted`),
+  FULLTEXT KEY `index_searchfields` (`title`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_categories`
+--
+
+LOCK TABLES `tx_seminars_categories` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_categories` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_checkboxes`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_checkboxes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_checkboxes` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `tstamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `crdate` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `title` tinytext DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`,`deleted`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_checkboxes`
+--
+
+LOCK TABLES `tx_seminars_checkboxes` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_checkboxes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_checkboxes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_event_types`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_event_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_event_types` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `tstamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `crdate` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `title` tinytext DEFAULT NULL,
+  `single_view_page` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`,`deleted`),
+  FULLTEXT KEY `index_searchfields` (`title`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_event_types`
+--
+
+LOCK TABLES `tx_seminars_event_types` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_event_types` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_event_types` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_foods`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_foods`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_foods` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `tstamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `crdate` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `title` tinytext DEFAULT NULL,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`,`deleted`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_foods`
+--
+
+LOCK TABLES `tx_seminars_foods` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_foods` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_foods` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_lodgings`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_lodgings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_lodgings` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `tstamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `crdate` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `title` tinytext DEFAULT NULL,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`,`deleted`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_lodgings`
+--
+
+LOCK TABLES `tx_seminars_lodgings` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_lodgings` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_lodgings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_organizers`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_organizers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_organizers` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `tstamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `crdate` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `title` tinytext DEFAULT NULL,
+  `homepage` tinytext DEFAULT NULL,
+  `email` tinytext DEFAULT NULL,
+  `email_footer` text DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`,`deleted`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_organizers`
+--
+
+LOCK TABLES `tx_seminars_organizers` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_organizers` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_organizers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_payment_methods`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_payment_methods`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_payment_methods` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `tstamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `crdate` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `title` tinytext DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`,`deleted`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_payment_methods`
+--
+
+LOCK TABLES `tx_seminars_payment_methods` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_payment_methods` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_payment_methods` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_seminars`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_seminars`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_seminars` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `tstamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `crdate` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `hidden` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `starttime` int(10) unsigned NOT NULL DEFAULT 0,
+  `endtime` int(10) unsigned NOT NULL DEFAULT 0,
+  `object_type` int(10) unsigned NOT NULL DEFAULT 0,
+  `title` tinytext DEFAULT NULL,
+  `topic` int(10) unsigned NOT NULL DEFAULT 0,
+  `slug` varchar(262) DEFAULT NULL,
+  `subtitle` tinytext DEFAULT NULL,
+  `categories` int(10) unsigned NOT NULL DEFAULT 0,
+  `teaser` text DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `event_type` int(10) unsigned NOT NULL DEFAULT 0,
+  `accreditation_number` tinytext DEFAULT NULL,
+  `credit_points` int(10) unsigned NOT NULL DEFAULT 0,
+  `begin_date` int(10) unsigned NOT NULL DEFAULT 0,
+  `end_date` int(10) unsigned NOT NULL DEFAULT 0,
+  `timeslots` int(10) unsigned NOT NULL DEFAULT 0,
+  `begin_date_registration` int(10) unsigned NOT NULL DEFAULT 0,
+  `deadline_registration` int(10) unsigned NOT NULL DEFAULT 0,
+  `deadline_early_bird` int(10) unsigned NOT NULL DEFAULT 0,
+  `deadline_unregistration` int(10) unsigned NOT NULL DEFAULT 0,
+  `download_start_date` int(10) unsigned NOT NULL DEFAULT 0,
+  `billing_start` int(10) unsigned NOT NULL DEFAULT 0,
+  `expiry` int(10) unsigned NOT NULL DEFAULT 0,
+  `details_page` tinytext DEFAULT NULL,
+  `place` int(10) unsigned NOT NULL DEFAULT 0,
+  `room` text DEFAULT NULL,
+  `lodgings` int(10) unsigned NOT NULL DEFAULT 0,
+  `foods` int(10) unsigned NOT NULL DEFAULT 0,
+  `speakers` int(10) unsigned NOT NULL DEFAULT 0,
+  `partners` int(10) unsigned NOT NULL DEFAULT 0,
+  `tutors` int(10) unsigned NOT NULL DEFAULT 0,
+  `leaders` int(10) unsigned NOT NULL DEFAULT 0,
+  `price_regular` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `price_regular_early` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `price_special` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `price_special_early` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `additional_information` text DEFAULT NULL,
+  `payment_methods` int(10) unsigned NOT NULL DEFAULT 0,
+  `organizers` int(10) unsigned NOT NULL DEFAULT 0,
+  `organizing_partners` int(10) unsigned NOT NULL DEFAULT 0,
+  `event_takes_place_reminder_sent` int(10) unsigned NOT NULL DEFAULT 0,
+  `cancelation_deadline_reminder_sent` int(10) unsigned NOT NULL DEFAULT 0,
+  `needs_registration` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `allows_multiple_registrations` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `attendees_min` int(10) unsigned NOT NULL DEFAULT 0,
+  `attendees_max` int(10) unsigned NOT NULL DEFAULT 0,
+  `queue_size` int(10) unsigned NOT NULL DEFAULT 0,
+  `offline_attendees` int(10) unsigned NOT NULL DEFAULT 0,
+  `target_groups` int(10) unsigned NOT NULL DEFAULT 0,
+  `registrations` int(10) unsigned NOT NULL DEFAULT 0,
+  `cancelled` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `owner_feuser` int(10) unsigned NOT NULL DEFAULT 0,
+  `checkboxes` int(10) unsigned NOT NULL DEFAULT 0,
+  `uses_terms_2` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `notes` text DEFAULT NULL,
+  `attached_files` int(10) unsigned NOT NULL DEFAULT 0,
+  `image` int(10) unsigned NOT NULL DEFAULT 0,
+  `requirements` int(10) unsigned NOT NULL DEFAULT 0,
+  `dependencies` int(10) unsigned NOT NULL DEFAULT 0,
+  `organizers_notified_about_minimum_reached` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `mute_notification_emails` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `automatic_confirmation_cancelation` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `price_on_request` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `date_of_last_registration_digest` int(10) unsigned NOT NULL DEFAULT 0,
+  `event_format` int(10) unsigned NOT NULL DEFAULT 0,
+  `webinar_url` tinytext DEFAULT NULL,
+  `additional_email_text` text DEFAULT NULL,
+  PRIMARY KEY (`uid`),
+  KEY `object_type` (`object_type`),
+  KEY `topic` (`topic`),
+  KEY `event_takes_place_reminder_sent` (`event_takes_place_reminder_sent`),
+  KEY `cancelation_deadline_reminder_sent` (`cancelation_deadline_reminder_sent`),
+  KEY `slug` (`slug`(127)),
+  KEY `parent` (`pid`,`deleted`,`hidden`),
+  FULLTEXT KEY `index_event_searchfields` (`accreditation_number`),
+  FULLTEXT KEY `index_topic_searchfields` (`title`,`subtitle`,`description`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_seminars`
+--
+
+LOCK TABLES `tx_seminars_seminars` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_seminars` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_seminars` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_seminars_categories_mm`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_seminars_categories_mm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_seminars_categories_mm` (
+  `uid_local` int(10) unsigned NOT NULL DEFAULT 0,
+  `uid_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid_local`,`uid_foreign`),
+  KEY `uid_local` (`uid_local`),
+  KEY `uid_foreign` (`uid_foreign`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_seminars_categories_mm`
+--
+
+LOCK TABLES `tx_seminars_seminars_categories_mm` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_seminars_categories_mm` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_seminars_categories_mm` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_seminars_checkboxes_mm`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_seminars_checkboxes_mm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_seminars_checkboxes_mm` (
+  `uid_local` int(10) unsigned NOT NULL DEFAULT 0,
+  `uid_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid_local`,`uid_foreign`),
+  KEY `uid_local` (`uid_local`),
+  KEY `uid_foreign` (`uid_foreign`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_seminars_checkboxes_mm`
+--
+
+LOCK TABLES `tx_seminars_seminars_checkboxes_mm` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_seminars_checkboxes_mm` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_seminars_checkboxes_mm` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_seminars_foods_mm`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_seminars_foods_mm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_seminars_foods_mm` (
+  `uid_local` int(10) unsigned NOT NULL DEFAULT 0,
+  `uid_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid_local`,`uid_foreign`),
+  KEY `uid_local` (`uid_local`),
+  KEY `uid_foreign` (`uid_foreign`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_seminars_foods_mm`
+--
+
+LOCK TABLES `tx_seminars_seminars_foods_mm` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_seminars_foods_mm` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_seminars_foods_mm` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_seminars_lodgings_mm`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_seminars_lodgings_mm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_seminars_lodgings_mm` (
+  `uid_local` int(10) unsigned NOT NULL DEFAULT 0,
+  `uid_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid_local`,`uid_foreign`),
+  KEY `uid_local` (`uid_local`),
+  KEY `uid_foreign` (`uid_foreign`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_seminars_lodgings_mm`
+--
+
+LOCK TABLES `tx_seminars_seminars_lodgings_mm` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_seminars_lodgings_mm` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_seminars_lodgings_mm` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_seminars_organizers_mm`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_seminars_organizers_mm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_seminars_organizers_mm` (
+  `uid_local` int(10) unsigned NOT NULL DEFAULT 0,
+  `uid_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid_local`,`uid_foreign`),
+  KEY `uid_local` (`uid_local`),
+  KEY `uid_foreign` (`uid_foreign`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_seminars_organizers_mm`
+--
+
+LOCK TABLES `tx_seminars_seminars_organizers_mm` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_seminars_organizers_mm` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_seminars_organizers_mm` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_seminars_organizing_partners_mm`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_seminars_organizing_partners_mm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_seminars_organizing_partners_mm` (
+  `uid_local` int(10) unsigned NOT NULL DEFAULT 0,
+  `uid_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid_local`,`uid_foreign`),
+  KEY `uid_local` (`uid_local`),
+  KEY `uid_foreign` (`uid_foreign`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_seminars_organizing_partners_mm`
+--
+
+LOCK TABLES `tx_seminars_seminars_organizing_partners_mm` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_seminars_organizing_partners_mm` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_seminars_organizing_partners_mm` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_seminars_payment_methods_mm`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_seminars_payment_methods_mm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_seminars_payment_methods_mm` (
+  `uid_local` int(10) unsigned NOT NULL DEFAULT 0,
+  `uid_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid_local`,`uid_foreign`),
+  KEY `uid_local` (`uid_local`),
+  KEY `uid_foreign` (`uid_foreign`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_seminars_payment_methods_mm`
+--
+
+LOCK TABLES `tx_seminars_seminars_payment_methods_mm` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_seminars_payment_methods_mm` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_seminars_payment_methods_mm` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_seminars_place_mm`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_seminars_place_mm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_seminars_place_mm` (
+  `uid_local` int(10) unsigned NOT NULL DEFAULT 0,
+  `uid_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid_local`,`uid_foreign`),
+  KEY `uid_local` (`uid_local`),
+  KEY `uid_foreign` (`uid_foreign`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_seminars_place_mm`
+--
+
+LOCK TABLES `tx_seminars_seminars_place_mm` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_seminars_place_mm` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_seminars_place_mm` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_seminars_requirements_mm`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_seminars_requirements_mm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_seminars_requirements_mm` (
+  `uid_local` int(10) unsigned NOT NULL DEFAULT 0,
+  `uid_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid_local`,`uid_foreign`),
+  KEY `uid_local` (`uid_local`),
+  KEY `uid_foreign` (`uid_foreign`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_seminars_requirements_mm`
+--
+
+LOCK TABLES `tx_seminars_seminars_requirements_mm` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_seminars_requirements_mm` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_seminars_requirements_mm` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_seminars_speakers_mm`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_seminars_speakers_mm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_seminars_speakers_mm` (
+  `uid_local` int(10) unsigned NOT NULL DEFAULT 0,
+  `uid_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid_local`,`uid_foreign`),
+  KEY `uid_local` (`uid_local`),
+  KEY `uid_foreign` (`uid_foreign`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_seminars_speakers_mm`
+--
+
+LOCK TABLES `tx_seminars_seminars_speakers_mm` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_seminars_speakers_mm` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_seminars_speakers_mm` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_seminars_speakers_mm_leaders`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_seminars_speakers_mm_leaders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_seminars_speakers_mm_leaders` (
+  `uid_local` int(10) unsigned NOT NULL DEFAULT 0,
+  `uid_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid_local`,`uid_foreign`),
+  KEY `uid_local` (`uid_local`),
+  KEY `uid_foreign` (`uid_foreign`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_seminars_speakers_mm_leaders`
+--
+
+LOCK TABLES `tx_seminars_seminars_speakers_mm_leaders` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_seminars_speakers_mm_leaders` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_seminars_speakers_mm_leaders` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_seminars_speakers_mm_partners`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_seminars_speakers_mm_partners`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_seminars_speakers_mm_partners` (
+  `uid_local` int(10) unsigned NOT NULL DEFAULT 0,
+  `uid_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid_local`,`uid_foreign`),
+  KEY `uid_local` (`uid_local`),
+  KEY `uid_foreign` (`uid_foreign`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_seminars_speakers_mm_partners`
+--
+
+LOCK TABLES `tx_seminars_seminars_speakers_mm_partners` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_seminars_speakers_mm_partners` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_seminars_speakers_mm_partners` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_seminars_speakers_mm_tutors`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_seminars_speakers_mm_tutors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_seminars_speakers_mm_tutors` (
+  `uid_local` int(10) unsigned NOT NULL DEFAULT 0,
+  `uid_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid_local`,`uid_foreign`),
+  KEY `uid_local` (`uid_local`),
+  KEY `uid_foreign` (`uid_foreign`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_seminars_speakers_mm_tutors`
+--
+
+LOCK TABLES `tx_seminars_seminars_speakers_mm_tutors` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_seminars_speakers_mm_tutors` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_seminars_speakers_mm_tutors` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_seminars_target_groups_mm`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_seminars_target_groups_mm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_seminars_target_groups_mm` (
+  `uid_local` int(10) unsigned NOT NULL DEFAULT 0,
+  `uid_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid_local`,`uid_foreign`),
+  KEY `uid_local` (`uid_local`),
+  KEY `uid_foreign` (`uid_foreign`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_seminars_target_groups_mm`
+--
+
+LOCK TABLES `tx_seminars_seminars_target_groups_mm` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_seminars_target_groups_mm` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_seminars_target_groups_mm` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_sites`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_sites`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_sites` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `tstamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `crdate` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `title` tinytext DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `city` tinytext DEFAULT NULL,
+  `homepage` tinytext DEFAULT NULL,
+  `directions` text DEFAULT NULL,
+  `notes` text DEFAULT NULL,
+  `contact_person` tinytext DEFAULT NULL,
+  `email_address` tinytext DEFAULT NULL,
+  `phone_number` tinytext DEFAULT NULL,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`,`deleted`),
+  FULLTEXT KEY `index_searchfields` (`title`,`city`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_sites`
+--
+
+LOCK TABLES `tx_seminars_sites` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_sites` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_sites` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_skills`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_skills`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_skills` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `tstamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `crdate` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `title` tinytext DEFAULT NULL,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`,`deleted`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_skills`
+--
+
+LOCK TABLES `tx_seminars_skills` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_skills` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_skills` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_speakers`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_speakers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_speakers` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `tstamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `crdate` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `hidden` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `title` tinytext DEFAULT NULL,
+  `organization` tinytext DEFAULT NULL,
+  `homepage` tinytext DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `image` int(10) unsigned NOT NULL DEFAULT 0,
+  `skills` int(10) unsigned NOT NULL DEFAULT 0,
+  `notes` text DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `phone_work` tinytext DEFAULT NULL,
+  `phone_home` tinytext DEFAULT NULL,
+  `phone_mobile` tinytext DEFAULT NULL,
+  `email` tinytext DEFAULT NULL,
+  `cancelation_period` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`,`deleted`,`hidden`),
+  FULLTEXT KEY `index_searchfields` (`title`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_speakers`
+--
+
+LOCK TABLES `tx_seminars_speakers` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_speakers` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_speakers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_speakers_skills_mm`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_speakers_skills_mm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_speakers_skills_mm` (
+  `uid_local` int(10) unsigned NOT NULL DEFAULT 0,
+  `uid_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting` int(10) unsigned NOT NULL DEFAULT 0,
+  `sorting_foreign` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid_local`,`uid_foreign`),
+  KEY `uid_local` (`uid_local`),
+  KEY `uid_foreign` (`uid_foreign`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_speakers_skills_mm`
+--
+
+LOCK TABLES `tx_seminars_speakers_skills_mm` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_speakers_skills_mm` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_speakers_skills_mm` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_target_groups`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_target_groups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_target_groups` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `tstamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `crdate` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `title` tinytext DEFAULT NULL,
+  `minimum_age` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `maximum_age` smallint(5) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`,`deleted`),
+  FULLTEXT KEY `index_searchfields` (`title`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_target_groups`
+--
+
+LOCK TABLES `tx_seminars_target_groups` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_target_groups` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_target_groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_seminars_timeslots`
+--
+
+DROP TABLE IF EXISTS `tx_seminars_timeslots`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_seminars_timeslots` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `tstamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `crdate` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `seminar` int(10) unsigned NOT NULL DEFAULT 0,
+  `begin_date` int(10) unsigned NOT NULL DEFAULT 0,
+  `end_date` int(10) unsigned NOT NULL DEFAULT 0,
+  `place` int(10) unsigned NOT NULL DEFAULT 0,
+  `room` text DEFAULT NULL,
+  PRIMARY KEY (`uid`),
+  KEY `seminar` (`seminar`),
+  KEY `parent` (`pid`,`deleted`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_seminars_timeslots`
+--
+
+LOCK TABLES `tx_seminars_timeslots` WRITE;
+/*!40000 ALTER TABLE `tx_seminars_timeslots` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_seminars_timeslots` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
