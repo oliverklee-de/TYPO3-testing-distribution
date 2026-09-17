@@ -181,6 +181,10 @@ jobs:
         run: "composer update --no-progress"
       - name: Start MySQL
         run: "sudo /etc/init.d/mysql start"
+      - name: Install GraphicsMagick
+        run: |
+          sudo apt-get --quiet update
+          sudo apt-get --quiet --yes --no-install-recommends install graphicsmagick
       - name: Run the tests
         run: |
           export typo3DatabaseName="$DB_DATABASE";
