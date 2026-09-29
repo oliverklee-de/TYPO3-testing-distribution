@@ -6,4 +6,5 @@ parameters:
   level: 9
 
   paths:
+    - Build/
     - src/
