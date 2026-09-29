@@ -47,6 +47,7 @@
 		"typo3/minimal": "^14.3"
 	},
 	"require-dev": {
+		"a9f/typo3-fractor": "^1.1",
 		"ergebnis/composer-normalize": "2.54.0",
 		"friendsofphp/php-cs-fixer": "3.95.27",
 		"helmich/typo3-typoscript-lint": "3.3.0",
@@ -79,6 +80,7 @@
 	},
 	"config": {
 		"allow-plugins": {
+			"a9f/fractor-extension-installer": true,
 			"ergebnis/composer-normalize": true,
 			"phpstan/extension-installer": true,
 			"typo3/class-alias-loader": true,
@@ -102,6 +104,7 @@
 			"@composer normalize --dry-run --no-check-lock",
 			"@composer normalize --dry-run --no-check-lock src/extensions/site-dev/composer.json"
 		],
+		"check:fractor": "fractor process -c Build/fractor/config.php --dry-run",
 		"check:json:lint": "find . -path '*/public/*' ! -path '*/var/*' ! -path '*/vendor/*' -name '*.json' | xargs -r php vendor/bin/jsonlint -q",
 		"check:php:cs-fixer": "php-cs-fixer fix --config .php-cs-fixer.php -v --dry-run --using-cache no --diff",
 		"check:php:lint": "parallel-lint *.php .*.php config src/extensions/site-dev",
@@ -111,6 +114,7 @@
 			"@check:composer:normalize",
 			"@check:json:lint",
 			"@check:php:lint",
+			"@check:fractor",
 			"@check:php:stan",
 			"@check:php:cs-fixer",
 			"@check:typoscript:lint",
@@ -132,7 +136,9 @@
 			"@composer normalize --no-check-lock",
 			"@composer normalize --no-check-lock src/extensions/site-dev/composer.json"
 		],
+		"fix:fractor": "fractor process -c Build/fractor/config.php",
 		"fix:php": [
+			"@fix:fractor",
 			"@fix:php:rector",
 			"@fix:php:cs-fixer"
 		],
@@ -145,6 +151,7 @@
 	},
 	"scripts-descriptions": {
 		"check:composer:normalize": "Checks the formatting and structure of the composer.json.",
+		"check:fractor": "Checks the code for Fractor migrations.",
 		"check:json:lint": "Lints the JSON files.",
 		"check:php:cs-fixer": "Checks the code style with the PHP Coding Standards Fixer (PHP-CS-Fixer).",
 		"check:php:lint": "Lints the PHP files for syntax errors.",
@@ -158,6 +165,7 @@
 		"check:yaml:lint": "Lints the YAML files for syntax errors.",
 		"fix": "Reformats the code.",
 		"fix:composer": "Reformats and sorts the composer.json files.",
+		"fix:fractor": "Applies Fractor migrations.",
 		"fix:php": "Runs all fixers for the PHP code.",
 		"fix:php:cs-fixer": "Fixes the code style with PHP-CS-Fixer.",
 		"fix:php:rector": "Updates the code with Rector.",

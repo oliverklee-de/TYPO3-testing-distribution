@@ -95,6 +95,7 @@ jobs:
           - json:lint
           - yaml:lint
           - php:rector
+          - fractor
           - php:cs-fixer
           - php:stan
           - typoscript:lint
