@@ -107,7 +107,7 @@
 		"check:fractor": "fractor process -c Build/fractor/config.php --dry-run",
 		"check:json:lint": "find . -path '*/public/*' ! -path '*/var/*' ! -path '*/vendor/*' -name '*.json' | xargs -r php vendor/bin/jsonlint -q",
 		"check:php:cs-fixer": "php-cs-fixer fix --config .php-cs-fixer.php -v --dry-run --using-cache no --diff",
-		"check:php:lint": "parallel-lint *.php .*.php config src/extensions/site-dev",
+		"check:php:lint": "parallel-lint *.php .*.php Build config src/extensions/site-dev",
 		"check:php:rector": "rector process --dry-run",
 		"check:php:stan": "phpstan --no-progress",
 		"check:static": [
