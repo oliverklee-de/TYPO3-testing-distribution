@@ -1,11 +1,11 @@
 
 -- Dump of TYPO3 Connection "Default"
 /*M!999999\- enable the sandbox mode */ 
--- MariaDB dump 10.19  Distrib 10.11.18-MariaDB, for debian-linux-gnu (x86_64)
+-- MariaDB dump 10.19  Distrib 10.11.19-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: db    Database: db
 -- ------------------------------------------------------
--- Server version	10.6.27-MariaDB-ubu2204-log
+-- Server version	10.6.28-MariaDB-ubu2204-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -420,9 +420,9 @@ CREATE TABLE `pages` (
   KEY `language_identifier` (`l10n_parent`,`sys_language_uid`),
   KEY `slug` (`slug`(127)),
   KEY `parent` (`pid`,`deleted`,`hidden`),
-  KEY `translation_source` (`l10n_source`),
   KEY `t3ver_oid` (`t3ver_oid`,`t3ver_wsid`),
-  KEY `contentFromPid` (`content_from_pid`)
+  KEY `contentFromPid` (`content_from_pid`),
+  KEY `translation_source` (`l10n_source`,`l10n_parent`,`sys_language_uid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1017,7 +1017,7 @@ CREATE TABLE `sys_registry` (
   `entry_value` mediumblob DEFAULT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `entry_identifier` (`entry_namespace`,`entry_key`)
-) ENGINE=InnoDB AUTO_INCREMENT=178 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=179 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1035,15 +1035,10 @@ INSERT INTO `sys_registry` VALUES
 (40,'installUpdateRows','rowUpdatersDone','a:5:{i:0;s:69:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\WorkspaceVersionRecordsMigration\";i:1;s:66:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\L18nDiffsourceToJsonMigration\";i:2;s:77:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\WorkspaceMovePlaceholderRemovalMigration\";i:3;s:76:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\WorkspaceNewPlaceholderRemovalMigration\";i:4;s:69:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\SysRedirectRootPageMoveMigration\";}'),
 (41,'installUpdate','TYPO3\\CMS\\Install\\Updates\\BackendUserLanguageMigration','i:1;'),
 (42,'installUpdate','TYPO3\\CMS\\Install\\Updates\\SysLogChannel','i:1;'),
-(43,'core','sys_refindex_lastUpdate','i:1787313811;'),
-(50,'languagePacks','de-feuserextrafields','i:1699807937;'),
-(51,'languagePacks','de-tea','i:1762278643;'),
-(52,'languagePacks','de','i:1762278644;'),
-(54,'languagePacks','de-static_info_tables','i:1762278643;'),
+(43,'core','sys_refindex_lastUpdate','i:1790767507;'),
 (60,'installUpdate','TYPO3\\CMS\\Install\\Updates\\ShortcutRecordsMigration','i:1;'),
 (61,'installUpdate','TYPO3\\CMS\\Install\\Updates\\CollectionsExtractionUpdate','i:1;'),
 (62,'installUpdate','TYPO3\\CMS\\FrontendLogin\\Updates\\MigrateFeloginPlugins','i:1;'),
-(103,'languagePacks','de-seminars_premium','i:1757317583;'),
 (107,'installUpdate','TYPO3\\CMS\\Install\\Updates\\BackendGroupsExplicitAllowDenyMigration','i:1;'),
 (108,'installUpdate','TYPO3\\CMS\\Install\\Updates\\BackendModulePermissionMigration','i:1;'),
 (109,'installUpdate','TYPO3\\CMS\\Install\\Updates\\FeLoginModeExtractionUpdate','i:1;'),
@@ -1073,46 +1068,47 @@ INSERT INTO `sys_registry` VALUES
 (135,'installUpdate','TYPO3\\CMS\\Form\\Upgrades\\FileFormsToDatabaseUpgradeWizard','i:1;'),
 (136,'installUpdate','TYPO3\\CMS\\IndexedSearch\\Upgrades\\IndexedSearchCTypeMigration','i:1;'),
 (137,'installUpdate','TYPO3\\CMS\\Core\\Upgrades\\BackendUserLanguageMigration','i:1;'),
-(138,'extensionDataImport','core:ext_tables_static+adt.sql','s:0:\"\";'),
-(139,'extensionDataImport','extbase:ext_tables_static+adt.sql','s:0:\"\";'),
-(140,'extensionDataImport','fluid:ext_tables_static+adt.sql','s:0:\"\";'),
-(141,'extensionDataImport','install:ext_tables_static+adt.sql','s:0:\"\";'),
-(142,'extensionDataImport','recordlist:ext_tables_static+adt.sql','s:0:\"\";'),
-(143,'extensionDataImport','backend:ext_tables_static+adt.sql','s:0:\"\";'),
-(144,'extensionDataImport','frontend:ext_tables_static+adt.sql','s:0:\"\";'),
-(145,'extensionDataImport','adminpanel:ext_tables_static+adt.sql','s:0:\"\";'),
-(146,'extensionDataImport','dashboard:ext_tables_static+adt.sql','s:0:\"\";'),
-(147,'extensionDataImport','fluid_styled_content:ext_tables_static+adt.sql','s:0:\"\";'),
-(148,'extensionDataImport','filelist:ext_tables_static+adt.sql','s:0:\"\";'),
-(149,'extensionDataImport','form:ext_tables_static+adt.sql','s:0:\"\";'),
-(150,'extensionDataImport','setup:ext_tables_static+adt.sql','s:0:\"\";'),
-(151,'extensionDataImport','rte_ckeditor:ext_tables_static+adt.sql','s:0:\"\";'),
-(152,'extensionDataImport','belog:ext_tables_static+adt.sql','s:0:\"\";'),
-(153,'extensionDataImport','beuser:ext_tables_static+adt.sql','s:0:\"\";'),
-(154,'extensionDataImport','extensionmanager:ext_tables_static+adt.sql','s:0:\"\";'),
-(155,'extensionDataImport','felogin:ext_tables_static+adt.sql','s:0:\"\";'),
-(156,'extensionDataImport','info:ext_tables_static+adt.sql','s:0:\"\";'),
-(157,'extensionDataImport','lowlevel:ext_tables_static+adt.sql','s:0:\"\";'),
-(158,'extensionDataImport','recycler:ext_tables_static+adt.sql','s:0:\"\";'),
-(159,'extensionDataImport','reports:ext_tables_static+adt.sql','s:0:\"\";'),
-(160,'extensionDataImport','tstemplate:ext_tables_static+adt.sql','s:0:\"\";'),
-(161,'extensionDataImport','viewpage:ext_tables_static+adt.sql','s:0:\"\";'),
-(162,'extensionDataImport','static_info_tables:ext_tables_static+adt.sql','s:32:\"424759792edf733151eed6d7c9512657\";'),
-(163,'extensionDataImport','oelib:ext_tables_static+adt.sql','s:32:\"50712822725de5ac903340841e0aeca6\";'),
-(164,'extensionDataImport','feuserextrafields:ext_tables_static+adt.sql','s:0:\"\";'),
-(165,'extensionDataImport','seminars:ext_tables_static+adt.sql','s:0:\"\";'),
-(166,'extensionDataImport','onetimeaccount:ext_tables_static+adt.sql','s:0:\"\";'),
-(167,'extensionDataImport','autoswitchtolistview:ext_tables_static+adt.sql','s:0:\"\";'),
-(168,'extensionDataImport','typo3_console:ext_tables_static+adt.sql','s:0:\"\";'),
-(169,'extensionDataImport','tea:ext_tables_static+adt.sql','s:0:\"\";'),
-(170,'extensionDataImport','site_dev:ext_tables_static+adt.sql','s:0:\"\";'),
-(171,'extensionDataImport','redirects:ext_tables_static+adt.sql','s:0:\"\";'),
-(172,'extensionDataImport','seo:ext_tables_static+adt.sql','s:0:\"\";'),
-(173,'extensionDataImport','scheduler:ext_tables_static+adt.sql','s:0:\"\";'),
-(174,'extensionDataImport','indexed_search:ext_tables_static+adt.sql','s:0:\"\";'),
-(175,'installUpdate','TYPO3\\CMS\\Core\\Upgrades\\MigrateExtensionDataImportRegistryKeysUpdate','i:1;'),
-(176,'installUpdate','TYPO3\\CMS\\Backend\\Upgrades\\UserSettingsMigration','i:1;'),
-(177,'installUpdate','TYPO3\\CMS\\Backend\\Upgrades\\UserSettingsScrubbingMigration','i:1;');
+(138,'installUpdate','TYPO3\\CMS\\Core\\Upgrades\\LanguagePackUpdateTimestampMigration','i:1;'),
+(139,'extensionDataImport','core:ext_tables_static+adt.sql','s:0:\"\";'),
+(140,'extensionDataImport','extbase:ext_tables_static+adt.sql','s:0:\"\";'),
+(141,'extensionDataImport','fluid:ext_tables_static+adt.sql','s:0:\"\";'),
+(142,'extensionDataImport','install:ext_tables_static+adt.sql','s:0:\"\";'),
+(143,'extensionDataImport','recordlist:ext_tables_static+adt.sql','s:0:\"\";'),
+(144,'extensionDataImport','backend:ext_tables_static+adt.sql','s:0:\"\";'),
+(145,'extensionDataImport','frontend:ext_tables_static+adt.sql','s:0:\"\";'),
+(146,'extensionDataImport','adminpanel:ext_tables_static+adt.sql','s:0:\"\";'),
+(147,'extensionDataImport','dashboard:ext_tables_static+adt.sql','s:0:\"\";'),
+(148,'extensionDataImport','fluid_styled_content:ext_tables_static+adt.sql','s:0:\"\";'),
+(149,'extensionDataImport','filelist:ext_tables_static+adt.sql','s:0:\"\";'),
+(150,'extensionDataImport','form:ext_tables_static+adt.sql','s:0:\"\";'),
+(151,'extensionDataImport','setup:ext_tables_static+adt.sql','s:0:\"\";'),
+(152,'extensionDataImport','rte_ckeditor:ext_tables_static+adt.sql','s:0:\"\";'),
+(153,'extensionDataImport','belog:ext_tables_static+adt.sql','s:0:\"\";'),
+(154,'extensionDataImport','beuser:ext_tables_static+adt.sql','s:0:\"\";'),
+(155,'extensionDataImport','extensionmanager:ext_tables_static+adt.sql','s:0:\"\";'),
+(156,'extensionDataImport','felogin:ext_tables_static+adt.sql','s:0:\"\";'),
+(157,'extensionDataImport','info:ext_tables_static+adt.sql','s:0:\"\";'),
+(158,'extensionDataImport','lowlevel:ext_tables_static+adt.sql','s:0:\"\";'),
+(159,'extensionDataImport','recycler:ext_tables_static+adt.sql','s:0:\"\";'),
+(160,'extensionDataImport','reports:ext_tables_static+adt.sql','s:0:\"\";'),
+(161,'extensionDataImport','tstemplate:ext_tables_static+adt.sql','s:0:\"\";'),
+(162,'extensionDataImport','viewpage:ext_tables_static+adt.sql','s:0:\"\";'),
+(163,'extensionDataImport','static_info_tables:ext_tables_static+adt.sql','s:32:\"424759792edf733151eed6d7c9512657\";'),
+(164,'extensionDataImport','oelib:ext_tables_static+adt.sql','s:32:\"50712822725de5ac903340841e0aeca6\";'),
+(165,'extensionDataImport','feuserextrafields:ext_tables_static+adt.sql','s:0:\"\";'),
+(166,'extensionDataImport','seminars:ext_tables_static+adt.sql','s:0:\"\";'),
+(167,'extensionDataImport','onetimeaccount:ext_tables_static+adt.sql','s:0:\"\";'),
+(168,'extensionDataImport','autoswitchtolistview:ext_tables_static+adt.sql','s:0:\"\";'),
+(169,'extensionDataImport','typo3_console:ext_tables_static+adt.sql','s:0:\"\";'),
+(170,'extensionDataImport','tea:ext_tables_static+adt.sql','s:0:\"\";'),
+(171,'extensionDataImport','site_dev:ext_tables_static+adt.sql','s:0:\"\";'),
+(172,'extensionDataImport','redirects:ext_tables_static+adt.sql','s:0:\"\";'),
+(173,'extensionDataImport','seo:ext_tables_static+adt.sql','s:0:\"\";'),
+(174,'extensionDataImport','scheduler:ext_tables_static+adt.sql','s:0:\"\";'),
+(175,'extensionDataImport','indexed_search:ext_tables_static+adt.sql','s:0:\"\";'),
+(176,'installUpdate','TYPO3\\CMS\\Core\\Upgrades\\MigrateExtensionDataImportRegistryKeysUpdate','i:1;'),
+(177,'installUpdate','TYPO3\\CMS\\Backend\\Upgrades\\UserSettingsMigration','i:1;'),
+(178,'installUpdate','TYPO3\\CMS\\Backend\\Upgrades\\UserSettingsScrubbingMigration','i:1;');
 /*!40000 ALTER TABLE `sys_registry` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1328,8 +1324,8 @@ CREATE TABLE `tt_content` (
   KEY `parent` (`pid`,`sorting`),
   KEY `t3ver_oid` (`t3ver_oid`,`t3ver_wsid`),
   KEY `language_identifier` (`l18n_parent`,`sys_language_uid`),
-  KEY `translation_source` (`l10n_source`),
-  KEY `index_newscontent` (`tx_news_related_news`)
+  KEY `index_newscontent` (`tx_news_related_news`),
+  KEY `translation_source` (`l10n_source`,`l18n_parent`,`sys_language_uid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1438,9 +1434,9 @@ CREATE TABLE `tx_news_domain_model_link` (
   `uri` text DEFAULT NULL,
   PRIMARY KEY (`uid`),
   KEY `parent` (`pid`,`deleted`,`hidden`),
-  KEY `translation_source` (`l10n_source`),
   KEY `t3ver_oid` (`t3ver_oid`,`t3ver_wsid`),
-  KEY `language_identifier` (`l10n_parent`,`sys_language_uid`)
+  KEY `language_identifier` (`l10n_parent`,`sys_language_uid`),
+  KEY `translation_source` (`l10n_source`,`l10n_parent`,`sys_language_uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1514,9 +1510,9 @@ CREATE TABLE `tx_news_domain_model_news` (
   KEY `path_segment` (`path_segment`(185),`uid`),
   KEY `import` (`import_id`,`import_source`),
   KEY `parent` (`pid`,`deleted`,`hidden`),
-  KEY `translation_source` (`l10n_source`),
   KEY `t3ver_oid` (`t3ver_oid`,`t3ver_wsid`),
-  KEY `language_identifier` (`l10n_parent`,`sys_language_uid`)
+  KEY `language_identifier` (`l10n_parent`,`sys_language_uid`),
+  KEY `translation_source` (`l10n_source`,`l10n_parent`,`sys_language_uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1615,9 +1611,9 @@ CREATE TABLE `tx_news_domain_model_tag` (
   `seo_text` text DEFAULT NULL,
   PRIMARY KEY (`uid`),
   KEY `parent` (`pid`,`deleted`,`hidden`),
-  KEY `translation_source` (`l10n_source`),
   KEY `t3ver_oid` (`t3ver_oid`,`t3ver_wsid`),
-  KEY `language_identifier` (`l10n_parent`,`sys_language_uid`)
+  KEY `language_identifier` (`l10n_parent`,`sys_language_uid`),
+  KEY `translation_source` (`l10n_source`,`l10n_parent`,`sys_language_uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1629,6 +1625,57 @@ LOCK TABLES `tx_news_domain_model_tag` WRITE;
 /*!40000 ALTER TABLE `tx_news_domain_model_tag` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tx_news_domain_model_tag` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `tx_tea_domain_model_tea`
+--
+
+DROP TABLE IF EXISTS `tx_tea_domain_model_tea`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tx_tea_domain_model_tea` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `tstamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `crdate` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `description` longtext DEFAULT NULL,
+  `image` int(10) unsigned NOT NULL DEFAULT 0,
+  `fe_group` varchar(255) NOT NULL DEFAULT '0',
+  `sys_language_uid` int(11) NOT NULL DEFAULT 0,
+  `l18n_parent` int(10) unsigned NOT NULL DEFAULT 0,
+  `l10n_source` int(10) unsigned NOT NULL DEFAULT 0,
+  `l10n_state` text DEFAULT NULL,
+  `l18n_diffsource` mediumblob DEFAULT NULL,
+  `owner` longtext DEFAULT NULL,
+  `hidden` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `starttime` int(10) unsigned NOT NULL DEFAULT 0,
+  `endtime` int(10) unsigned NOT NULL DEFAULT 0,
+  `t3ver_oid` int(10) unsigned NOT NULL DEFAULT 0,
+  `t3ver_wsid` int(10) unsigned NOT NULL DEFAULT 0,
+  `t3ver_state` smallint(6) NOT NULL DEFAULT 0,
+  `t3ver_stage` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`,`deleted`,`hidden`),
+  KEY `t3ver_oid` (`t3ver_oid`,`t3ver_wsid`),
+  KEY `language_identifier` (`l18n_parent`,`sys_language_uid`),
+  KEY `translation_source` (`l10n_source`,`l18n_parent`,`sys_language_uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tx_tea_domain_model_tea`
+--
+
+LOCK TABLES `tx_tea_domain_model_tea` WRITE;
+/*!40000 ALTER TABLE `tx_tea_domain_model_tea` DISABLE KEYS */;
+INSERT INTO `tx_tea_domain_model_tea` VALUES
+(1,3,1627916201,1627916201,0,'Earl Grey','<p>Fruchtig-duftend.</p>',0,'0',0,0,0,NULL,NULL,'0',0,0,0,0,0,0,0),
+(2,3,1687429497,1627916222,0,'Darjeeling','<p>Frisch und zart.</p>',0,'',0,0,0,NULL,'{\"title\":\"\",\"description\":\"\",\"image\":\"\",\"owner\":\"\",\"fe_group\":\"\"}','3',0,0,0,0,0,0,0),
+(3,3,1683114389,1683114372,0,'Earl Grey (English)','<p>Fruity and fragrant.</p>',0,'',1,1,1,NULL,'{\"l18n_parent\":\"0\",\"l18n_diffsource\":\"\",\"title\":\"Earl Grey\",\"description\":\"<p>Fruchtig-duftend.<\\/p>\",\"image\":\"0\",\"sys_language_uid\":\"0\",\"l10n_source\":\"0\",\"fe_group\":\"0\"}','0',0,0,0,0,0,0,0);
+/*!40000 ALTER TABLE `tx_tea_domain_model_tea` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -1639,4 +1686,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-08-21 14:03:50
+-- Dump completed on 2026-09-30 13:25:26
