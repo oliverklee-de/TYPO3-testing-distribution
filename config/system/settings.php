@@ -29,11 +29,7 @@ return [
     ],
     'EXT' => [],
     'EXTCONF' => [
-        'lang' => [
-            'availableLanguages' => [
-                'de',
-            ],
-        ],
+        'lang' => [],
     ],
     'EXTENSIONS' => [
         'backend' => [
