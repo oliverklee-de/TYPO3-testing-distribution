@@ -84,7 +84,6 @@ return [
             'storageUidImporter' => '1',
             'tagPid' => '1',
         ],
-        'onetimeaccount' => [],
         'redirects' => [
             'showCheckIntegrityInfoInReports' => '1',
             'showCheckIntegrityInfoInReportsSeconds' => '86400',
@@ -92,7 +91,6 @@ return [
         'scheduler' => [
             'maxLifetime' => '1440',
         ],
-        'seminars' => [],
         'static_info_tables' => [
             'enableManager' => '0',
         ],
