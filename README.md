@@ -11,7 +11,6 @@ This is a TYPO3 distribution which I use to manually test my extensions:
 - [seminars](https://github.com/oliverklee-de/seminars)
   (once it [supports TYPO3 14LTS](https://github.com/oliverklee-de/seminars/wiki/Early-access-program-for-newer-TYPO3-versions))
 - [tea](https://github.com/TYPO3BestPractices/tea)
-  (once it supports TYPO3 14LTS)
 
 ## Usage
 

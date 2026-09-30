@@ -20,6 +20,7 @@
 		"georgringer/news": "^14.0",
 		"helhum/typo3-console": "^9.0.0",
 		"oliverklee/site-dev": "@dev",
+		"ttn/tea": "dev-main",
 		"typo3/cms-adminpanel": "^14.3",
 		"typo3/cms-belog": "^14.3",
 		"typo3/cms-beuser": "^14.3",
