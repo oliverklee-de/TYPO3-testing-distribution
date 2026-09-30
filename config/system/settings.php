@@ -71,12 +71,8 @@ return [
             'useMysqlFulltext' => '0',
             'xlhtml' => '/usr/bin/',
         ],
-        'onetimeaccount' => [
-        ],
         'scheduler' => [
             'maxLifetime' => '1440',
-        ],
-        'seminars' => [
         ],
         'static_info_tables' => [
             'enableManager' => '0',
