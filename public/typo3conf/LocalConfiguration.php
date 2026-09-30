@@ -80,8 +80,6 @@ return [
             'maxLifetime' => '1440',
             'showSampleTasks' => '1',
         ],
-        'seminars' => [
-        ],
         'static_info_tables' => [
             'enableManager' => '0',
         ],
