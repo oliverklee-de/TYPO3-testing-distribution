@@ -91,9 +91,6 @@ return [
         'scheduler' => [
             'maxLifetime' => '1440',
         ],
-        'static_info_tables' => [
-            'enableManager' => '0',
-        ],
     ],
     'FE' => [
         'debug' => true,
