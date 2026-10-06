@@ -72,8 +72,8 @@
         <target state="final">Ich verstehe, was das bedeutet und ich bin in der Lage, möglicherweise auftretende Probleme selbst zu untersuchen.</target>
       </trans-unit>
       <trans-unit id="button.resolveDependenciesIgnore" approved="yes">
-        <source>I know what I'm doing, continue anyway</source>
-        <target state="final">Ich weiß was ich tue; trotzdem weitermachen</target>
+        <source>Continue anyway</source>
+        <target state="final">Trotzdem fortfahren</target>
       </trans-unit>
       <trans-unit id="extensionList.downloadsql" approved="yes">
         <source>Download SQL Dump</source>
@@ -103,6 +103,10 @@
         <source>Activate</source>
         <target state="final">Aktivieren</target>
       </trans-unit>
+      <trans-unit id="extensionList.toggleStateConfirmation.reloadMessage" approved="yes">
+        <source>Please note that the backend will be fully reloaded after proceeding.</source>
+        <target state="final">Bitte beachte, dass das Backend nach dem Fortfahren vollständig neu geladen wird.</target>
+      </trans-unit>
       <trans-unit id="extensionList.downloadzip" approved="yes">
         <source>Download as zip</source>
         <target state="final">Als ZIP herunterladen</target>
@@ -117,20 +121,28 @@
       </trans-unit>
       <trans-unit id="extensionList.composerStatus.information" approved="yes">
         <source>
-					Future TYPO3 versions will require all extensions in your TYPO3 installation to contain a
-					composer.json file in their extension directory. This is needed to properly detect the
-					composer-based package name, the relevant extension key and the dependencies to other packages /
-					extensions. Below is a list of extensions in your TYPO3 installation, which currently do not meet
-					those requirements and therefore need adaptations to their composer.json file.
-				</source>
-        <target state="final">Zukünftige TYPO3-Versionen werden voraussetzen, dass alle Erweiterungen in Ihrer TYPO3-Installation eine composer.json-Datei in Ihrem Erweiterungsverzeichnis enthalten. Diese wird benötigt, um den Composer-basierten Paketnamen, den relevanten Extension-Key und die Abhängigkeiten zu anderen Paketen / Erweiterungen zu erkennen. Nachfolgend finden Sie eine Liste von Extensions in Ihrer TYPO3-Installation, die derzeit die Anforderungen nicht erfüllen und daher Anpassungen in deren composer.json-Datei benötigen.</target>
+          Future TYPO3 versions will require all extensions in your TYPO3 installation to contain a
+          composer.json file in their extension directory. This is needed to properly detect the
+          composer-based package name, the relevant extension key and the dependencies to other packages /
+          extensions. Below is a list of extensions in your TYPO3 installation, which currently do not meet
+          those requirements and therefore need adaptations to their composer.json file.
+        </source>
+        <target state="final">
+          Zukünftige TYPO3-Versionen erfordern, dass alle Erweiterungen in deiner TYPO3-Installation eine
+          composer.json-Datei in deinem Erweiterungsverzeichnis enthalten. Dies ist erforderlich, um den
+          Composer-basierten Paketnamen, den relevanten Erweiterungsschlüssel und die Abhängigkeiten zu anderen Paketen /
+          Erweiterungen korrekt zu erkennen. Nachfolgend findest du eine Liste der Erweiterungen in Ihrer TYPO3-Installation, die derzeit diese Anforderungen nicht erfüllen
+          und daher Anpassungen an deiner composer.json-Datei erfordern.
+        </target>
       </trans-unit>
       <trans-unit id="extensionList.composerStatus.thirdParty" approved="yes">
         <source>
-					For third-party extensions that were fetched from TER, it is helpful to update to their latest
-					version from TER which probably already contains a valid composer.json file.
-				</source>
-        <target state="final">Für Erweiterungen von Drittanbietern, die aus dem TER geladen wurden, ist es hilfreich, auf die neueste Version aus dem TER zu aktualisieren da diese möglicherweise bereits eine gültige composer.json-Datei enthält.</target>
+          For third-party extensions that were fetched from TER, it is helpful to update to their latest
+          version from TER which probably already contains a valid composer.json file.
+        </source>
+        <target state="final">
+          Für Erweiterungen von Drittanbietern, die aus dem TER geladen wurden, ist es hilfreich, auf die neueste Version aus dem TER zu aktualisieren da diese möglicherweise bereits eine gültige composer.json Datei enthält.
+        </target>
       </trans-unit>
       <trans-unit id="extensionList.composerStatus.missingManifest" approved="yes">
         <source>Missing composer.json file</source>
@@ -138,13 +150,14 @@
       </trans-unit>
       <trans-unit id="extensionList.composerStatus.terRequest" approved="yes">
         <source>
-					To support you creating a valid composer.json file for your extensions, TYPO3 will send your
-					ext_emconf.php contents to TYPO3.org (TER). TYPO3.org will then resolve your dependencies and
-					return a valid composer.json proposal which can be copied to the corresponding extension directory.
-					This is especially helpful in case your TYPO3 installation contains custom extensions.
-				</source>
+          To support you creating a valid composer.json file for your extensions, TYPO3 will send your
+          ext_emconf.php contents to TYPO3.org (TER). TYPO3.org will then resolve your dependencies and
+          return a valid composer.json proposal which can be copied to the corresponding extension directory.
+          This is especially helpful in case your TYPO3 installation contains custom extensions.
+        </source>
         <target state="final">
-Um Sie beim Erstellen einer validen composer.json Datei für Ihre Extension zu unterstützen, sendet TYPO3 den Inhalt der ext_emconf.php Datei an TYPO3.org (TER). TYPO3.org löst dann darin gefundene Abhängigkeiten auf und gibt einen gültigen composer.json-Vorschlag zurück, der in das entsprechende Extension-Verzeichnis kopiert werden kann. Dies ist besonders hilfreich, falls Ihre TYPO3-Installation projektspezifische/benutzerdefinierte Extensions enthält.</target>
+          Um dich bei der Erstellung einer gültigen composer.json-Datei für deine Erweiterungen zu unterstützen, sendet TYPO3 den Inhalt deiner ext_emconf.php Inhalt an TYPO3.org (TER). TYPO3.org wird dann die Abhängigkeiten auflösen und einen gültigen composer.json-Vorschlag zurückgeben, der in das entsprechende Extension-Verzeichnis kopiert werden kann. Dies ist besonders hilfreich, wenn deine TYPO3-Installation eigene Erweiterungen enthält.
+        </target>
       </trans-unit>
       <trans-unit id="extensionList.composerStatus.additionalInformation" approved="yes">
         <source>For more information regarding the migration and the upcoming changes, please have a look at</source>
@@ -275,8 +288,8 @@ Um Sie beim Erstellen einer validen composer.json Datei für Ihre Extension zu u
         <target state="final">Erneut suchen</target>
       </trans-unit>
       <trans-unit id="uploadTemplate.uploadButton" approved="yes">
-        <source>Upload!</source>
-        <target state="final">Hochladen!</target>
+        <source>Upload</source>
+        <target state="final">Hochladen</target>
       </trans-unit>
       <trans-unit id="uploadTemplate.extensionLabel" approved="yes">
         <source>Extension</source>
@@ -293,10 +306,6 @@ Um Sie beim Erstellen einer validen composer.json Datei für Ihre Extension zu u
       <trans-unit id="extensionList.updateConfirmation.title" approved="yes">
         <source>Update?</source>
         <target state="final">Aktualisieren?</target>
-      </trans-unit>
-      <trans-unit id="extensionList.updateConfirmation.message" approved="yes">
-        <source>Update Comments</source>
-        <target state="final">Aktualisierungskommentare:</target>
       </trans-unit>
       <trans-unit id="extensionList.databaseImport" approved="yes">
         <source>The static database data has changed. You should re-import the data.</source>
@@ -323,85 +332,74 @@ Um Sie beim Erstellen einer validen composer.json Datei für Ihre Extension zu u
         <target state="final">Erweiterungsaktualisierung</target>
       </trans-unit>
       <trans-unit id="extensionList.updateFlashMessage.body" approved="yes">
-        <source>%s was updated!</source>
-        <target state="final">%s hochgeladen!</target>
+        <source>%s was updated</source>
+        <target state="final">%s wurde aktualisiert</target>
       </trans-unit>
       <trans-unit id="extensionList.removalConfirmation.question" approved="yes">
-        <source>Are you sure you want to remove the extension?</source>
-        <target state="final">Sind Sie sicher, dass Sie die Erweiterung entfernen möchten?</target>
+        <source>Removing the extension deletes its source files but the related database tables and data will remain unchanged. Please perform a database update to ensure integrity.</source>
+        <target state="final">Durch das Entfernen der Erweiterung werden deren Quelldateien gelöscht, die zugehörigen Datenbanktabellen und Daten bleiben jedoch unverändert. Bitte führe eine Datenbankaktualisierung durch, um die Integrität sicherzustellen.</target>
       </trans-unit>
       <trans-unit id="dependencyCheck.unresolvedDependencies.title" approved="yes">
-        <source>Please read this carefully</source>
-        <target state="final">Bitte sorgfältig lesen</target>
+        <source>Please read this carefully before proceeding</source>
+        <target state="final">Bitte lies dies sorgfältig durch, bevor du fortfährst</target>
       </trans-unit>
       <trans-unit id="dependencyCheck.unresolvedDependencies.message" approved="yes">
         <source><![CDATA[
-					If you continue installing the extension, all dependency checks will be turned off.
-					<ul>
-						<li>Required extensions are tried to be fetched from TER (if they do not yet exist in the system)</li>
-						<li>Version dependency checks are skipped</li>
-					</ul>
-					<strong>
-						Be aware that an installation without dependency checks may turn your installation unusable.<br />
-						In such a case manual intervention is required.
-					</strong>
+          <p>If you continue activating the extension, all dependency checks will be turned off.</p>
+          <ul>
+            <li>Required extensions are tried to be fetched from TER (if they do not yet exist in the system)</li>
+            <li>Version dependency checks are skipped</li>
+          </ul>
+          <strong>
+            Be aware that activating an extension without dependency checks may turn your TYPO3 installation unusable. In such a case manual intervention is required.
+          </strong>
 				]]></source>
         <target state="final"><![CDATA[
-					Wenn Sie mit der Installation dieser Erweiterung fortfahren, werden alle Abhängigkeitsprüfungen deaktiviert
-					<ul>
-						<li>Es wird versucht, benötigte Erweiterungen vom TER zu installieren (falls sie noch nicht installiert sind)</li>
-						<li>Überprüfungen zur Versionsabhängigkeiten werden übersprungen</li>
-					</ul>
-					<strong>
-						Beachten Sie, dass eine Installation ohne Abhängigkeitsprüfung Ihre TYPO3-Installation unbenutzbar machen kann.
-					</strong>
+          <p>Wenn du die Erweiterung wirklich aktivierst, werden alle Abhängigkeitsprüfungen deaktiviert.</p>
+          <ul>
+            <li>Es wird versucht, erforderliche Erweiterungen aus dem TER abzurufen (sofern sie noch nicht im System vorhanden sind)</li>
+            <li>Prüfungen auf Versionsabhängigkeiten werden übersprungen</li>
+          </ul>
+          <strong>
+            Beachte, dass die Aktivierung einer Erweiterung ohne Abhängigkeitsprüfungen deine TYPO3-Installation unbrauchbar machen kann. In einem solchen Fall ist ein manueller Eingriff erforderlich.
+          </strong>
 				]]></target>
       </trans-unit>
-      <trans-unit id="dependencyCheck.unresolvedDependencies.question" approved="yes">
-        <source>Are you sure you want to proceed?</source>
-        <target state="final">Tatsächlich fortfahren?</target>
-      </trans-unit>
       <trans-unit id="dependencyCheck.unresolvedDependencies.proceed" approved="yes">
-        <source>I know what I'm doing, install the extension!</source>
-        <target state="final">Ich weiß was ich tue, die Erweiterung dennoch installieren!</target>
+        <source>Activate the extension</source>
+        <target state="final">Extension aktivieren</target>
       </trans-unit>
       <trans-unit id="dependencyCheck.headline" approved="yes">
-        <source>The following errors were found while trying to install "%s"</source>
-        <target state="final">Die folgenden Fehler wurden gefunden als versucht wurde, "%s" zu installieren</target>
+        <source>The following errors were found while trying to activate "%s"</source>
+        <target state="final">Die folgenden Fehler wurden gefunden als versucht wurde, "%s" zu aktivieren</target>
       </trans-unit>
       <trans-unit id="dependencyCheck.requiredExtension" approved="yes">
         <source>Required extension "%s"</source>
         <target state="final">Benötigte Erweiterung "%s":</target>
       </trans-unit>
       <trans-unit id="downloadExtension.dependencies.headline" approved="yes">
-        <source>The following dependencies have to be resolved before installation:
-
-
-				</source>
-        <target state="final">Die nachfolgenden Abhängigkeiten müssen vor der Installation gelöst werden:</target>
+        <source>The following dependencies have to be resolved before installation:</source>
+        <target state="final">Die folgenden Abhängigkeiten müssen vor der Installation aufgelöst werden:</target>
       </trans-unit>
       <trans-unit id="downloadExtension.dependencies.extensionWithVersion" approved="yes">
         <source>%1$s (new version %2$s)</source>
         <target state="final">%1$s (neue Version %2$s)</target>
       </trans-unit>
-      <trans-unit id="downloadExtension.dependencies.typeHeadline" xml:space="preserve" approved="yes">
-				<source>&lt;h3&gt;Extensions marked for %s:&lt;/h3&gt;
-%s
-
-
-				</source>
-			<target state="final">&lt;h3&gt;Erweiterungen markiert für %s:&lt;/h3&gt;
-%s
-
-
-				</target></trans-unit>
+      <trans-unit id="downloadExtension.dependencies.typeHeadline" approved="yes">
+        <source>&lt;h3&gt;Extensions marked for %s:&lt;/h3&gt;%s</source>
+        <target state="final">&lt;h3&gt;Für %s markierte Erweiterungen:&lt;/h3&gt;%s</target>
+      </trans-unit>
       <trans-unit id="downloadExtension.dependencies.resolveAutomatically" approved="yes">
         <source>Shall these dependencies be resolved automatically?</source>
         <target state="final">Sollen diese Abhängigkeiten automatisch aufgelöst werden?</target>
       </trans-unit>
-      <trans-unit id="downloadExtension.dependencies.errorTitle" approved="yes">
-        <source>Dependencies could not be resolved</source>
-        <target state="final">Abhängigkeiten konnten nicht aufgelöst werden</target>
+      <trans-unit id="dependencyCheck.modalTitle.activate" approved="yes">
+        <source>Activate Extension "%s"</source>
+        <target state="final">Aktiviere Extension "%s"</target>
+      </trans-unit>
+      <trans-unit id="dependencyCheck.modalTitle.deactivate" approved="yes">
+        <source>Deactivate Extension "%s"</source>
+        <target state="final">Deaktiviere Extension "%s"</target>
       </trans-unit>
       <trans-unit id="downloadExtension.dependencies.errorMessage" approved="yes">
         <source>The dependencies of the following Extensions could not be resolved</source>
@@ -428,12 +426,12 @@ Um Sie beim Erstellen einer validen composer.json Datei für Ihre Extension zu u
         <target state="final">Fehler beim Herunterladen</target>
       </trans-unit>
       <trans-unit id="extensionList.dependenciesResolveInstallError.title" approved="yes">
-        <source>Install Error</source>
-        <target state="final">Installationsfehler</target>
+        <source>Activation Error</source>
+        <target state="final">Aktivierungsfehler</target>
       </trans-unit>
       <trans-unit id="extensionList.dependenciesResolveInstallError.message" approved="yes">
-        <source>Your installation failed while resolving dependencies.</source>
-        <target state="final">Die Installation ist beim Auflösen von Abhängigkeiten fehlgeschlagen.</target>
+        <source>Activation failed while resolving dependencies.</source>
+        <target state="final">Die Aktivierung ist beim Auflösen von Abhängigkeiten fehlgeschlagen.</target>
       </trans-unit>
       <trans-unit id="extensionList.dependenciesResolveDownloadSuccess.message" approved="yes">
         <source>Your installation of {0} was successful.</source>
@@ -464,12 +462,12 @@ Um Sie beim Erstellen einer validen composer.json Datei für Ihre Extension zu u
         <target state="final">Erweiterung hochladen</target>
       </trans-unit>
       <trans-unit id="extensionList.uploadFlashMessage.message" approved="yes">
-        <source>%s was uploaded!</source>
-        <target state="final">{0} hochgeladen!</target>
+        <source>%s was uploaded</source>
+        <target state="final">%s wurde hochgeladen</target>
       </trans-unit>
       <trans-unit id="extensionList.installedFlashMessage.message" approved="yes">
-        <source>%s was installed!</source>
-        <target state="final">%s wurde installiert!</target>
+        <source>%s was installed</source>
+        <target state="final">%s wurde installiert</target>
       </trans-unit>
       <trans-unit id="extensionList.updateFromTerFlashMessage.title" approved="yes">
         <source>Update Extension List</source>
@@ -536,8 +534,8 @@ Um Sie beim Erstellen einer validen composer.json Datei für Ihre Extension zu u
         <target state="final">Nicht kompatibel mit Ihrer Version</target>
       </trans-unit>
       <trans-unit id="extensionList.remove.message" approved="yes">
-        <source>Extension "%s" was removed successfully!</source>
-        <target state="final">Erweiterung "%s" wurde erfolgreich entfernt!</target>
+        <source>Extension "%s" was removed successfully</source>
+        <target state="final">Erweiterung „%s“ wurde erfolgreich entfernt.</target>
       </trans-unit>
       <trans-unit id="extensionList.distribution.key" approved="yes">
         <source>Key</source>
@@ -575,10 +573,6 @@ Um Sie beim Erstellen einer validen composer.json Datei für Ihre Extension zu u
         <source>Get preconfigured distribution</source>
         <target state="final">Vorkonfigurierte Distribution erhalten</target>
       </trans-unit>
-      <trans-unit id="extensionList.installDistribution" approved="yes">
-        <source>Install</source>
-        <target state="final">Distribution installieren</target>
-      </trans-unit>
       <trans-unit id="extensionList.installImpexp" approved="yes">
         <source>Please install the Import/Export (impexp) extension to enable distribution support.</source>
         <target state="final">Bitte installieren Sie die Import/Export-Erweiterung (impexp), um Distributionen benutzen zu können.</target>
@@ -613,7 +607,7 @@ Um Sie beim Erstellen einer validen composer.json Datei für Ihre Extension zu u
       </trans-unit>
       <trans-unit id="extensionList.updateFromTer.lastUpdate.timeOfLastUpdate" approved="yes">
         <source>Time of last update: </source>
-        <target state="final">Datum des letzten Updates: </target>
+        <target state="final">Zeit der letzten Aktualisierung: </target>
       </trans-unit>
       <trans-unit id="extensionList.updateFromTer.lastUpdate.noTimeOfLastUpdate" approved="yes">
         <source>No last update time known.</source>
@@ -688,8 +682,8 @@ Um Sie beim Erstellen einer validen composer.json Datei für Ihre Extension zu u
         <target state="final">Das typo3.org Erweiterungsrepository wurde nicht gefunden. Bitte importieren sie das Haupt-typo3.org-Erweiterungsrepository über den Assistenten im Install Tool</target>
       </trans-unit>
       <trans-unit id="report.status.mainRepository.notUpToDate.value" approved="yes">
-        <source>Extension list is not up to date!</source>
-        <target state="final">Erweiterungsliste ist nicht aktuell!</target>
+        <source>Extension list is not up to date</source>
+        <target state="final">Die Erweiterungsliste ist nicht aktuell</target>
       </trans-unit>
       <trans-unit id="report.status.mainRepository.notUpToDate.message" approved="yes">
         <source>The Main Repository extension list is older than 7 days. Please update it in the Extension manager or Scheduler.</source>
@@ -787,6 +781,10 @@ Um Sie beim Erstellen einer validen composer.json Datei für Ihre Extension zu u
         <source>Extensions missing composer.json</source>
         <target state="final">Erweiterungen mit fehlender composer.json</target>
       </trans-unit>
+      <trans-unit id="report.status.composerManifest.extensionTitleMissing" approved="yes">
+        <source>Extension title not set correctly in composer.json</source>
+        <target state="final">Der Erweiterungstitel in composer.json nicht korrekt festgelegt</target>
+      </trans-unit>
       <trans-unit id="report.status.composerManifest.extensionKeyMissing.message" approved="yes">
         <source>%d extension(s) do not have an extension-key set in their composer.json file.</source>
         <target state="final">%d Erweiterung(en) hat (haben) keinen Erweiterungsschlüssel in ihrer composer.json-Datei gesetzt.</target>
@@ -794,6 +792,10 @@ Um Sie beim Erstellen einer validen composer.json Datei für Ihre Extension zu u
       <trans-unit id="report.status.composerManifest.composerJsonMissing.message" approved="yes">
         <source>%d extension(s) do not provide a composer.json file.</source>
         <target state="final">%d Erweiterung(en) stellt(en) keine composer.json-Datei zur Verfügung.</target>
+      </trans-unit>
+      <trans-unit id="report.status.composerManifest.extensionTitleMissing.message" approved="yes">
+        <source>%d extension(s) do not have the extension title set in composer.json file according to their ext_emconf.php file.</source>
+        <target state="final">%d Erweiterung(en) haben laut deiner ext_emconf.php-Datei keinen in der Datei composer.json festgelegten Erweiterungstitel.</target>
       </trans-unit>
       <trans-unit id="report.status.composerManifest.update" approved="yes">
         <source>Update extensions</source>
@@ -804,12 +806,12 @@ Um Sie beim Erstellen einer validen composer.json Datei für Ihre Extension zu u
         <target state="final">FEHLER: Erweiterungsverzeichnis "%s" konnte nicht entfernt werden. Gründe:</target>
       </trans-unit>
       <trans-unit id="fileHandling.couldNotCreateDirectory" approved="yes">
-        <source>ERROR: Could not create extension directory "%s"!</source>
-        <target state="final">FEHLER: Erweiterungsverzeichnis "%s" konnte nicht erstellt werden!</target>
+        <source>ERROR: Could not create extension directory "%s"</source>
+        <target state="final">FEHLER: Das Erweiterungsverzeichnis „%s“ konnte nicht erstellt werden.</target>
       </trans-unit>
       <trans-unit id="fileHandling.installPathWasNoDirectory" approved="yes">
-        <source>ERROR: The extension install path "%s" was no directory!</source>
-        <target state="final">FEHLER: Der Erweiterungsinstallationspfad "%s" war kein Verzeichnis!</target>
+        <source>ERROR: The extension install path "%s" was no directory</source>
+        <target state="final">FEHLER: Der Installationspfad der Erweiterung „%s“ war kein Verzeichnis.</target>
       </trans-unit>
       <trans-unit id="config.automaticInstallation" approved="yes">
         <source>Install extensions automatically after download from TER or file upload</source>
@@ -848,8 +850,8 @@ Um Sie beim Erstellen einer validen composer.json Datei für Ihre Extension zu u
         <target state="final">Aktualisieren</target>
       </trans-unit>
       <trans-unit id="extensionComposerStatus.nothingToUpdate.title" approved="yes">
-        <source>Good job!</source>
-        <target state="final">Gute Arbeit!</target>
+        <source>Everything up to date.</source>
+        <target state="final">Alles ist auf dem neuesten Stand.</target>
       </trans-unit>
       <trans-unit id="extensionComposerStatus.nothingToUpdate.message.single" approved="yes">
         <source>Extension %s does not need to be updated.</source>
@@ -879,15 +881,25 @@ Um Sie beim Erstellen einer validen composer.json Datei für Ihre Extension zu u
         <source>Extension Key missing</source>
         <target state="final">Extension Key fehlt</target>
       </trans-unit>
+      <trans-unit id="extensionComposerStatus.deficit.4" approved="yes">
+        <source>%s has missing or inconsistent extension title in the composer.json</source>
+        <target state="final">%s hat einen fehlenden oder inkonsistenten Erweiterungstitel in der Datei composer.json</target>
+      </trans-unit>
+      <trans-unit id="extensionComposerStatus.deficit.4.short" approved="yes">
+        <source>Extension Title missing</source>
+        <target state="final">Extension Titel fehlt</target>
+      </trans-unit>
       <trans-unit id="extensionComposerStatus.deficit.information" approved="yes">
         <source>
-					In future versions of TYPO3, it will be mandatory for extensions to provide a composer.json file. This will be
-					needed to identify an extension and works as a replacement for the ext_emconf.php. Therefore,
-					the composer.json file must also include the extension key under "extra &gt; typo3/cms &gt; extension-key".
-					Please add a composer.json, including the extension-key property, in the corresponding extension
-					folder. You can use the auto-generated proposal below and update the composer.json file extension.
-				</source>
-        <target state="final">In zukünftigen Versionen von TYPO3 wird es für Extensions obligatorisch sein, eine composer.json-Datei bereitzustellen. Diese wird benötigt, um eine Extension zu identifizieren und dient als Ersatz für die ext_emconf.php. Deshalb muss die composer.json-Datei auch den Schlüssel der Erweiterung unter "extra &gt; typo3/cms &gt; extension-key" enthalten. Bitte fügen Sie eine composer.json, die die Eigenschaft extension-key enthält, in den entsprechenden Extension-Ordner ein. Sie können den unten stehenden automatisch generierten Vorschlag verwenden und die composer.json-Datei aktualisieren.</target>
+          In future versions of TYPO3, it will be mandatory for extensions to provide a composer.json file. This will be
+          needed to identify an extension and works as a replacement for the ext_emconf.php. Therefore,
+          the composer.json file must also include the extension key under "extra &gt; typo3/cms &gt; extension-key".
+          Please add a composer.json, including the extension-key property, in the corresponding extension
+          folder. You can use the auto-generated proposal below and update the composer.json file extension.
+        </source>
+        <target state="final">
+          In zukünftigen Versionen von TYPO3 wird es für Extensions obligatorisch sein, eine composer.json Datei bereitzustellen. Diese wird benötigt, um eine Extension zu identifizieren und dient als Ersatz für die ext_emconf.php. Deshalb muss die composer.json Datei auch den Schlüssel der Erweiterung unter "extra &gt; typo3/cms &gt; extension-key" enthalten. Bitte füge eine composer.json, die die Eigenschaft extension-key enthält, in den entsprechenden Erweiterungs Ordner ein. Du kannst den unten stehenden automatisch generierten Vorschlag verwenden und die Erweiterung der composer.json Datei aktualisieren.
+        </target>
       </trans-unit>
       <trans-unit id="extensionComposerStatus.manifest.title" approved="yes">
         <source>Auto-generated composer.json</source>
@@ -895,9 +907,11 @@ Um Sie beim Erstellen einer validen composer.json Datei für Ihre Extension zu u
       </trans-unit>
       <trans-unit id="extensionComposerStatus.manifest.description" approved="yes">
         <source>
-					Please verify its contents, adjust it to your needs and and put it into typo3conf/ext/%s/composer.json.
-				</source>
-        <target state="final">Bitte überprüfen Sie den Inhalt, passen Sie ihn an Ihre Bedürfnisse an und fügen Sie ihn in typo3conf/ext/%s/composer.json ein.</target>
+          Please verify its contents, adjust it to your needs and and put it into typo3conf/ext/%s/composer.json.
+        </source>
+        <target state="final">
+          Bitte überprüfen Sie den Inhalt, passen Sie ihn an Ihre Bedürfnisse an und fügen Sie ihn in typo3conf/ext/%s/composer.json ein.
+        </target>
       </trans-unit>
       <trans-unit id="extensionComposerStatus.manifest.error" approved="yes">
         <source>Auto-generation of a composer.json proposal failed</source>
@@ -905,12 +919,13 @@ Um Sie beim Erstellen einer validen composer.json Datei für Ihre Extension zu u
       </trans-unit>
       <trans-unit id="extensionComposerStatus.manifest.error.message" approved="yes">
         <source>
-					TYPO3 could not create a composer.json proposal. This could be due to an invalid composer.json
-					or network problems while requesting the TER API. Please check for an already existing invalid
-					composer.json or try again later.
-				</source>
+          TYPO3 could not create a composer.json proposal. This could be due to an invalid composer.json
+          or network problems while requesting the TER API. Please check for an already existing invalid
+          composer.json or try again later.
+        </source>
         <target state="final">
-TYPO3 konnte keinen composer.json-Vorschlag erstellen. Dies könnte auf eine ungültige composer.json zurückzuführen sein oder auf Netzwerkprobleme bei der Anfrage an die TER API. Bitte prüfen Sie, ob bereits eine ungültige composer.json existiert oder versuchen Sie es später erneut.</target>
+          TYPO3 konnte keine composer.json Verbesserungen vorschlagen. Dies könnte auf eine ungültige composer.json oder auf Netzwerkprobleme bei der Anfrage an die TER API sein. Bitte prüfe, ob bereits eine ungültige composer.json Datei existiert oder versuche es später erneut.
+        </target>
       </trans-unit>
     </body>
   </file>

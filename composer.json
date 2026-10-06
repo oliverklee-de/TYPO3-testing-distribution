@@ -26,6 +26,7 @@
 		"typo3/cms-beuser": "^14.3",
 		"typo3/cms-core": "^14.3",
 		"typo3/cms-dashboard": "^14.3",
+		"typo3/cms-extensionmanager": "^14.3",
 		"typo3/cms-felogin": "^14.3",
 		"typo3/cms-filelist": "^14.3",
 		"typo3/cms-filemetadata": "^14.3",
