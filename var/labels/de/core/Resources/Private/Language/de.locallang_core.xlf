@@ -133,7 +133,7 @@
       </trans-unit>
       <trans-unit id="labels.fieldsMissing" approved="yes">
         <source>The fields marked with an exclamation mark are not yet correctly filled in. Please complete them properly.</source>
-        <target state="final">Mit einem Ausrufezeichen markierte Felder wurden noch nicht ordnungsgemäß ausgefüllt. Bitte füllen Sie sie korrekt aus.</target>
+        <target state="final">Mit einem Ausrufezeichen markierte Felder wurden noch nicht ordnungsgemäß ausgefüllt. Bitte fülle diese korrekt aus.</target>
       </trans-unit>
       <trans-unit id="labels.fieldsChanged" approved="yes">
         <source>There are unsaved changes in the form!
