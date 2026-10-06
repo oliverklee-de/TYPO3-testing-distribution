@@ -45,6 +45,10 @@ return [
             'loginLogo' => '',
             'loginLogoAlt' => '',
         ],
+        'extensionmanager' => [
+            'automaticInstallation' => '1',
+            'offlineMode' => '0',
+        ],
         'indexed_search' => [
             'catdoc' => '/usr/bin/',
             'deleteFromIndexAfterEditing' => '1',
