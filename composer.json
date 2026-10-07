@@ -118,6 +118,7 @@
 			"@check:composer:normalize",
 			"@check:json:lint",
 			"@check:php:lint",
+			"@check:php:rector",
 			"@check:php:stan",
 			"@check:php:cs-fixer",
 			"@check:typoscript:lint",
