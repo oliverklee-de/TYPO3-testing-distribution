@@ -115,8 +115,9 @@
 		"check:static": [
 			"@check:composer:normalize",
 			"@check:json:lint",
-			"@check:php:lint",
 			"@check:fractor",
+			"@check:php:lint",
+			"@check:php:rector",
 			"@check:php:stan",
 			"@check:php:cs-fixer",
 			"@check:typoscript:lint",
@@ -132,6 +133,7 @@
 		"check:yaml:lint": "find .ddev .github config src/extensions/site-dev -name '*.yml' -o -name '*.yaml' | xargs php ./vendor/bin/yaml-lint",
 		"fix": [
 			"@fix:composer",
+			"@fix:fractor",
 			"@fix:php"
 		],
 		"fix:composer": [
@@ -140,7 +142,6 @@
 		],
 		"fix:fractor": "fractor process -c Build/fractor/config.php",
 		"fix:php": [
-			"@fix:fractor",
 			"@fix:php:rector",
 			"@fix:php:cs-fixer"
 		],
