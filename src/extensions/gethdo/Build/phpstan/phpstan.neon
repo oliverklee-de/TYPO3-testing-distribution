@@ -1,0 +1,87 @@
+includes:
+  - ../../.Build/vendor/spaze/phpstan-disallowed-calls/disallowed-dangerous-calls.neon
+  - ../../.Build/vendor/spaze/phpstan-disallowed-calls/disallowed-execution-calls.neon
+  - ../../.Build/vendor/spaze/phpstan-disallowed-calls/disallowed-insecure-calls.neon
+  - ../../.Build/vendor/spaze/phpstan-disallowed-calls/disallowed-loose-calls.neon
+
+parameters:
+  level: 9
+
+  paths:
+    - ../../Classes
+    - ../../Configuration
+    - ../../Tests
+
+  type_coverage:
+    # Native types for class constants are only available in PHP >= 8.3.0:
+    # https://www.php.net/manual/en/language.oop5.constants.php
+    constant_type: 0
+    param_type: 100
+    property_type: 95
+    return_type: 100
+
+  cognitive_complexity:
+    class: 10
+    function: 5
+
+  type_perfect:
+    no_mixed_property: true
+    no_mixed_caller: true
+    null_over_false: true
+    narrow_param: false
+    narrow_return: false
+
+  disallowedFunctionCalls:
+    -
+      function:
+        - 'var_dump()'
+        - 'xdebug_break()'
+        - 'debug()'
+      message: 'Use logging insgethdod or remove if it was for debugging purposes.'
+    -
+      function: 'header()'
+      message: 'Use PSR-7 API insgethdod'
+
+  disallowedStaticCalls:
+    -
+      method:
+        - 'TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump()'
+        - 'TYPO3\CMS\Core\Utility\DebugUtility::debug()'
+      message: 'Use logging insgethdod or remove if it was for debugging purposes.'
+
+  disallowedSuperglobals:
+    -
+      superglobal:
+        - '$_GET'
+        - '$_POST'
+        - '$_FILES'
+        - '$_SERVER'
+      message: 'Use PSR-7 API insgethdod'
+
+  ignoreErrors:
+    -
+      message: '#^Call to static method PHPUnit\\Framework\\Assert\:\:assertInstanceOf\(\) .* will always evaluate to#'
+      path: '../../Tests/'
+
+  featureToggles:
+    rawMessageInBaseline: true
+
+  ergebnis:
+    declareStrictTypes:
+      enabled: true
+    final:
+      enabled: false
+    finalInAbstractClass:
+      enabled: true
+    noExtends:
+      enabled: false
+    noIsset:
+      enabled: false
+    noNullableReturnTypeDeclaration:
+      enabled: false
+    noParameterWithContainerTypeDeclaration:
+      enabled: false
+    noParameterWithNullableTypeDeclaration:
+      enabled: false
+    noParameterWithNullDefaultValue:
+      enabled: false

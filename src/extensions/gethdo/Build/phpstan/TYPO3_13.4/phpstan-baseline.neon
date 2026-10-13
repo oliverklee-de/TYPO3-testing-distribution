@@ -1,0 +1,25 @@
+parameters:
+	ignoreErrors:
+		-
+			rawMessage: 'Method TTN\gethdo\Domain\Repository\gethdoRepository::findAllFromAllPages() return type with generic interface TYPO3\CMS\Extbase\Persistence\QueryResultInterface does not specify its types: TKey, TValue'
+			identifier: missingType.generics
+			count: 1
+			path: ../../../Classes/Domain/Repository/gethdoRepository.php
+
+		-
+			rawMessage: 'Method TTN\gethdo\Domain\Repository\gethdoRepository::findByOwnerUid() return type with generic interface TYPO3\CMS\Extbase\Persistence\QueryResultInterface does not specify its types: TKey, TValue'
+			identifier: missingType.generics
+			count: 1
+			path: ../../../Classes/Domain/Repository/gethdoRepository.php
+
+		-
+			rawMessage: Access to constant SHA3_256 on an unknown class TYPO3\CMS\Core\Crypto\HashAlgo.
+			identifier: class.notFound
+			count: 1
+			path: ../../../Tests/Functional/Controller/BackendModuleControllerTest.php
+
+		-
+			rawMessage: 'Method TYPO3\CMS\Core\Crypto\HashService::hmac() invoked with 3 parameters, 2 required.'
+			identifier: arguments.count
+			count: 1
+			path: ../../../Tests/Functional/Controller/BackendModuleControllerTest.php

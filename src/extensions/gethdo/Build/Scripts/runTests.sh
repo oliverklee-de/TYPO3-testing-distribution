@@ -1,0 +1,984 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC2086,SC2046,SC2128,SC2178,SC2206
+
+# Uncomment for debugging
+# set -x
+
+#
+# TYPO3 extension gethdo test runner based on docker.
+#
+
+if [ "${CI}" != "true" ]; then
+    trap 'echo "runTests.sh SIGINT signal emitted";cleanUp;exit 2' SIGINT
+fi
+
+printSummary() {
+    cleanUp
+
+    echo "" >&2
+    echo "###########################################################################" >&2
+    echo "Result of ${TEST_SUITE}" >&2
+    echo "Container runtime: ${CONTAINER_BIN}" >&2
+    echo "Container suffix: ${SUFFIX}"
+    if [[ ${TEST_SUITE} =~ ^(npm|lintCss|lintJs)$ ]]; then
+        echo "NODE: ${IMAGE_NODEJS}" >&2
+    else
+        echo "PHP: ${PHP_VERSION}" >&2
+        echo "TYPO3: ${CORE_VERSION}" >&2
+    fi
+    if [[ ${TEST_SUITE} =~ ^functional$ ]]; then
+        case "${DBMS}" in
+            mariadb|mysql|postgres)
+                echo "DBMS: ${DBMS}  version ${DBMS_VERSION}  driver ${DATABASE_DRIVER}" >&2
+                ;;
+            sqlite)
+                echo "DBMS: ${DBMS}" >&2
+                ;;
+        esac
+    fi
+    if [ ${CREATE_COVERAGE} -eq 1 ] && [ -n "${COVERAGE_FILE}" ] && [ -f "${ROOT_DIR}/.Build/coverage/${COVERAGE_FILE}" ]; then
+        echo "COVERAGE-FILE: .Build/coverage/${COVERAGE_FILE}" >&2
+    fi
+    if [[ ${SUITE_EXIT_CODE} -eq 0 ]]; then
+        echo "SUCCESS" >&2
+    else
+        echo "FAILURE" >&2
+    fi
+    echo "###########################################################################" >&2
+    echo "" >&2
+    exit ${SUITE_EXIT_CODE}
+}
+
+waitFor() {
+    local HOST=${1}
+    local PORT=${2}
+    # 60 rather than 20 seconds: databases need noticeably longer under docker than under
+    # podman to initialise a fresh data directory, and CI selects docker.
+    local TESTCOMMAND="
+        COUNT=0;
+        while ! nc -z ${HOST} ${PORT}; do
+            if [ \"\${COUNT}\" -gt 60 ]; then
+              echo \"Can not connect to ${HOST} port ${PORT}. Aborting.\";
+              exit 1;
+            fi;
+            sleep 1;
+            COUNT=\$((COUNT + 1));
+        done;
+    "
+    ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name wait-for-${SUFFIX} ${XDEBUG_MODE} -e XDEBUG_CONFIG="${XDEBUG_CONFIG}" ${IMAGE_PHP} /bin/sh -c "${TESTCOMMAND}"
+    # shellcheck disable=SC2181 # Disabled because we don‘t want to move the long line between the brackets
+    if [[ $? -gt 0 ]]; then
+        # Not "kill -SIGINT -$$": the SIGINT trap is only installed when CI is not "true", so on
+        # CI the signal did nothing, the run continued and the tests connected to a database
+        # that was not listening. Message and exit code match the SIGINT trap.
+        echo "runTests.sh SIGINT signal emitted"
+        cleanUp
+        exit 2
+    fi
+}
+
+cleanUp() {
+    echo "Remove container for network \"${NETWORK}\""
+    ATTACHED_CONTAINERS=$(${CONTAINER_BIN} ps --filter network=${NETWORK} --format='{{.Names}}')
+    for ATTACHED_CONTAINER in ${ATTACHED_CONTAINERS}; do
+        ${CONTAINER_BIN} kill ${ATTACHED_CONTAINER} >/dev/null
+    done
+    if [ ${CONTAINER_BIN} = "docker" ]; then
+        ${CONTAINER_BIN} network rm ${NETWORK} >/dev/null
+    else
+        ${CONTAINER_BIN} network rm -f ${NETWORK} >/dev/null
+    fi
+}
+
+handleDbmsOptions() {
+    # -a, -d, -i depend on each other. Validate input combinations and set defaults.
+    case ${DBMS} in
+        mariadb)
+            [ -z "${DATABASE_DRIVER}" ] && DATABASE_DRIVER="mysqli"
+            if [ "${DATABASE_DRIVER}" != "mysqli" ] && [ "${DATABASE_DRIVER}" != "pdo_mysql" ]; then
+                echo "Invalid combination -d ${DBMS} -a ${DATABASE_DRIVER}" >&2
+                echo >&2
+                echo "Use \"Build/Scripts/runTests.sh -h\" to display help and valid options" >&2
+                exit 1
+            fi
+            [ -z "${DBMS_VERSION}" ] && DBMS_VERSION="10.4"
+            if ! [[ ${DBMS_VERSION} =~ ^(10.4|10.5|10.6|10.7|10.8|10.9|10.10|10.11|11.0|11.1|11.2|11.3|11.4|11.5|11.6|11.7|11.8)$ ]]; then
+                echo "Invalid combination -d ${DBMS} -i ${DBMS_VERSION}" >&2
+                echo >&2
+                echo "Use \"Build/Scripts/runTests.sh -h\" to display help and valid options" >&2
+                exit 1
+            fi
+            ;;
+        mysql)
+            [ -z "${DATABASE_DRIVER}" ] && DATABASE_DRIVER="mysqli"
+            if [ "${DATABASE_DRIVER}" != "mysqli" ] && [ "${DATABASE_DRIVER}" != "pdo_mysql" ]; then
+                echo "Invalid combination -d ${DBMS} -a ${DATABASE_DRIVER}" >&2
+                echo >&2
+                echo "Use \"Build/Scripts/runTests.sh -h\" to display help and valid options" >&2
+                exit 1
+            fi
+            [ -z "${DBMS_VERSION}" ] && DBMS_VERSION="8.0"
+            if ! [[ ${DBMS_VERSION} =~ ^(8.0|8.1|8.2|8.3|8.4)$ ]]; then
+                echo "Invalid combination -d ${DBMS} -i ${DBMS_VERSION}" >&2
+                echo >&2
+                echo "Use \"Build/Scripts/runTests.sh -h\" to display help and valid options" >&2
+                exit 1
+            fi
+            ;;
+        postgres)
+            if [ -n "${DATABASE_DRIVER}" ]; then
+                echo "Invalid combination -d ${DBMS} -a ${DATABASE_DRIVER}" >&2
+                echo >&2
+                echo "Use \"Build/Scripts/runTests.sh -h\" to display help and valid options" >&2
+                exit 1
+            fi
+            [ -z "${DBMS_VERSION}" ] && DBMS_VERSION="10"
+            if ! [[ ${DBMS_VERSION} =~ ^(10|11|12|13|14|15|16|17|18)$ ]]; then
+                echo "Invalid combination -d ${DBMS} -i ${DBMS_VERSION}" >&2
+                echo >&2
+                echo "Use \"Build/Scripts/runTests.sh -h\" to display help and valid options" >&2
+                exit 1
+            fi
+            ;;
+        sqlite)
+            if [ -n "${DATABASE_DRIVER}" ]; then
+                echo "Invalid combination -d ${DBMS} -a ${DATABASE_DRIVER}" >&2
+                echo >&2
+                echo "Use \"Build/Scripts/runTests.sh -h\" to display help and valid options" >&2
+                exit 1
+            fi
+            if [ -n "${DBMS_VERSION}" ]; then
+                echo "Invalid combination -d ${DBMS} -i ${DATABASE_DRIVER}" >&2
+                echo >&2
+                echo "Use \"Build/Scripts/runTests.sh -h\" to display help and valid options" >&2
+                exit 1
+            fi
+            ;;
+        *)
+            echo "Invalid option -d ${DBMS}" >&2
+            echo >&2
+            echo "Use \"Build/Scripts/runTests.sh -h\" to display help and valid options" >&2
+            exit 1
+            ;;
+    esac
+}
+
+cleanCacheFiles() {
+    echo -n "Clean caches ... "
+    rm -rf \
+        .Build/.cache \
+        .php-cs-fixer.cache
+    echo "done"
+}
+
+cleanTestFiles() {
+    # test related
+    echo -n "Clean test related files ... "
+    rm -rf \
+        .Build/public/typo3temp/var/tests/ \
+        .Build/coverage/ \
+        .Build/logs/
+    echo "done"
+}
+
+cleanRenderedDocumentationFiles() {
+    echo -n "Clean rendered documentation files ... "
+    rm -rf \
+        Documentation-GENERATED-temp
+    echo "done"
+}
+
+prepareCoverage() {
+    # Fills "${COVERAGE_OPTION}" with the PHPUnit option collecting the coverage, based on the
+    # file name the calling suite has put into "${COVERAGE_FILE}". Without "-m", the array stays
+    # empty, and an empty array adds no argument at all to the PHPUnit call.
+    COVERAGE_OPTION=()
+    if [ ${CREATE_COVERAGE} -eq 0 ]; then
+        return
+    fi
+    mkdir -p "${ROOT_DIR}/.Build/coverage" "${ROOT_DIR}/.Build/logs"
+    COVERAGE_OPTION=("--coverage-php=.Build/coverage/${COVERAGE_FILE}")
+}
+
+loadHelp() {
+    # Load help text into $HELP
+    read -r -d '' HELP <<EOF
+TYPO3 core test runner. Execute unit, functional and other test suites in
+a container based test environment. Handles execution of single test files, sending
+xdebug information to a local IDE and more.
+
+Usage: $0 [options] [file]
+
+Options:
+    -s <...>
+        Specifies the test suite to run
+            - cgl: Fixes the code style with the PHP Coding Standards Fixer (PHP-CS-Fixer). Set -n for dry-run.
+            - checkIntegrityXliff: checks for all xlf files for validity and deprecated usages
+            - clean: clean up build, cache and testing related files and folders
+            - cleanCache: clean up cache related files and folders
+            - cleanRenderedDocumentation: clean up rendered documentation files and folders (Documentation-GENERATED-temp)
+            - cleanTests: clean up test related files and folders
+            - composer: "composer" with all remaining arguments dispatched.
+            - composerNormalize: Normalizes (Set -n for dry-run) or checks the composer.json.
+            - composerUnused: Finds unused Composer packages.
+            - composerUpdateMax: "composer update", with no platform.php config. The suite adds
+              "typo3/minimal" to a throwaway copy of the manifest, so "composer.json" stays untouched.
+            - composerUpdateMin: "composer update --prefer-lowest", with platform.php set to PHP version x.x.0.
+              "composer.json" stays untouched, see composerUpdateMax.
+            - coverageMerge: Merges the coverage collected with -m into one clover report.
+            - executeRstRendering: Renders the extension ReST documentation and
+              fails on rendering warnings and errors.
+            - fix: Runs all automatic code style fixes.
+            - functional: PHP functional tests
+            - lintCss: CSS file linting. Set -n for dry-run.
+            - lintJs: JavaScript file linting. Set -n for dry-run.
+            - lintJson: JSON linting
+            - lintPhp: PHP linting
+            - lintTypoScript: TypoScript linting
+            - lintYaml: YAML linting
+            - normalizeXliff: Normalizes the formatting of all xlf files. Set -n for dry-run.
+            - npm: "npm" with all remaining arguments dispatched.
+            - phpmd: Checks code metrics in the PHP code using PHPMD.
+            - phpstan: PHPStan tests
+            - phpstanGenerateBaseline: regenerate PHPStan baseline, handy after PHPStan updates
+            - psrVerify: Verifies PSR-4 namespace correctness.
+            - rector: Fixes and upgrades the PHP code using Rector. Set -n for dry-run.
+            - shellcheck: check runTests.sh for shell issues
+            - unit (default): PHP unit tests
+            - unitRandom: PHP unit tests in random order, add -o <number> to use specific seed
+            - update: Updates existing typo3/core-testing-*:latest container images and removes dangling local volumes.
+
+    -b <docker|podman>
+        Container environment:
+            - podman (default)
+            - docker
+
+    -a <mysqli|pdo_mysql>
+        Only with -s functional
+        Specifies to use another driver, following combinations are available:
+            - mysql
+                - mysqli (default)
+                - pdo_mysql
+            - mariadb
+                - mysqli (default)
+                - pdo_mysql
+
+    -d <sqlite|mariadb|mysql|postgres>
+        Only with -s functional
+        Specifies on which DBMS tests are performed
+            - sqlite: (default): use sqlite
+            - mariadb: use mariadb
+            - mysql: use MySQL
+            - postgres: use postgres
+
+    -i version
+        Specify a specific database version
+        With "-d mariadb":
+            - 10.4   short-term, maintained until 2024-06-18 (default)
+            - 10.5   short-term, maintained until 2025-06-24
+            - 10.6   long-term, maintained until 2026-06
+            - 10.7   short-term, no longer maintained
+            - 10.8   short-term, maintained until 2023-05
+            - 10.9   short-term, maintained until 2023-08
+            - 10.10  short-term, maintained until 2023-11
+            - 10.11  long-term, maintained until 2028-02
+            - 11.0   development series
+            - 11.1   short-term development series, maintained until 2024-08
+            - 11.2   short-term development series, maintained until 2024-11
+            - 11.3   short-term development series, rolling release
+            - 11.4   long-term, maintained until 2029-05
+            - 11.5   short-term development series, maintained until 2024-11
+            - 11.6   short-term development series, maintained until 2025-02
+            - 11.7   short-term development series, maintained until 2025-05
+            - 11.8   long-term, maintained until 2030-06
+        With "-d mysql":
+            - 8.0   maintained until 2026-04 (default) LTS
+            - 8.1   unmaintained since 2023-10
+            - 8.2   unmaintained since 2024-01
+            - 8.3   maintained until 2024-04
+            - 8.4   maintained until 2032-04 LTS
+        With "-d postgres":
+            - 10    unmaintained since 2022-11-10 (default)
+            - 11    unmaintained since 2023-11-09
+            - 12    maintained until 2024-11-14
+            - 13    maintained until 2025-11-13
+            - 14    maintained until 2026-11-12
+            - 15    maintained until 2027-11-11
+            - 16    maintained until 2028-11-09
+            - 17    maintained until 2029-11-08
+            - 18    maintained until 2030-11-14
+
+    -t <13.4|14.3>
+        Only with -s composerUpdateMin|composerUpdateMax|phpstan|phpstanGenerateBaseline|unit|unitRandom|functional
+        Specifies the TYPO3 CORE Version to be used
+            - 13.4: use TYPO3 v13
+            - 14.3 (default): use TYPO3 v14
+        For the test suites, this selects the tests which only apply to one TYPO3 version.
+        Use the version the dependencies have been installed for. A different one lets the
+        tests fail with a hint about the mismatch.
+
+    -p <8.2|8.3|8.4|8.5>
+        Specifies the PHP minor version to be used
+            - 8.2: use PHP 8.2
+            - 8.3: use PHP 8.3
+            - 8.4: use PHP 8.4
+            - 8.5 (default): use PHP 8.5
+
+    -x
+        Only with -s functional|unit|unitRandom
+        Send information to host instance for test or system under test break points. This is especially
+        useful if a local PhpStorm instance is listening on default xdebug port 9003. A different port
+        can be selected with -y
+
+    -y <port>
+        Send xdebug information to a different port than default 9003 if an IDE like PhpStorm
+        is not listening on default port.
+
+    -o <number>
+        Only with -s unitRandom
+        Set specific random seed to replay a random run in this order again. The phpunit randomizer
+        outputs the used seed at the end (in gitlab core testing logs, too). Use that number to
+        replay the unit tests in that order.
+
+    -n
+        Only with -s cgl|composerNormalize|lintCss|lintJs|normalizeXliff|rector
+        Activate dry-run: do not modify files, only report issues.
+
+    -m
+        Only with -s functional|unit|unitRandom
+        Collect code coverage while the tests run. The report is written to
+        ".Build/coverage/", under a name unique for the TYPO3 version, the PHP version and
+        the DBMS, so that the runs of a test matrix do not overwrite each other. Merge all
+        collected reports into ".Build/logs/clover.xml" with "-s coverageMerge" afterwards.
+        Cannot be combined with -x, as both need a different Xdebug mode.
+
+    -u
+        Update existing typo3/core-testing-* container images and remove obsolete dangling image versions.
+        Also removes dangling local volumes. Use this if weird test errors occur.
+
+    -h
+        Show this help.
+
+Examples:
+    # Run all core unit tests using PHP 8.5
+    ./Build/Scripts/runTests.sh
+    ./Build/Scripts/runTests.sh -s unit
+
+    # Run all core units tests and enable xdebug (have a PhpStorm listening on port 9003!)
+    ./Build/Scripts/runTests.sh -x
+
+    # Run unit tests in phpunit with xdebug on PHP 8.5 and filter for test filterByValueRecursiveCorrectlyFiltersArray
+    ./Build/Scripts/runTests.sh -x -p 8.5 -- --filter filterByValueRecursiveCorrectlyFiltersArray
+
+    # Run functional tests in phpunit with a filtered test method name in a specified file
+    ./Build/Scripts/runTests.sh -s functional -- --filter aTestName path/to/fileTest.php
+
+    # Run functional tests on postgres with xdebug, php 8.5 and execute a restricted set of tests
+    ./Build/Scripts/runTests.sh -x -p 8.5 -s functional -d postgres Tests/Functional
+
+    # Run functional tests on postgres 11
+    ./Build/Scripts/runTests.sh -s functional -d postgres -i 11
+
+    # Run composer require to require a dependency
+    ./Build/Scripts/runTests.sh -s composer -- require --dev typo3/testing-framework:dev-main
+
+    # Some composer command examples
+    ./Build/Scripts/runTests.sh -s composer -- dumpautoload
+    ./Build/Scripts/runTests.sh -s composer -- info | grep "symfony"
+
+    # Some npm command examples
+    ./Build/Scripts/runTests.sh -s npm -- audit
+    ./Build/Scripts/runTests.sh -s npm -- ci
+
+    # Collect the coverage of the unit and the functional tests and merge both into one report
+    ./Build/Scripts/runTests.sh -p 8.2 -s unit -m
+    ./Build/Scripts/runTests.sh -p 8.2 -s functional -m
+    ./Build/Scripts/runTests.sh -p 8.2 -s coverageMerge
+EOF
+}
+
+# Functions for the individual checkers/fixers
+
+checkIntegrityXliff() {
+    ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name check-integrity-set-labels-${SUFFIX} ${IMAGE_PHP} php -dxdebug.mode=off Build/Scripts/checkIntegrityXliff.php
+}
+
+cgl() {
+     # Active dry-run for cgl needs not "-n" but specific options
+     if [ -n "${CGLCHECK_DRY_RUN}" ]; then
+         CGLCHECK_DRY_RUN="--dry-run --diff"
+     fi
+     COMMAND="php -dxdebug.mode=off .Build/bin/php-cs-fixer fix -v ${CGLCHECK_DRY_RUN} --config=Build/php-cs-fixer/config.php"
+     ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name cgl-${SUFFIX} ${IMAGE_PHP} ${COMMAND}
+}
+
+composerNormalize() {
+    if [ -n "${CGLCHECK_DRY_RUN}" ]; then
+        CGLCHECK_DRY_RUN="--dry-run"
+    fi
+    COMMAND="composer normalize --no-check-lock ${CGLCHECK_DRY_RUN}"
+    ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name composer-normalize-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_HOME=${ROOT_DIR}/.cache/composer-home -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/sh -c "${COMMAND}"
+}
+
+composerUnused() {
+    COMMAND=".Build/bin/composer-unused --configuration=./Build/composer-unused/composer-unused.php"
+    ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name composer-unused-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_HOME=${ROOT_DIR}/.cache/composer-home -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/sh -c "${COMMAND}"
+}
+
+lintCss() {
+    if [ -n "${CGLCHECK_DRY_RUN}" ]; then
+        COMMAND="echo ${HELP_TEXT_NPM_CI}; npm ci --silent || { echo ${HELP_TEXT_NPM_FAILURE}; exit 1; } && npm run check:lint:css"
+    else
+        COMMAND="echo ${HELP_TEXT_NPM_CI}; npm ci --silent || { echo ${HELP_TEXT_NPM_FAILURE}; exit 1; } && npm run fix:lint:css"
+    fi
+    ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name npm-command-${SUFFIX} -e npm_config_cache=${ROOT_DIR}/.cache/npm ${IMAGE_NODEJS} /bin/sh -c "${COMMAND}"
+}
+
+lintJs() {
+    if [ -n "${CGLCHECK_DRY_RUN}" ]; then
+        COMMAND="echo ${HELP_TEXT_NPM_CI}; npm ci --silent || { echo ${HELP_TEXT_NPM_FAILURE}; exit 1; } && npm run check:lint:js"
+    else
+        COMMAND="echo ${HELP_TEXT_NPM_CI}; npm ci --silent || { echo ${HELP_TEXT_NPM_FAILURE}; exit 1; } && npm run fix:lint:js"
+    fi
+    ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name lintJs-${SUFFIX} -e npm_config_cache=${ROOT_DIR}/.cache/npm ${IMAGE_NODEJS} /bin/sh -c "${COMMAND}"
+}
+
+lintJson() {
+    COMMAND="composer check:json:lint"
+    ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name lintJson-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_HOME=${ROOT_DIR}/.cache/composer-home -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/sh -c "${COMMAND}"
+}
+
+lintPhp() {
+    COMMAND="composer check:php:lint"
+    ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name lintPhp-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_HOME=${ROOT_DIR}/.cache/composer-home -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/sh -c "${COMMAND}"
+}
+
+lintTypoScript() {
+    COMMAND="composer check:typoscript:lint"
+    ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name lintTypoScript-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_HOME=${ROOT_DIR}/.cache/composer-home -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/sh -c "${COMMAND}"
+}
+
+lintYaml() {
+    COMMAND="composer check:yaml:lint"
+    ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name lintYaml-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_HOME=${ROOT_DIR}/.cache/composer-home -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/sh -c "${COMMAND}"
+}
+
+normalizeXliff() {
+    NORMALIZE_XLIFF_ARGS=""
+    if [ -n "${CGLCHECK_DRY_RUN}" ]; then
+        NORMALIZE_XLIFF_ARGS="-n"
+    fi
+    ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name normalize-xliff-${SUFFIX} ${IMAGE_PHP} php -dxdebug.mode=off Build/Scripts/xliffNormalizer.php ${NORMALIZE_XLIFF_ARGS} "$@"
+}
+
+phpstan() {
+    PHPSTAN_CONFIG_FILE="Build/phpstan/TYPO3_${CORE_VERSION}/phpstan.neon"
+    COMMAND=(php -dxdebug.mode=off .Build/bin/phpstan analyse -c ${PHPSTAN_CONFIG_FILE} --no-progress --no-interaction --memory-limit 4G "$@")
+    ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name phpstan-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_HOME=${ROOT_DIR}/.cache/composer-home -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} "${COMMAND[@]}"
+}
+
+phpstanGenerateBaseline() {
+    PHPSTAN_CONFIG_FILE="Build/phpstan/TYPO3_${CORE_VERSION}/phpstan.neon"
+    COMMAND=(php -dxdebug.mode=off .Build/bin/phpstan analyse -c ${PHPSTAN_CONFIG_FILE} --no-progress --no-interaction --memory-limit 4G --allow-empty-baseline --generate-baseline=Build/phpstan/TYPO3_${CORE_VERSION}/phpstan-baseline.neon)
+    ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name phpstan-baseline-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_HOME=${ROOT_DIR}/.cache/composer-home -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} "${COMMAND[@]}"
+}
+
+psrVerify() {
+    COMMAND="composer dumpautoload --optimize --strict-psr --no-plugins --dry-run"
+    ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name psr-verify-${SUFFIX} ${IMAGE_PHP} ${COMMAND}
+}
+
+rector() {
+    if [ -n "${CGLCHECK_DRY_RUN}" ]; then
+        CGLCHECK_DRY_RUN="--dry-run"
+    fi
+    COMMAND=".Build/bin/rector process ${CGLCHECK_DRY_RUN} --config=Build/rector/config.php"
+    ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name rector-${SUFFIX} ${IMAGE_PHP} ${COMMAND}
+}
+
+# Test if at least one of the supported container binaries exists, else exit out with error
+if ! type "docker" >/dev/null 2>&1 && ! type "podman" >/dev/null 2>&1; then
+    echo "This script relies on docker or podman. Please install" >&2
+    exit 1
+fi
+
+# Go to the directory this script is located, so everything else is relative
+# to this dir, no matter from where this script is called, then go up two dirs.
+THIS_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null && pwd)"
+cd "$THIS_SCRIPT_DIR" || exit 1
+cd ../../ || exit 1
+ROOT_DIR="${PWD}"
+
+# Option defaults
+TEST_SUITE="unit"
+CORE_VERSION="14.3"
+DBMS="sqlite"
+DBMS_VERSION=""
+PHP_VERSION="8.5"
+PHP_XDEBUG_ON=0
+PHP_XDEBUG_PORT=9003
+PHPUNIT_RANDOM=""
+CREATE_COVERAGE=0
+COVERAGE_FILE=""
+COVERAGE_OPTION=()
+# CGLCHECK_DRY_RUN is a more generic dry-run switch not limited to CGL
+CGLCHECK_DRY_RUN=""
+DATABASE_DRIVER=""
+CONTAINER_BIN=""
+COMPOSER_ROOT_VERSION="3.0.x-dev"
+# "composer config" and "composer require" rewrite the manifest they operate on. The install
+# suites therefore run on a throwaway copy of "composer.json", selected with the "COMPOSER"
+# environment variable, so that the tracked "composer.json" is never touched and the added
+# "typo3/minimal" requirement can not be committed by accident.
+COMPOSER_BUILD_FILE="composer.build.json"
+HELP_TEXT_NPM_CI="Now running \'npm ci --silent\'."
+HELP_TEXT_NPM_FAILURE="npm clean-install has failed. Please run \'${0} -s npm ci\' to explore."
+CONTAINER_INTERACTIVE="-it --init"
+HOST_UID=$(id -u)
+HOST_PID=$(id -g)
+USERSET=""
+SUFFIX="$RANDOM"
+NETWORK="typo3-oliverklee-gethdo-${SUFFIX}"
+CI_PARAMS="${CI_PARAMS:-}"
+CONTAINER_HOST="host.docker.internal"
+# shellcheck disable=SC2034 # This variable will be needed when we try to clean up the root folder
+PHPSTAN_CONFIG_FILE="Build/phpstan/phpstan.neon"
+
+# Option parsing updates above default vars
+# Reset in case getopts has been used previously in the shell
+OPTIND=1
+# Array for invalid options
+INVALID_OPTIONS=()
+# Simple option parsing based on getopts (! not getopt)
+while getopts ":a:b:s:d:i:p:t:xy:o:nmhu" OPT; do
+    case ${OPT} in
+        s)
+            TEST_SUITE=${OPTARG}
+            ;;
+        b)
+            if ! [[ ${OPTARG} =~ ^(docker|podman)$ ]]; then
+                INVALID_OPTIONS+=("${OPTARG}")
+            fi
+            CONTAINER_BIN=${OPTARG}
+            ;;
+        a)
+            DATABASE_DRIVER=${OPTARG}
+            ;;
+        d)
+            DBMS=${OPTARG}
+            ;;
+        i)
+            DBMS_VERSION=${OPTARG}
+            ;;
+        t)
+            CORE_VERSION=${OPTARG}
+            if ! [[ ${CORE_VERSION} =~ ^(13.4|14.3)$ ]]; then
+                INVALID_OPTIONS+=("${OPTARG}")
+            fi
+            ;;
+        p)
+            PHP_VERSION=${OPTARG}
+            if ! [[ ${PHP_VERSION} =~ ^(8.2|8.3|8.4|8.5)$ ]]; then
+                INVALID_OPTIONS+=("${OPTARG}")
+            fi
+            ;;
+        x)
+            PHP_XDEBUG_ON=1
+            ;;
+        y)
+            PHP_XDEBUG_PORT=${OPTARG}
+            ;;
+        o)
+            PHPUNIT_RANDOM="--random-order-seed=${OPTARG}"
+            ;;
+        n)
+            CGLCHECK_DRY_RUN="-n"
+            ;;
+        m)
+            CREATE_COVERAGE=1
+            ;;
+        h)
+            loadHelp
+            echo "${HELP}"
+            exit 0
+            ;;
+        u)
+            TEST_SUITE=update
+            ;;
+        \?)
+            INVALID_OPTIONS+=("${OPTARG}")
+            ;;
+        :)
+            INVALID_OPTIONS+=("${OPTARG}")
+            ;;
+    esac
+done
+
+# Exit on invalid options
+if [ ${#INVALID_OPTIONS[@]} -ne 0 ]; then
+    echo "Invalid option(s):" >&2
+    for I in "${INVALID_OPTIONS[@]}"; do
+        echo "-"${I} >&2
+    done
+    echo >&2
+    echo "Use \"Build/Scripts/runTests.sh -h\" to display help and valid options" >&2
+    exit 1
+fi
+
+# Validated here rather than further down, so that an invalid combination exits before the
+# container network is created and does not leave it behind.
+if [ ${CREATE_COVERAGE} -eq 1 ] && [ ${PHP_XDEBUG_ON} -eq 1 ]; then
+    echo "Options \"-m\" and \"-x\" cannot be combined, they need a different Xdebug mode." >&2
+    echo >&2
+    echo "Use \"Build/Scripts/runTests.sh -h\" to display help and valid options" >&2
+    exit 1
+fi
+
+if [ ${CREATE_COVERAGE} -eq 1 ] && ! [[ ${TEST_SUITE} =~ ^(functional|unit|unitRandom)$ ]]; then
+    echo "Option \"-m\" is not available for \"-s ${TEST_SUITE}\"." >&2
+    echo >&2
+    echo "Use \"Build/Scripts/runTests.sh -h\" to display help and valid options" >&2
+    exit 1
+fi
+
+handleDbmsOptions
+
+if [ "${CI}" == "true" ]; then
+    # ENV var "CI" is set by gitlab-ci. Use it to force some CI details.
+    CONTAINER_INTERACTIVE=""
+elif [ ! -t 0 ] || [ ! -t 1 ]; then
+    # If stdin or stdout is not a TTY (e.g. a script runner, pipe, or non-interactive shell),
+    # drop the interactive "-it" flags automatically to avoid podman warning "The input device
+    # is not a TTY." and docker failure, and to keep redirected output free of TTY control characters.
+    # Keep "--init" so the PID 1 init process still forwards signals (e.g. ctrl-c) to the test process.
+    CONTAINER_INTERACTIVE="--init"
+fi
+
+# determine default container binary to use: 1. podman 2. docker
+if [[ -z "${CONTAINER_BIN}" ]]; then
+    if type "podman" >/dev/null 2>&1; then
+        CONTAINER_BIN="podman"
+    elif type "docker" >/dev/null 2>&1; then
+        CONTAINER_BIN="docker"
+    fi
+fi
+
+if [ "$(uname)" != "Darwin" ] && [ "${CONTAINER_BIN}" = "docker" ]; then
+    # Run docker jobs as current user to prevent permission issues. Not needed with podman.
+    USERSET="--user $HOST_UID"
+fi
+
+if ! type ${CONTAINER_BIN} >/dev/null 2>&1; then
+    echo "Selected container environment \"${CONTAINER_BIN}\" not found. Please install or use -b option to select one." >&2
+    exit 1
+fi
+
+# Create .cache dir: composer need this.
+mkdir -p .cache
+mkdir -p .Build/public/typo3temp/var/tests
+
+IMAGE_PHP="ghcr.io/typo3/core-testing-$(echo "php${PHP_VERSION}" | sed -e 's/\.//'):latest"
+IMAGE_NODEJS="ghcr.io/typo3/core-testing-nodejs24:1.1"
+IMAGE_SHELLCHECK="docker.io/koalaman/shellcheck:v0.11.0"
+IMAGE_RSTRENDERING="ghcr.io/typo3-documentation/render-guides:0.44.0"
+IMAGE_MARIADB="docker.io/mariadb:${DBMS_VERSION}"
+IMAGE_MYSQL="docker.io/mysql:${DBMS_VERSION}"
+IMAGE_POSTGRES="docker.io/postgres:${DBMS_VERSION}-alpine"
+# PostgreSQL 18 moved `PGDATA` from `/var/lib/postgresql/data` to `/var/lib/postgresql/<major>/docker`
+# and refuses to start when a mount point is placed at the old location. Mounting one level above at
+# `/var/lib/postgresql` is the documented recommendation for that case. Earlier versions expect the
+# mount at the data directory itself, so the mount point is chosen based on the selected version.
+POSTGRES_TMPFS_MOUNT="/var/lib/postgresql/data"
+if [ "${DBMS}" = "postgres" ] && [ "${DBMS_VERSION}" -ge 18 ]; then
+    POSTGRES_TMPFS_MOUNT="/var/lib/postgresql"
+fi
+
+# Remove handled options and leaving the rest in the line, so it can be passed raw to commands
+shift $((OPTIND - 1))
+
+${CONTAINER_BIN} network create ${NETWORK} >/dev/null
+
+# In a git worktree ".git" is a file pointing to a gitdir outside "${ROOT_DIR}",
+# so the mount below does not carry it and git finds no repository inside the
+# container at all. Mounting the common gitdir under its original absolute path
+# covers both it and the worktree gitdir nested below it.
+GIT_DIR_MOUNT=""
+if [ -f "${ROOT_DIR}/.git" ]; then
+    GIT_COMMON_DIR="$(git -C "${ROOT_DIR}" rev-parse --git-common-dir 2>/dev/null)"
+    GIT_COMMON_DIR="$(cd "${ROOT_DIR}" && cd "${GIT_COMMON_DIR}" >/dev/null 2>&1 && pwd)"
+    if [ -n "${GIT_COMMON_DIR}" ] && [ "${GIT_COMMON_DIR}" != "${ROOT_DIR}" ]; then
+        GIT_DIR_MOUNT="-v ${GIT_COMMON_DIR}:${GIT_COMMON_DIR}"
+    fi
+fi
+
+if [ ${CONTAINER_BIN} = "docker" ]; then
+    CONTAINER_COMMON_PARAMS="${CONTAINER_INTERACTIVE} --rm --network ${NETWORK} --add-host "${CONTAINER_HOST}:host-gateway" ${USERSET} -v ${ROOT_DIR}:${ROOT_DIR} ${GIT_DIR_MOUNT} -w ${ROOT_DIR}"
+    # docker creates a tmpfs owned by "root:root" which inherits the mode of its host mountpoint,
+    # while "${USERSET}" passes a user but no group and runs the container as "uid=${HOST_UID}
+    # gid=0". At a umask of 0022 the mountpoint comes up 0755, group 0 gets "r-x" only, and every
+    # test fails with "unable to open database file". "uid" and "gid" make the mount owned by the
+    # user the container runs as, "mode=1777" keeps it writable whatever the umask.
+    TMPFS_MOUNT_OPTIONS="rw,noexec,nosuid,uid=${HOST_UID},gid=${HOST_PID},mode=1777"
+else
+    # podman
+    CONTAINER_HOST="host.containers.internal"
+    CONTAINER_COMMON_PARAMS="${CONTAINER_INTERACTIVE} ${CI_PARAMS} --rm --network ${NETWORK} -v ${ROOT_DIR}:${ROOT_DIR} ${GIT_DIR_MOUNT} -w ${ROOT_DIR}"
+    # Rootless podman maps the container root to the host user, so the tmpfs is writable without
+    # an explicit owner. "mode=1777" is kept for the rootful case.
+    TMPFS_MOUNT_OPTIONS="rw,noexec,nosuid,mode=1777"
+fi
+
+if [ ${CREATE_COVERAGE} -eq 1 ]; then
+    # Xdebug is the only coverage driver in the "core-testing" images; PCOV is not installed
+    # there. The mode has to be set through the environment: The images ship Xdebug in mode
+    # "develop", and that is what "xdebug.mode" keeps reporting even while coverage is active.
+    XDEBUG_MODE="-e XDEBUG_MODE=coverage"
+    XDEBUG_CONFIG=" "
+elif [ ${PHP_XDEBUG_ON} -eq 0 ]; then
+    XDEBUG_MODE="-e XDEBUG_MODE=off"
+    XDEBUG_CONFIG=" "
+else
+    XDEBUG_MODE="-e XDEBUG_MODE=debug -e XDEBUG_TRIGGER=foo"
+    XDEBUG_CONFIG="client_port=${PHP_XDEBUG_PORT} client_host=host.docker.internal"
+fi
+
+# Suite execution
+case ${TEST_SUITE} in
+    cgl)
+        cgl
+        SUITE_EXIT_CODE=$?
+        ;;
+    checkIntegrityXliff)
+        checkIntegrityXliff
+        SUITE_EXIT_CODE=$?
+        ;;
+    clean)
+        cleanCacheFiles
+        cleanRenderedDocumentationFiles
+        cleanTestFiles
+        ;;
+    cleanCache)
+        cleanCacheFiles
+        ;;
+    cleanRenderedDocumentation)
+        cleanRenderedDocumentationFiles
+        ;;
+    cleanTests)
+        cleanTestFiles
+        ;;
+    composer)
+        COMMAND=(composer "$@")
+        ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name composer-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_HOME=${ROOT_DIR}/.cache/composer-home -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} "${COMMAND[@]}"
+        SUITE_EXIT_CODE=$?
+        ;;
+    composerNormalize)
+        composerNormalize
+        SUITE_EXIT_CODE=$?
+        ;;
+    composerUnused)
+        composerUnused
+        SUITE_EXIT_CODE=$?
+        ;;
+    composerUpdateMax)
+        # `dumpautoload` removed due to error with missing `composer.lock` file on publishing public assets.
+        COMMAND="cp composer.json ${COMPOSER_BUILD_FILE} && (composer config --unset platform.php && composer require --no-ansi --no-interaction --no-progress --no-install typo3/minimal:"^${CORE_VERSION}" && composer update --no-progress --no-interaction && composer show); COMPOSER_EXIT_CODE=\$?; rm -f ${COMPOSER_BUILD_FILE}; exit \$COMPOSER_EXIT_CODE"
+        ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name composer-install-max-${SUFFIX} -e COMPOSER=${COMPOSER_BUILD_FILE} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_HOME=${ROOT_DIR}/.cache/composer-home -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/sh -c "${COMMAND[@]}"
+        SUITE_EXIT_CODE=$?
+        ;;
+    composerUpdateMin)
+        # `dumpautoload` removed due to error with missing `composer.lock` file on publishing public assets.
+        COMMAND="cp composer.json ${COMPOSER_BUILD_FILE} && (composer config platform.php ${PHP_VERSION}.0 && composer require --no-ansi --no-interaction --no-progress --no-install typo3/minimal:"^${CORE_VERSION}" && composer update --prefer-lowest --no-progress --no-interaction && composer show); COMPOSER_EXIT_CODE=\$?; rm -f ${COMPOSER_BUILD_FILE}; exit \$COMPOSER_EXIT_CODE"
+        ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name composer-install-min-${SUFFIX} -e COMPOSER=${COMPOSER_BUILD_FILE} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_HOME=${ROOT_DIR}/.cache/composer-home -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/sh -c "${COMMAND[@]}"
+        SUITE_EXIT_CODE=$?
+        ;;
+    coverageMerge)
+        COVERAGE_REPORTS=()
+        for COVERAGE_REPORT in "${ROOT_DIR}"/.Build/coverage/*.cov; do
+            [ -e "${COVERAGE_REPORT}" ] || continue
+            COVERAGE_REPORTS+=("$(basename "${COVERAGE_REPORT}")")
+        done
+        # The error paths only set the exit code and let the run end in the "printSummary" every
+        # suite finishes with rather than leaving through an exit of their own.
+        if [ ${#COVERAGE_REPORTS[@]} -eq 0 ]; then
+            echo "No coverage reports in \".Build/coverage/\" to merge." >&2
+            echo "Run a test suite with \"-m\" first." >&2
+            SUITE_EXIT_CODE=1
+        else
+            # The serialized reports carry no version information, and phpcov merges whatever it
+            # is given without checking it. Reports collected against the dependencies of another
+            # TYPO3 or PHP version would therefore end up in a plausible looking but wrong
+            # result. Every report has both versions in its name, so a mismatch is refused here:
+            # nothing empties ".Build/coverage/" on its own, and a report of an earlier run with
+            # a different "-t" or "-p" would otherwise still be lying around.
+            COVERAGE_VARIANTS=$(printf '%s\n' "${COVERAGE_REPORTS[@]}" | sed -e 's/\.cov$//' -e 's/^unit-random-//' -e 's/^unit-//' -e 's/^functional-//' | cut -d- -f1-3 | sort -u)
+            if [ "$(printf '%s\n' "${COVERAGE_VARIANTS}" | wc -l)" -ne 1 ]; then
+                echo "The coverage reports in \".Build/coverage/\" have not all been collected for the" >&2
+                echo "same TYPO3 and PHP version:" >&2
+                printf '    %s\n' "${COVERAGE_REPORTS[@]}" >&2
+                echo "Merging them would produce a wrong result. Remove the stale reports, or run" >&2
+                echo "\"-s cleanTests\", and collect the coverage again." >&2
+                SUITE_EXIT_CODE=1
+            else
+                mkdir -p "${ROOT_DIR}/.Build/logs"
+                COMMAND=(.Build/bin/phpcov merge --clover=.Build/logs/clover.xml .Build/coverage/)
+                ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name coverage-merge-${SUFFIX} ${IMAGE_PHP} "${COMMAND[@]}"
+                SUITE_EXIT_CODE=$?
+            fi
+        fi
+        ;;
+    executeRstRendering)
+        mkdir -p Documentation-GENERATED-temp
+        chown -R ${HOST_UID}:${HOST_PID} Documentation-GENERATED-temp
+        ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name execute-rst-rendering -v "${ROOT_DIR}":/project ${IMAGE_RSTRENDERING} --fail-on-log --fail-on-error --no-progress --config=Documentation
+        SUITE_EXIT_CODE=$?
+        ;;
+    fix)
+        composerNormalize
+        rector
+        cgl
+        normalizeXliff
+        lintJs
+        lintCss
+        SUITE_EXIT_CODE=$?
+        ;;
+    functional)
+        # The DBMS, its version and the driver are part of the name, so that the coverage of
+        # the functional runs of a test matrix can be merged without overwriting each other.
+        COVERAGE_FILE="functional-core${CORE_VERSION//./-}-php${PHP_VERSION//./}-${DBMS}"
+        [ -n "${DBMS_VERSION}" ] && COVERAGE_FILE="${COVERAGE_FILE}${DBMS_VERSION//./_}"
+        [ -n "${DATABASE_DRIVER}" ] && COVERAGE_FILE="${COVERAGE_FILE}-${DATABASE_DRIVER}"
+        COVERAGE_FILE="${COVERAGE_FILE}.cov"
+        prepareCoverage
+        COMMAND=(.Build/bin/phpunit -c Build/phpunit/FunctionalTests.xml --exclude-group not-${DBMS} --exclude-group not-core-${CORE_VERSION} "${COVERAGE_OPTION[@]}" "$@")
+        case ${DBMS} in
+            mariadb)
+                echo "Using driver: ${DATABASE_DRIVER}"
+                ${CONTAINER_BIN} run --rm ${CI_PARAMS} --name mariadb-func-${SUFFIX} --network ${NETWORK} -d -e MYSQL_ROOT_PASSWORD=funcp --tmpfs /var/lib/mysql/:rw,noexec,nosuid ${IMAGE_MARIADB} >/dev/null
+                waitFor mariadb-func-${SUFFIX} 3306
+                CONTAINERPARAMS="-e typo3DatabaseDriver=${DATABASE_DRIVER} -e typo3DatabaseName=func_test -e typo3DatabaseUsername=root -e typo3DatabaseHost=mariadb-func-${SUFFIX} -e typo3DatabasePassword=funcp"
+                ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name functional-${SUFFIX} ${XDEBUG_MODE} -e XDEBUG_CONFIG="${XDEBUG_CONFIG}" ${CONTAINERPARAMS} ${IMAGE_PHP} "${COMMAND[@]}"
+                SUITE_EXIT_CODE=$?
+                ;;
+            mysql)
+                echo "Using driver: ${DATABASE_DRIVER}"
+                ${CONTAINER_BIN} run --rm ${CI_PARAMS} --name mysql-func-${SUFFIX} --network ${NETWORK} -d -e MYSQL_ROOT_PASSWORD=funcp --tmpfs /var/lib/mysql/:rw,noexec,nosuid ${IMAGE_MYSQL} >/dev/null
+                waitFor mysql-func-${SUFFIX} 3306
+                CONTAINERPARAMS="-e typo3DatabaseDriver=${DATABASE_DRIVER} -e typo3DatabaseName=func_test -e typo3DatabaseUsername=root -e typo3DatabaseHost=mysql-func-${SUFFIX} -e typo3DatabasePassword=funcp"
+                ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name functional-${SUFFIX} ${XDEBUG_MODE} -e XDEBUG_CONFIG="${XDEBUG_CONFIG}" ${CONTAINERPARAMS} ${IMAGE_PHP} "${COMMAND[@]}"
+                SUITE_EXIT_CODE=$?
+                ;;
+            postgres)
+                ${CONTAINER_BIN} run --rm ${CI_PARAMS} --name postgres-func-${SUFFIX} --network ${NETWORK} -d -e POSTGRES_PASSWORD=funcp -e POSTGRES_USER=funcu --tmpfs ${POSTGRES_TMPFS_MOUNT}:rw,noexec,nosuid ${IMAGE_POSTGRES} >/dev/null
+                waitFor postgres-func-${SUFFIX} 5432
+                CONTAINERPARAMS="-e typo3DatabaseDriver=pdo_pgsql -e typo3DatabaseName=bamboo -e typo3DatabaseUsername=funcu -e typo3DatabaseHost=postgres-func-${SUFFIX} -e typo3DatabasePassword=funcp"
+                ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name functional-${SUFFIX} ${XDEBUG_MODE} -e XDEBUG_CONFIG="${XDEBUG_CONFIG}" ${CONTAINERPARAMS} ${IMAGE_PHP} "${COMMAND[@]}"
+                SUITE_EXIT_CODE=$?
+                ;;
+            sqlite)
+                # The functional sqlite databases are written to a tmpfs, which roughly halves the
+                # runtime of the suite and leaves nothing behind on disk. The mount options differ
+                # per container binary, see where "${TMPFS_MOUNT_OPTIONS}" is assigned.
+                mkdir -p "${ROOT_DIR}/.Build/public/typo3temp/var/tests/functional-sqlite-dbs/"
+                CONTAINERPARAMS="-e typo3DatabaseDriver=pdo_sqlite --tmpfs ${ROOT_DIR}/.Build/public/typo3temp/var/tests/functional-sqlite-dbs/:${TMPFS_MOUNT_OPTIONS}"
+                ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name functional-${SUFFIX} ${XDEBUG_MODE} -e XDEBUG_CONFIG="${XDEBUG_CONFIG}" ${CONTAINERPARAMS} ${IMAGE_PHP} "${COMMAND[@]}"
+                SUITE_EXIT_CODE=$?
+                ;;
+        esac
+        ;;
+    lintCss)
+        CGLCHECK_DRY_RUN="-n"
+        lintCss
+        SUITE_EXIT_CODE=$?
+        ;;
+    lintJs)
+        lintJs
+        SUITE_EXIT_CODE=$?
+        ;;
+    lintJson)
+        lintJson
+        SUITE_EXIT_CODE=$?
+        ;;
+    lintPhp)
+        lintPhp
+        SUITE_EXIT_CODE=$?
+        ;;
+    lintTypoScript)
+        lintTypoScript
+        SUITE_EXIT_CODE=$?
+        ;;
+    lintYaml)
+        lintYaml
+        SUITE_EXIT_CODE=$?
+        ;;
+    normalizeXliff)
+        normalizeXliff "$@"
+        SUITE_EXIT_CODE=$?
+        ;;
+    npm)
+        COMMAND=(npm "$@")
+        ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name npm-command-${SUFFIX} -e npm_config_cache=${ROOT_DIR}/.cache/npm ${IMAGE_NODEJS} "${COMMAND[@]}"
+        SUITE_EXIT_CODE=$?
+        ;;
+    phpmd)
+        COMMAND=".Build/bin/phpmd Classes text Build/phpmd/config.xml"
+        ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name phpmd-${SUFFIX} ${IMAGE_PHP} /bin/sh -c "${COMMAND}"
+        SUITE_EXIT_CODE=$?
+        ;;
+    phpstan)
+        phpstan "$@"
+        SUITE_EXIT_CODE=$?
+        ;;
+    phpstanGenerateBaseline)
+        phpstanGenerateBaseline "$@"
+        SUITE_EXIT_CODE=$?
+        ;;
+    psrVerify)
+        psrVerify
+        SUITE_EXIT_CODE=$?
+        ;;
+    rector)
+        rector
+        SUITE_EXIT_CODE=$?
+        ;;
+    shellcheck)
+        ${CONTAINER_BIN} run ${CONTAINER_INTERACTIVE} --rm --pull always ${USERSET} -v "${ROOT_DIR}":/project:ro ${IMAGE_SHELLCHECK} /project/Build/Scripts/runTests.sh
+        SUITE_EXIT_CODE=$?
+        ;;
+    unit)
+        COVERAGE_FILE="unit-core${CORE_VERSION//./-}-php${PHP_VERSION//./}.cov"
+        prepareCoverage
+        ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name unit-${SUFFIX} ${XDEBUG_MODE} -e XDEBUG_CONFIG="${XDEBUG_CONFIG}" ${IMAGE_PHP} .Build/bin/phpunit -c Build/phpunit/UnitTests.xml --exclude-group not-core-${CORE_VERSION} "${COVERAGE_OPTION[@]}" "$@"
+        SUITE_EXIT_CODE=$?
+        ;;
+    unitRandom)
+        COVERAGE_FILE="unit-random-core${CORE_VERSION//./-}-php${PHP_VERSION//./}.cov"
+        prepareCoverage
+        ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name unit-random-${SUFFIX} ${XDEBUG_MODE} -e XDEBUG_CONFIG="${XDEBUG_CONFIG}" ${IMAGE_PHP} .Build/bin/phpunit -c Build/phpunit/UnitTests.xml --exclude-group not-core-${CORE_VERSION} "${COVERAGE_OPTION[@]}" --order-by=random ${PHPUNIT_RANDOM} "$@"
+        SUITE_EXIT_CODE=$?
+        ;;
+    update)
+        # pull typo3/core-testing-*:latest versions of those ones that exist locally
+        echo "> pull ghcr.io/typo3/core-testing-*:latest versions of those ones that exist locally"
+        ${CONTAINER_BIN} images ghcr.io/typo3/core-testing-*:latest --format "{{.Repository}}:latest" | xargs -I {} ${CONTAINER_BIN} pull {}
+        echo ""
+        # remove "dangling" typo3/core-testing-* images (those tagged as <none>)
+        echo "> remove \"dangling\" ghcr.io/typo3/core-testing-* images (those tagged as <none>)"
+        ${CONTAINER_BIN} images --filter "reference=ghcr.io/typo3/core-testing-*" --filter "dangling=true" --format "{{.ID}}" | xargs -I {} ${CONTAINER_BIN} rmi {}
+        echo ""
+        ;;
+    *)
+        loadHelp
+        echo "Invalid -s option argument ${TEST_SUITE}" >&2
+        echo >&2
+        echo "${HELP}" >&2
+        if [ ${CONTAINER_BIN} = "docker" ]; then
+            ${CONTAINER_BIN} network rm ${NETWORK} >/dev/null
+        else
+            ${CONTAINER_BIN} network rm -f ${NETWORK} >/dev/null
+        fi
+        exit 1
+        ;;
+esac
+
+# Cleanup, print summary && exit with exitcode
+printSummary
