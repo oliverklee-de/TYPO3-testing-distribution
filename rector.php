@@ -21,6 +21,7 @@ use Ssch\Typo3RectorTestingFramework\Set\TYPO3TestingFrameworkSetList;
 return RectorConfig::configure()
     ->withPaths([
         __DIR__ . '/config',
+        __DIR__ . '/src/extensions/gethdo',
         __DIR__ . '/src/extensions/site-dev',
     ])
     ->withPhpSets()

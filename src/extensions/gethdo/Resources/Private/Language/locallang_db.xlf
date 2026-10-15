@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="EXT:gethdo/Resources/Private/Language/locallang_db.xlf"
+        date="2026-06-01T11:55:00Z">
+    <header/>
+    <body>
+      <trans-unit id="tx_gethdo_domain_model_project">
+        <source>Project</source>
+      </trans-unit>
+      <trans-unit id="tx_gethdo_domain_model_project.title">
+        <source>Title</source>
+      </trans-unit>
+      <trans-unit id="tx_gethdo_domain_model_project.deadline">
+        <source>Deadline</source>
+      </trans-unit>
+      <trans-unit id="tx_gethdo_domain_model_project.owner">
+        <source>Owner</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
