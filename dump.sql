@@ -1,11 +1,11 @@
 
 -- Dump of TYPO3 Connection "Default"
 /*M!999999\- enable the sandbox mode */ 
--- MariaDB dump 10.19  Distrib 10.11.18-MariaDB, for debian-linux-gnu (x86_64)
+-- MariaDB dump 10.19  Distrib 10.11.19-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: db    Database: db
 -- ------------------------------------------------------
--- Server version	10.6.27-MariaDB-ubu2204-log
+-- Server version	10.6.28-MariaDB-ubu2204-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -2511,7 +2511,7 @@ INSERT INTO `sys_registry` VALUES
 (40,'installUpdateRows','rowUpdatersDone','a:5:{i:0;s:69:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\WorkspaceVersionRecordsMigration\";i:1;s:66:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\L18nDiffsourceToJsonMigration\";i:2;s:77:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\WorkspaceMovePlaceholderRemovalMigration\";i:3;s:76:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\WorkspaceNewPlaceholderRemovalMigration\";i:4;s:69:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\SysRedirectRootPageMoveMigration\";}'),
 (41,'installUpdate','TYPO3\\CMS\\Install\\Updates\\BackendUserLanguageMigration','i:1;'),
 (42,'installUpdate','TYPO3\\CMS\\Install\\Updates\\SysLogChannel','i:1;'),
-(43,'core','sys_refindex_lastUpdate','i:1787312903;'),
+(43,'core','sys_refindex_lastUpdate','i:1792685000;'),
 (45,'extensionDataImport','typo3/cms-redirects/ext_tables_static+adt.sql','s:0:\"\";'),
 (46,'extensionDataImport','typo3/cms-seo/ext_tables_static+adt.sql','s:0:\"\";'),
 (50,'languagePacks','de-feuserextrafields','i:1699807937;'),
@@ -11206,6 +11206,7 @@ CREATE TABLE `tx_seminars_attendances` (
   `invoice_date` int(10) unsigned NOT NULL DEFAULT 0,
   `invoice_number` varchar(8) DEFAULT NULL,
   `customer_number` varchar(8) DEFAULT NULL,
+  `user_agent` text DEFAULT NULL,
   PRIMARY KEY (`uid`),
   KEY `seminar` (`seminar`),
   KEY `user` (`user`),
@@ -11220,13 +11221,13 @@ CREATE TABLE `tx_seminars_attendances` (
 LOCK TABLES `tx_seminars_attendances` WRITE;
 /*!40000 ALTER TABLE `tx_seminars_attendances` DISABLE KEYS */;
 INSERT INTO `tx_seminars_attendances` VALUES
-(1,12,1628003260,1628003260,0,0,'Anna Attendee / TCCD, 20.-23.11.2021',1,7,0,'Standardpreis: € 500,00',1,0,500.00,NULL,0,0,1,'Anna Enterprises','Anna A. Attendee',0,'Bertha-von-Suttner-Platz 1','53111','Bonn','Germany','+29 228 111111','attendee@example.com',0,'','','',NULL,0,NULL,0,'','',0,0,1,NULL,0,NULL,0,NULL,NULL),
-(2,12,1628016412,1628016412,0,0,NULL,4,7,0,'Standardpreis: 0,00 €',1,1,0.00,'',0,0,0,'','Joe Attendee',0,'','','','','','joe@example.com',0,'','','','',0,'',0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL),
-(3,12,1628016433,1628016433,0,0,NULL,5,7,0,'Standardpreis: 0,00 €',1,1,0.00,'',0,0,0,'','Max Attendee',0,'','','','','','max@example.com',0,'','','','',0,'',0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL),
-(4,12,1671044582,1671044495,0,0,'Event with waiting list / Anton R. Admin, 01.01.2030',6,11,0,'Standardpreis: 0,00 €\r\n\r\n',1,1,0.00,'',0,0,0,'Admin Inc.','Anton R. Admin',0,'Admin Avenue 4','53111','Bonn','Germany','+49 228 12345678','admin@example.com',0,'','','',NULL,0,NULL,0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL),
-(5,12,1671044607,1671044565,0,0,'Event with waiting list / Anna A. Attendee, 01.01.2030',1,11,1,'Standardpreis: 0,00 €',1,1,0.00,'',0,0,0,'Anna Enterprises','Anna A. Attendee',0,'Bertha-von-Suttner-Platz 1','53111','Bonn','Germany','+29 228 111111','attendee@example.com',0,'','','',NULL,0,NULL,0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL),
-(6,12,1671226186,1671226135,0,0,'Event for unregistration / Anna A. Attendee, 01.01.2030',1,12,0,'Standardpreis: 0,00 €\r\n\r\n',1,1,0.00,'',0,0,0,'Anna Enterprises','Anna A. Attendee',0,'Bertha-von-Suttner-Platz 1','53111','Bonn','Germany','+29 228 111111','attendee@example.com',0,'','','',NULL,0,NULL,0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL),
-(7,12,1738690037,1733656335,0,0,'Infinite registrations! / Anna A. Attendee, 01.01.2025',1,10,2,'Standardpreis 200,00 €',1,1,200.00,'',0,0,2,'Anna Enterprises','Anna A. Attendee',0,'Bertha-von-Suttner-Platz 1','53111','Bonn','Germany','+29 228 111111','attendee@example.com',0,'','','',NULL,0,NULL,0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL);
+(1,12,1628003260,1628003260,0,0,'Anna Attendee / TCCD, 20.-23.11.2021',1,7,0,'Standardpreis: € 500,00',1,0,500.00,NULL,0,0,1,'Anna Enterprises','Anna A. Attendee',0,'Bertha-von-Suttner-Platz 1','53111','Bonn','Germany','+29 228 111111','attendee@example.com',0,'','','',NULL,0,NULL,0,'','',0,0,1,NULL,0,NULL,0,NULL,NULL,NULL),
+(2,12,1628016412,1628016412,0,0,NULL,4,7,0,'Standardpreis: 0,00 €',1,1,0.00,'',0,0,0,'','Joe Attendee',0,'','','','','','joe@example.com',0,'','','','',0,'',0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL,NULL),
+(3,12,1628016433,1628016433,0,0,NULL,5,7,0,'Standardpreis: 0,00 €',1,1,0.00,'',0,0,0,'','Max Attendee',0,'','','','','','max@example.com',0,'','','','',0,'',0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL,NULL),
+(4,12,1671044582,1671044495,0,0,'Event with waiting list / Anton R. Admin, 01.01.2030',6,11,0,'Standardpreis: 0,00 €\r\n\r\n',1,1,0.00,'',0,0,0,'Admin Inc.','Anton R. Admin',0,'Admin Avenue 4','53111','Bonn','Germany','+49 228 12345678','admin@example.com',0,'','','',NULL,0,NULL,0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL,NULL),
+(5,12,1671044607,1671044565,0,0,'Event with waiting list / Anna A. Attendee, 01.01.2030',1,11,1,'Standardpreis: 0,00 €',1,1,0.00,'',0,0,0,'Anna Enterprises','Anna A. Attendee',0,'Bertha-von-Suttner-Platz 1','53111','Bonn','Germany','+29 228 111111','attendee@example.com',0,'','','',NULL,0,NULL,0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL,NULL),
+(6,12,1671226186,1671226135,0,0,'Event for unregistration / Anna A. Attendee, 01.01.2030',1,12,0,'Standardpreis: 0,00 €\r\n\r\n',1,1,0.00,'',0,0,0,'Anna Enterprises','Anna A. Attendee',0,'Bertha-von-Suttner-Platz 1','53111','Bonn','Germany','+29 228 111111','attendee@example.com',0,'','','',NULL,0,NULL,0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL,NULL),
+(7,12,1738690037,1733656335,0,0,'Infinite registrations! / Anna A. Attendee, 01.01.2025',1,10,2,'Standardpreis 200,00 €',1,1,200.00,'',0,0,2,'Anna Enterprises','Anna A. Attendee',0,'Bertha-von-Suttner-Platz 1','53111','Bonn','Germany','+29 228 111111','attendee@example.com',0,'','','',NULL,0,NULL,0,'','',0,0,1,'price_regular',0,NULL,0,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `tx_seminars_attendances` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -12412,4 +12413,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-08-21 13:49:18
+-- Dump completed on 2026-10-22 18:04:09
