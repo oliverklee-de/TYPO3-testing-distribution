@@ -91,6 +91,9 @@ return [
         'scheduler' => [
             'maxLifetime' => '1440',
         ],
+        'seminars' => [
+            'record_user_agent_on_registration' => '1',
+        ],
     ],
     'FE' => [
         'debug' => true,
