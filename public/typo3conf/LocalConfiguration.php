@@ -80,6 +80,9 @@ return [
             'maxLifetime' => '1440',
             'showSampleTasks' => '1',
         ],
+        'seminars' => [
+            'record_user_agent_on_registration' => '1',
+        ],
         'static_info_tables' => [
             'enableManager' => '0',
         ],
