@@ -1,4 +1,8 @@
 <?php
+
+use TYPO3\CMS\Core\Log\LogLevel;
+use TYPO3\CMS\Core\Log\Writer\FileWriter;
+
 return [
     'BE' => [
         'debug' => true,
@@ -76,9 +80,6 @@ return [
             'maxLifetime' => '1440',
             'showSampleTasks' => '1',
         ],
-        'seminars' => [
-            'record_user_agent_on_registration' => '1',
-        ],
         'static_info_tables' => [
             'enableManager' => '0',
         ],
@@ -104,8 +105,8 @@ return [
             'CMS' => [
                 'deprecations' => [
                     'writerConfiguration' => [
-                        'notice' => [
-                            'TYPO3\CMS\Core\Log\Writer\FileWriter' => [
+                        LogLevel::NOTICE => [
+                            FileWriter::class => [
                                 'disabled' => false,
                             ],
                         ],
@@ -114,8 +115,8 @@ return [
             ],
             'HtmlSanitizer' => [
                 'writerConfiguration' => [
-                    'debug' => [
-                        'TYPO3\CMS\Core\Log\Writer\FileWriter' => [
+                    LogLevel::DEBUG => [
+                        FileWriter::class => [
                             'disabled' => false,
                             'logFileInfix' => 'html',
                         ],
@@ -124,26 +125,26 @@ return [
             ],
         ],
         'writerConfiguration' => [
-            'debug' => [
-                'TYPO3\CMS\Core\Log\Writer\FileWriter' => [
+            LogLevel::DEBUG => [
+                FileWriter::class => [
                     'disabled' => false,
                     'logFileInfix' => 'debug',
                 ],
             ],
-            'info' => [
-                'TYPO3\CMS\Core\Log\Writer\FileWriter' => [
+            LogLevel::INFO => [
+                FileWriter::class => [
                     'disabled' => false,
                     'logFileInfix' => 'info',
                 ],
             ],
-            'notice' => [
-                'TYPO3\CMS\Core\Log\Writer\FileWriter' => [
+            LogLevel::NOTICE => [
+                FileWriter::class => [
                     'disabled' => false,
                     'logFileInfix' => 'notice',
                 ],
             ],
-            'warning' => [
-                'TYPO3\CMS\Core\Log\Writer\FileWriter' => [
+            LogLevel::WARNING => [
+                FileWriter::class => [
                     'disabled' => false,
                     'logFileInfix' => 'warning',
                 ],
