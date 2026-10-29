@@ -16,7 +16,6 @@
 	},
 	"require": {
 		"php": "^8.1",
-		"georgringer/autoswitchtolistview": "^3.0.0",
 		"helhum/typo3-console": "^8.1.0",
 		"oliverklee/feuserextrafields": "dev-main",
 		"oliverklee/oelib": "dev-main",
@@ -70,7 +69,6 @@
 		"typo3/testing-framework": "8.3.1"
 	},
 	"conflict": {
-		"georgringer/autoswitchtolistview": "3.1.0",
 		"phpstan/phpdoc-parser": "< 1.0 || >= 2.0"
 	},
 	"repositories": [
