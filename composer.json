@@ -16,6 +16,7 @@
 	},
 	"require": {
 		"php": "^8.2",
+		"georgringer/autoswitchtolistview": "^3.0.0",
 		"georgringer/news": "^12.3",
 		"helhum/typo3-console": "^9.0.0",
 		"oliverklee/feuserextrafields": "dev-main",
@@ -68,6 +69,9 @@
 		"symfony/yaml": "7.4.13",
 		"typo3/coding-standards": "0.9.0",
 		"typo3/testing-framework": "9.6.1"
+	},
+	"conflict": {
+		"georgringer/autoswitchtolistview": "3.1.0"
 	},
 	"repositories": [
 		{
