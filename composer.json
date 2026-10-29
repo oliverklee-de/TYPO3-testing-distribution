@@ -16,7 +16,6 @@
 	},
 	"require": {
 		"php": "^8.2",
-		"georgringer/autoswitchtolistview": "^3.1",
 		"georgringer/news": "^14.0",
 		"helhum/typo3-console": "^9.0.0",
 		"oliverklee/site-dev": "@dev",
