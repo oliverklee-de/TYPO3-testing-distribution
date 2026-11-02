@@ -969,7 +969,7 @@ CREATE TABLE `sys_registry` (
   `entry_value` mediumblob DEFAULT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `entry_identifier` (`entry_namespace`,`entry_key`)
-) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1020,7 +1020,7 @@ INSERT INTO `sys_registry` VALUES
 (40,'installUpdateRows','rowUpdatersDone','a:5:{i:0;s:69:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\WorkspaceVersionRecordsMigration\";i:1;s:66:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\L18nDiffsourceToJsonMigration\";i:2;s:77:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\WorkspaceMovePlaceholderRemovalMigration\";i:3;s:76:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\WorkspaceNewPlaceholderRemovalMigration\";i:4;s:69:\"TYPO3\\CMS\\Install\\Updates\\RowUpdater\\SysRedirectRootPageMoveMigration\";}'),
 (41,'installUpdate','TYPO3\\CMS\\Install\\Updates\\BackendUserLanguageMigration','i:1;'),
 (42,'installUpdate','TYPO3\\CMS\\Install\\Updates\\SysLogChannel','i:1;'),
-(43,'core','sys_refindex_lastUpdate','i:1793115949;'),
+(43,'core','sys_refindex_lastUpdate','i:1793620293;'),
 (45,'extensionDataImport','typo3/cms-redirects/ext_tables_static+adt.sql','s:0:\"\";'),
 (46,'extensionDataImport','typo3/cms-seo/ext_tables_static+adt.sql','s:0:\"\";'),
 (50,'languagePacks','de-feuserextrafields','i:1699807937;'),
@@ -1052,7 +1052,8 @@ INSERT INTO `sys_registry` VALUES
 (125,'installUpdate','GeorgRinger\\News\\Updates\\PopulateTagSlugs','i:1;'),
 (126,'installUpdate','GeorgRinger\\News\\Updates\\RelatedLinkIntegerDefault','i:1;'),
 (127,'installUpdate','GeorgRinger\\News\\Updates\\TitleFieldDefault','i:1;'),
-(128,'installUpdate','TYPO3\\CMS\\Install\\Updates\\IndexedSearchCTypeMigration','i:1;');
+(128,'installUpdate','TYPO3\\CMS\\Install\\Updates\\IndexedSearchCTypeMigration','i:1;'),
+(130,'installUpdate','TYPO3\\CMS\\Extensionmanager\\Updates\\FeLoginModeExtractionUpdate','i:1;');
 /*!40000 ALTER TABLE `sys_registry` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -9932,10 +9933,8 @@ CREATE TABLE `tx_tea_domain_model_tea` (
   `image` int(10) unsigned NOT NULL DEFAULT 0,
   `fe_group` varchar(255) NOT NULL DEFAULT '0',
   `sys_language_uid` int(11) NOT NULL DEFAULT 0,
-  `l18n_parent` int(10) unsigned NOT NULL DEFAULT 0,
   `l10n_source` int(10) unsigned NOT NULL DEFAULT 0,
   `l10n_state` text DEFAULT NULL,
-  `l18n_diffsource` mediumblob DEFAULT NULL,
   `owner` longtext DEFAULT NULL,
   `hidden` smallint(5) unsigned NOT NULL DEFAULT 0,
   `starttime` int(10) unsigned NOT NULL DEFAULT 0,
@@ -9944,10 +9943,12 @@ CREATE TABLE `tx_tea_domain_model_tea` (
   `t3ver_wsid` int(10) unsigned NOT NULL DEFAULT 0,
   `t3ver_state` smallint(6) NOT NULL DEFAULT 0,
   `t3ver_stage` int(11) NOT NULL DEFAULT 0,
+  `l10n_parent` int(10) unsigned NOT NULL DEFAULT 0,
+  `l10n_diffsource` mediumblob DEFAULT NULL,
   PRIMARY KEY (`uid`),
   KEY `parent` (`pid`,`deleted`,`hidden`),
   KEY `t3ver_oid` (`t3ver_oid`,`t3ver_wsid`),
-  KEY `translation_source` (`l10n_source`,`l18n_parent`,`sys_language_uid`)
+  KEY `translation_source` (`l10n_source`,`l10n_parent`,`sys_language_uid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -9958,9 +9959,9 @@ CREATE TABLE `tx_tea_domain_model_tea` (
 LOCK TABLES `tx_tea_domain_model_tea` WRITE;
 /*!40000 ALTER TABLE `tx_tea_domain_model_tea` DISABLE KEYS */;
 INSERT INTO `tx_tea_domain_model_tea` VALUES
-(1,3,1627916201,1627916201,0,'Earl Grey','<p>Fruchtig-duftend.</p>',0,'0',0,0,0,NULL,NULL,'0',0,0,0,0,0,0,0),
-(2,3,1687429497,1627916222,0,'Darjeeling','<p>Frisch und zart.</p>',0,'',0,0,0,NULL,'{\"title\":\"\",\"description\":\"\",\"image\":\"\",\"owner\":\"\",\"fe_group\":\"\"}','3',0,0,0,0,0,0,0),
-(3,3,1683114389,1683114372,0,'Earl Grey (English)','<p>Fruity and fragrant.</p>',0,'',1,1,1,NULL,'{\"l18n_parent\":\"0\",\"l18n_diffsource\":\"\",\"title\":\"Earl Grey\",\"description\":\"<p>Fruchtig-duftend.<\\/p>\",\"image\":\"0\",\"sys_language_uid\":\"0\",\"l10n_source\":\"0\",\"fe_group\":\"0\"}','0',0,0,0,0,0,0,0);
+(1,3,1627916201,1627916201,0,'Earl Grey','<p>Fruchtig-duftend.</p>',0,'0',0,0,NULL,'0',0,0,0,0,0,0,0,0,NULL),
+(2,3,1687429497,1627916222,0,'Darjeeling','<p>Frisch und zart.</p>',0,'',0,0,NULL,'3',0,0,0,0,0,0,0,0,'{\"title\":\"\",\"description\":\"\",\"image\":\"\",\"owner\":\"\",\"fe_group\":\"\"}'),
+(3,3,1683114389,1683114372,0,'Earl Grey (English)','<p>Fruity and fragrant.</p>',0,'',1,1,NULL,'0',0,0,0,0,0,0,0,1,'{\"l18n_parent\":\"0\",\"l18n_diffsource\":\"\",\"title\":\"Earl Grey\",\"description\":\"<p>Fruchtig-duftend.<\\/p>\",\"image\":\"0\",\"sys_language_uid\":\"0\",\"l10n_source\":\"0\",\"fe_group\":\"0\"}');
 /*!40000 ALTER TABLE `tx_tea_domain_model_tea` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -9973,4 +9974,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-10-27 16:45:52
+-- Dump completed on 2026-11-02 12:51:43
