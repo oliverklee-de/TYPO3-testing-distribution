@@ -51,6 +51,10 @@
         <source>Configuration</source>
         <target state="final">Konfiguration</target>
       </trans-unit>
+      <trans-unit id="panel.header.numberOfSearchMatches" x-unused-since="14.2" approved="yes">
+        <source>%s search match(es)</source>
+        <target state="final">%s Suchergebnis(se)</target>
+      </trans-unit>
       <trans-unit id="panel.info.conditionActiveCount.multiple" approved="yes">
         <source>%s active conditions</source>
         <target state="final">%s aktive Bedingungen</target>

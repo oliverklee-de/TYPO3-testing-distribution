@@ -3,6 +3,10 @@
   <file source-language="en" datatype="plaintext" original="EXT:frontend/Resources/Private/Language/locallang_ttc.xlf" date="2011-10-17T20:22:32Z" product-name="cms" target-language="de">
     <header/>
     <body>
+      <trans-unit id="CType_formlabel" x-unused-since="14.0" approved="yes">
+        <source>Type</source>
+        <target state="final">Typ</target>
+      </trans-unit>
       <trans-unit id="layout.I.1" approved="yes">
         <source>Layout 1</source>
         <target state="final">Layout 1</target>
@@ -14,6 +18,14 @@
       <trans-unit id="layout.I.3" approved="yes">
         <source>Layout 3</source>
         <target state="final">Layout 3</target>
+      </trans-unit>
+      <trans-unit id="colPos" x-unused-since="14.0" approved="yes">
+        <source>Columns</source>
+        <target state="final">Spalten:</target>
+      </trans-unit>
+      <trans-unit id="colPos_formlabel" x-unused-since="14.0" approved="yes">
+        <source>Column</source>
+        <target state="final">Spalte</target>
       </trans-unit>
       <trans-unit id="colPos.I.0" approved="yes">
         <source>Left</source>
@@ -35,7 +47,27 @@
         <source>Unused</source>
         <target state="final">Unbenutzt</target>
       </trans-unit>
+      <trans-unit id="date" x-unused-since="14.0" approved="yes">
+        <source>Date</source>
+        <target state="final">Datum</target>
+      </trans-unit>
+      <trans-unit id="date_formlabel" x-unused-since="14.0" approved="yes">
+        <source>Date</source>
+        <target state="final">Datum</target>
+      </trans-unit>
+      <trans-unit id="header" x-unused-since="14.0" approved="yes">
+        <source>Header</source>
+        <target state="final">Überschrift</target>
+      </trans-unit>
+      <trans-unit id="header_formlabel" x-unused-since="14.0" approved="yes">
+        <source>Header</source>
+        <target state="final">Überschrift</target>
+      </trans-unit>
       <trans-unit id="header.ALT.shortcut_formlabel" approved="yes">
+        <source>Name (not visible in frontend)</source>
+        <target state="final">Name (in der Webseite nicht sichtbar)</target>
+      </trans-unit>
+      <trans-unit id="header.ALT.script_formlabel" x-unused-since="14.0" approved="yes">
         <source>Name (not visible in frontend)</source>
         <target state="final">Name (in der Webseite nicht sichtbar)</target>
       </trans-unit>
@@ -51,6 +83,14 @@
         <source>The name won't be displayed as header above the element, but will be used as reference in menus.</source>
         <target state="final">Der Name wird nicht als Überschrift über dem Element angezeigt, sondern als Referenz in Menüs verwendet.</target>
       </trans-unit>
+      <trans-unit id="header_position" x-unused-since="14.0" approved="yes">
+        <source>Align</source>
+        <target state="final">Ausrichtung:</target>
+      </trans-unit>
+      <trans-unit id="header_position_formlabel" x-unused-since="14.0" approved="yes">
+        <source>Alignment</source>
+        <target state="final">Ausrichtung</target>
+      </trans-unit>
       <trans-unit id="header_position.I.1" approved="yes">
         <source>Center</source>
         <target state="final">Mitte</target>
@@ -62,6 +102,18 @@
       <trans-unit id="header_position.I.3" approved="yes">
         <source>Left</source>
         <target state="final">Links</target>
+      </trans-unit>
+      <trans-unit id="header_link" x-unused-since="14.0" approved="yes">
+        <source>Link</source>
+        <target state="final">Link:</target>
+      </trans-unit>
+      <trans-unit id="header_link_formlabel" x-unused-since="14.0" approved="yes">
+        <source>Link</source>
+        <target state="final">Link:</target>
+      </trans-unit>
+      <trans-unit id="header_layout_formlabel" x-unused-since="14.0" approved="yes">
+        <source>Type</source>
+        <target state="final">Typ</target>
       </trans-unit>
       <trans-unit id="header_layout.I.1" approved="yes">
         <source>Layout 1</source>
@@ -103,6 +155,30 @@
         <source>Definition list</source>
         <target state="final">Definitionsliste</target>
       </trans-unit>
+      <trans-unit id="imagewidth" x-unused-since="14.0" approved="yes">
+        <source>Width (pixels)</source>
+        <target state="final">Breite (Pixel):</target>
+      </trans-unit>
+      <trans-unit id="imagewidth_formlabel" x-unused-since="14.0" approved="yes">
+        <source>Width (px)</source>
+        <target state="final">Breite (Pixel)</target>
+      </trans-unit>
+      <trans-unit id="imageheight" x-unused-since="14.0" approved="yes">
+        <source>Height (pixels)</source>
+        <target state="final">Höhe (Pixel):</target>
+      </trans-unit>
+      <trans-unit id="imageheight_formlabel" x-unused-since="14.0" approved="yes">
+        <source>Height (px)</source>
+        <target state="final">Höhe (Pixel)</target>
+      </trans-unit>
+      <trans-unit id="imageorient" x-unused-since="14.0" approved="yes">
+        <source>Position</source>
+        <target state="final">Position:</target>
+      </trans-unit>
+      <trans-unit id="imageorient_formlabel" x-unused-since="14.0" approved="yes">
+        <source>Position and Alignment</source>
+        <target state="final">Position und Ausrichtung</target>
+      </trans-unit>
       <trans-unit id="imageorient.I.0" approved="yes">
         <source>Above, center</source>
         <target state="final">Oben mittig</target>
@@ -142,6 +218,30 @@
       <trans-unit id="imageorient.I.10" approved="yes">
         <source>Beside Text, Left</source>
         <target state="final">Neben dem Text links</target>
+      </trans-unit>
+      <trans-unit id="imageborder" x-unused-since="14.0" approved="yes">
+        <source>Border</source>
+        <target state="final">Rand</target>
+      </trans-unit>
+      <trans-unit id="imageborder_formlabel" x-unused-since="14.0" approved="yes">
+        <source>Border</source>
+        <target state="final">Rand</target>
+      </trans-unit>
+      <trans-unit id="image_zoom" x-unused-since="14.0" approved="yes">
+        <source>Click-enlarge</source>
+        <target state="final">Klick-Vergrößern:</target>
+      </trans-unit>
+      <trans-unit id="image_zoom_formlabel" x-unused-since="14.0" approved="yes">
+        <source>Enlarge on Click</source>
+        <target state="final">Bei Klick vergrößern</target>
+      </trans-unit>
+      <trans-unit id="imagecols" x-unused-since="14.0" approved="yes">
+        <source>Columns</source>
+        <target state="final">Spalten:</target>
+      </trans-unit>
+      <trans-unit id="imagecols_formlabel" x-unused-since="14.0" approved="yes">
+        <source>Number of Columns</source>
+        <target state="final">Anzahl an Spalten</target>
       </trans-unit>
       <trans-unit id="images.addFileReference" approved="yes">
         <source>Add image</source>
@@ -203,6 +303,14 @@
         <source>File collections</source>
         <target state="final">Dateisammlung</target>
       </trans-unit>
+      <trans-unit id="file_collections.ALT.uploads_formlabel" x-unused-since="14.0" approved="yes">
+        <source>Select file collections</source>
+        <target state="final">Dateisammlung auswählen</target>
+      </trans-unit>
+      <trans-unit id="filelink_size" x-unused-since="14.0" approved="yes">
+        <source>Show File Size</source>
+        <target state="final">Zeige Dateigröße:</target>
+      </trans-unit>
       <trans-unit id="filelink_sorting" approved="yes">
         <source>Sort file list</source>
         <target state="final">Dateiliste sortieren:</target>
@@ -251,6 +359,10 @@
         <source>Descending</source>
         <target state="final">Absteigend</target>
       </trans-unit>
+      <trans-unit id="filelink_size_formlabel" x-unused-since="14.0" approved="yes">
+        <source>Display File Size Information</source>
+        <target state="final">Informationen zur Dateigröße anzeigen</target>
+      </trans-unit>
       <trans-unit id="target" approved="yes">
         <source>Target</source>
         <target state="final">Ziel:</target>
@@ -266,6 +378,22 @@
       <trans-unit id="records_formlabel" approved="yes">
         <source>Records</source>
         <target state="final">Datensätze</target>
+      </trans-unit>
+      <trans-unit id="space_before_class" x-unused-since="14.0" approved="yes">
+        <source>Space Before</source>
+        <target state="final">Abstand davor</target>
+      </trans-unit>
+      <trans-unit id="space_before_class_formlabel" x-unused-since="14.0" approved="yes">
+        <source>Space Before</source>
+        <target state="final">Abstand davor</target>
+      </trans-unit>
+      <trans-unit id="space_after_class" x-unused-since="14.0" approved="yes">
+        <source>Space After</source>
+        <target state="final">Abstand danach</target>
+      </trans-unit>
+      <trans-unit id="space_after_class_formlabel" x-unused-since="14.0" approved="yes">
+        <source>Space After</source>
+        <target state="final">Abstand danach</target>
       </trans-unit>
       <trans-unit id="space_class_none" approved="yes">
         <source>None</source>
@@ -290,6 +418,14 @@
       <trans-unit id="space_class_extra_large" approved="yes">
         <source>Extra Large</source>
         <target state="final">Extragroß</target>
+      </trans-unit>
+      <trans-unit id="frame_class" x-unused-since="14.0" approved="yes">
+        <source>Frame</source>
+        <target state="final">Rahmen</target>
+      </trans-unit>
+      <trans-unit id="frame_class_formlabel" x-unused-since="14.0" approved="yes">
+        <source>Frame</source>
+        <target state="final">Rahmen</target>
       </trans-unit>
       <trans-unit id="frame_class.default" approved="yes">
         <source>Default</source>
@@ -318,6 +454,22 @@
       <trans-unit id="frame_class.none" approved="yes">
         <source>No Frame</source>
         <target state="final">Kein Rahmen</target>
+      </trans-unit>
+      <trans-unit id="sectionIndex" x-unused-since="14.0" approved="yes">
+        <source>Index</source>
+        <target state="final">Index:</target>
+      </trans-unit>
+      <trans-unit id="sectionIndex_formlabel" x-unused-since="14.0" approved="yes">
+        <source>Show in Section Menus</source>
+        <target state="final">In Menüs zeigen</target>
+      </trans-unit>
+      <trans-unit id="linkToTop" x-unused-since="14.0" approved="yes">
+        <source>To top</source>
+        <target state="final">Link zum Seitenanfang einfügen:</target>
+      </trans-unit>
+      <trans-unit id="linkToTop_formlabel" x-unused-since="14.0" approved="yes">
+        <source>Append with Link to Top of Page</source>
+        <target state="final">Link zum Seitenanfang anfügen</target>
       </trans-unit>
       <trans-unit id="pi_flexform" approved="yes">
         <source>Plugin Options</source>
@@ -351,6 +503,10 @@
         <source>Plugin</source>
         <target state="final">Plugin</target>
       </trans-unit>
+      <trans-unit id="subheader_formlabel" x-unused-since="14.0" approved="yes">
+        <source>Subheader</source>
+        <target state="final">Unterüberschrift</target>
+      </trans-unit>
       <trans-unit id="starttime_formlabel" approved="yes">
         <source>Publish Date</source>
         <target state="final">Veröffentlichungsdatum</target>
@@ -363,6 +519,14 @@
         <source>Usergroup Access Rights</source>
         <target state="final">Zugriffsrechte für Benutzergruppen</target>
       </trans-unit>
+      <trans-unit id="layout_formlabel" x-unused-since="14.0" approved="yes">
+        <source>Layout</source>
+        <target state="final">Layout</target>
+      </trans-unit>
+      <trans-unit id="bodytext_formlabel" x-unused-since="14.0" approved="yes">
+        <source>Text</source>
+        <target state="final">Text</target>
+      </trans-unit>
       <trans-unit id="bodytext.ALT.bulletlist_formlabel" approved="yes">
         <source>Bullet List</source>
         <target state="final">Aufzählung</target>
@@ -371,9 +535,57 @@
         <source>HTML Code</source>
         <target state="final">HTML-Code</target>
       </trans-unit>
+      <trans-unit id="field.default.hidden" x-unused-since="14.0" approved="yes">
+        <source>Visibility of content element</source>
+        <target state="final">Sichtbarkeit des Inhaltselements</target>
+      </trans-unit>
       <trans-unit id="field.table.bodytext" approved="yes">
         <source>Table content</source>
         <target state="final">Tabelleninhalt</target>
+      </trans-unit>
+      <trans-unit id="palette.general" x-unused-since="14.0" approved="yes">
+        <source>Content Element</source>
+        <target state="final">Inhaltselement</target>
+      </trans-unit>
+      <trans-unit id="palette.headers" x-unused-since="14.0" approved="yes">
+        <source>Headlines</source>
+        <target state="final">Überschriften</target>
+      </trans-unit>
+      <trans-unit id="palette.header" x-unused-since="14.0" approved="yes">
+        <source>Header</source>
+        <target state="final">Überschrift</target>
+      </trans-unit>
+      <trans-unit id="palette.visibility" x-unused-since="14.0" approved="yes">
+        <source>Visibility</source>
+        <target state="final">Sichtbarkeit</target>
+      </trans-unit>
+      <trans-unit id="palette.access" x-unused-since="14.0" approved="yes">
+        <source>Publish Dates and Access Rights</source>
+        <target state="final">Veröffentlichungsdaten und Zugriffsrechte</target>
+      </trans-unit>
+      <trans-unit id="palette.frames" x-unused-since="14.0" approved="yes">
+        <source>Content Element Layout</source>
+        <target state="final">Layout des Inhaltselements</target>
+      </trans-unit>
+      <trans-unit id="palette.imagelinks" x-unused-since="14.0" approved="yes">
+        <source>Behavior</source>
+        <target state="final">Verhalten</target>
+      </trans-unit>
+      <trans-unit id="palette.image_accessibility" x-unused-since="14.0" approved="yes">
+        <source>Accessibility</source>
+        <target state="final">Barrierefreiheit</target>
+      </trans-unit>
+      <trans-unit id="palette.uploads_layout" x-unused-since="14.0" approved="yes">
+        <source>Filelinks Layout</source>
+        <target state="final">Dateilinklayout</target>
+      </trans-unit>
+      <trans-unit id="palette.table_layout" x-unused-since="14.0" approved="yes">
+        <source>Table Layout</source>
+        <target state="final">Tabellenlayout</target>
+      </trans-unit>
+      <trans-unit id="palette.appearanceLinks" x-unused-since="14.0" approved="yes">
+        <source>Links</source>
+        <target state="final">Links</target>
       </trans-unit>
       <trans-unit id="tabs.access" approved="yes">
         <source>Access</source>
@@ -614,6 +826,26 @@
       <trans-unit id="asset_references.addFileReference" approved="yes">
         <source>Add media file</source>
         <target state="final">Mediendatei hinzufügen</target>
+      </trans-unit>
+      <trans-unit id="palette.gallerySettings" x-unused-since="14.0" approved="yes">
+        <source>Gallery Settings</source>
+        <target state="final">Galerieeinstellungen</target>
+      </trans-unit>
+      <trans-unit id="palette.mediaAdjustments" x-unused-since="14.0" approved="yes">
+        <source>Media Adjustments</source>
+        <target state="final">Bildeinstellungen</target>
+      </trans-unit>
+      <trans-unit id="palette.mediaAdjustments.imagewidth" x-unused-since="14.0" approved="yes">
+        <source>Width of each element (px)</source>
+        <target state="final">Breite jedes Elements (Pixel)</target>
+      </trans-unit>
+      <trans-unit id="palette.mediaAdjustments.imageheight" x-unused-since="14.0" approved="yes">
+        <source>Height of each element (px)</source>
+        <target state="final">Höhe jedes Elements (Pixel)</target>
+      </trans-unit>
+      <trans-unit id="palette.mediaAdjustments.imageborder" x-unused-since="14.0" approved="yes">
+        <source>Border around each element</source>
+        <target state="final">Rahmen um jedes Element</target>
       </trans-unit>
       <trans-unit id="uploads_description" approved="yes">
         <source>Display description</source>

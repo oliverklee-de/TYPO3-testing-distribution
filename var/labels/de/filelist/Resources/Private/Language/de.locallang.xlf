@@ -7,6 +7,30 @@
         <source>Search "%s" in %s</source>
         <target state="final">Suche "%s" in %s</target>
       </trans-unit>
+      <trans-unit id="live_search.file_provider.filter_label" approved="yes">
+        <source>Files</source>
+        <target state="final">Dateien</target>
+      </trans-unit>
+      <trans-unit id="live_search.file_provider.type_label" approved="yes">
+        <source>File</source>
+        <target state="final">Datei</target>
+      </trans-unit>
+      <trans-unit id="live_search.file_provider.show_in_list" approved="yes">
+        <source>Show in file list</source>
+        <target state="final">In der Dateiliste öffnen</target>
+      </trans-unit>
+      <trans-unit id="live_search.file_provider.property.location" approved="yes">
+        <source>Location</source>
+        <target state="final">Speicherort</target>
+      </trans-unit>
+      <trans-unit id="live_search.file_provider.property.size" approved="yes">
+        <source>Size</source>
+        <target state="final">Größe</target>
+      </trans-unit>
+      <trans-unit id="live_search.file_provider.property.modified" approved="yes">
+        <source>Last modified</source>
+        <target state="final">Zuletzt geändert</target>
+      </trans-unit>
       <trans-unit id="search.reset" approved="yes">
         <source>Reset search</source>
         <target state="final">Suche zurücksetzen</target>
@@ -112,7 +136,8 @@
         <source>This filetype cannot be edited.&lt;br /&gt;The file must have an extension like:&lt;br /&gt;&lt;br
 					/&gt; &lt;b&gt;%s&lt;/b&gt;
                 </source>
-        <target state="final">Dieser Dateityp kann nicht bearbeitet werden.&lt;br /&gt;Folgende Dateitypen werden unterstützt:&lt;br /&gt;&lt;br /&gt; &lt;b&gt;%s&lt;/b&gt;
+        <target state="final">Dieser Dateityp kann nicht bearbeitet werden.&lt;br /&gt;Folgende Dateitypen werden unterstützt:&lt;br /&gt;&lt;br
+					/&gt; &lt;b&gt;%s&lt;/b&gt;
                 </target>
       </trans-unit>
       <trans-unit id="file_newfolder.php.pagetitle" approved="yes">

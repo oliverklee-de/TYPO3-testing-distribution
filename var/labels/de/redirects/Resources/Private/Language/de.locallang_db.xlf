@@ -171,6 +171,10 @@
         <source>Invalid target</source>
         <target state="final">Ungültiges Ziel</target>
       </trans-unit>
+      <trans-unit id="sys_redirect.integrity_status.shadowed" approved="yes">
+        <source>Shadowed by another redirect</source>
+        <target state="final">Beeinflusst durch eine andere Weiterleitung</target>
+      </trans-unit>
       <trans-unit id="sys_redirect.uid" approved="yes">
         <source>UID</source>
         <target state="final">UID</target>
@@ -178,6 +182,10 @@
       <trans-unit id="sys_redirect.createdby" approved="yes">
         <source>Created by</source>
         <target state="final">Erstellt von</target>
+      </trans-unit>
+      <trans-unit id="sys_redirect.createdon" approved="yes">
+        <source>Created</source>
+        <target state="final">Erstellt</target>
       </trans-unit>
       <trans-unit id="sys_redirect.short_url" approved="yes">
         <source>Short URL</source>

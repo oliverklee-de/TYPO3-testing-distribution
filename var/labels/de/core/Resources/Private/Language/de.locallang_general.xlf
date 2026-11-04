@@ -3,6 +3,10 @@
   <file source-language="en" datatype="plaintext" original="EXT:core/Resources/Private/Language/locallang_general.xlf" date="2011-10-17T20:22:34Z" product-name="lang" target-language="de">
     <header/>
     <body>
+      <trans-unit id="LGL.endtime" x-unused-since="14.0" approved="yes">
+        <source>Stop</source>
+        <target state="final">Stopp</target>
+      </trans-unit>
       <trans-unit id="LGL.hidden" approved="yes">
         <source>Hide</source>
         <target state="final">Verbergen</target>
@@ -18,6 +22,30 @@
       <trans-unit id="LGL.creationUserId" approved="yes">
         <source>Created By</source>
         <target state="final">Erstellt von</target>
+      </trans-unit>
+      <trans-unit id="LGL.starttime" x-unused-since="14.0" approved="yes">
+        <source>Start</source>
+        <target state="final">Start</target>
+      </trans-unit>
+      <trans-unit id="LGL.fe_group" x-unused-since="14.0" approved="yes">
+        <source>Access</source>
+        <target state="final">Zugriff</target>
+      </trans-unit>
+      <trans-unit id="LGL.hide_at_login" x-unused-since="14.0" approved="yes">
+        <source>Hide at login</source>
+        <target state="final">Nach Anmeldung verbergen</target>
+      </trans-unit>
+      <trans-unit id="LGL.any_login" x-unused-since="14.0" approved="yes">
+        <source>Show at any login</source>
+        <target state="final">Anzeigen, wenn angemeldet</target>
+      </trans-unit>
+      <trans-unit id="LGL.usergroups" x-unused-since="14.0" approved="yes">
+        <source>__Usergroups:__</source>
+        <target state="final">__Benutzergruppen:__</target>
+      </trans-unit>
+      <trans-unit id="LGL.type" x-unused-since="14.0" approved="yes">
+        <source>Type</source>
+        <target state="final">Typ</target>
       </trans-unit>
       <trans-unit id="LGL.description" approved="yes">
         <source>Description</source>
@@ -58,6 +86,10 @@
       <trans-unit id="LGL.caption" approved="yes">
         <source>Caption</source>
         <target state="final">Bildbeschriftung</target>
+      </trans-unit>
+      <trans-unit id="LGL.subheader" x-unused-since="14.0" approved="yes">
+        <source>Subheader</source>
+        <target state="final">Untertitel</target>
       </trans-unit>
       <trans-unit id="LGL.text" approved="yes">
         <source>Text</source>
@@ -183,9 +215,17 @@
         <source>Disable Rich Text Editor</source>
         <target state="final">Rich-Text-Editor deaktivieren</target>
       </trans-unit>
+      <trans-unit id="LGL.external" x-unused-since="14.0" approved="yes">
+        <source>External URL</source>
+        <target state="final">Externe URL</target>
+      </trans-unit>
       <trans-unit id="LGL.recursive" approved="yes">
         <source>Recursive</source>
         <target state="final">Rekursiv</target>
+      </trans-unit>
+      <trans-unit id="LGL.l18n_parent" x-unused-since="14.0" approved="yes">
+        <source>Transl.Orig</source>
+        <target state="final">Ursprungstext</target>
       </trans-unit>
       <trans-unit id="LGL.siteLanguages" approved="yes">
         <source>Site languages</source>

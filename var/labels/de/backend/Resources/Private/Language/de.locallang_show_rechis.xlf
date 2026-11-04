@@ -55,6 +55,14 @@
         <source>Rollback single record</source>
         <target state="final">Einzelnen Eintrag rückgängig machen</target>
       </trans-unit>
+      <trans-unit id="rollback.confirm" approved="yes">
+        <source>Are you sure you want to roll back these changes? Records may be deleted, restored or overwritten.</source>
+        <target state="final">Möchtest du diese Änderungen wirklich rückgängig machen? Dabei können Datensätze gelöscht, wiederhergestellt oder überschrieben werden.</target>
+      </trans-unit>
+      <trans-unit id="rollback.confirm.button" approved="yes">
+        <source>Roll back</source>
+        <target state="final">Zurücksetzen</target>
+      </trans-unit>
       <trans-unit id="revertField" approved="yes">
         <source>Rollback single field</source>
         <target state="final">Feld wiederherstellen</target>
@@ -66,6 +74,10 @@
       <trans-unit id="externalChange" approved="yes">
         <source>Automated process (missing user information)</source>
         <target state="final">Automatisierte Aktion (fehlende Benutzerinformation)</target>
+      </trans-unit>
+      <trans-unit id="frontendUser" approved="yes">
+        <source>Frontend user</source>
+        <target state="final">Frontend-Benutzer</target>
       </trans-unit>
       <trans-unit id="viaUser" approved="yes">
         <source>via</source>
@@ -131,6 +143,18 @@
         <source>published</source>
         <target state="final">veröffentlicht</target>
       </trans-unit>
+      <trans-unit id="historyRow.movedFromTo" approved="yes">
+        <source>Moved from %s to %s</source>
+        <target state="final">Von %s nach %s verschoben</target>
+      </trans-unit>
+      <trans-unit id="historyRow.movedWithinPage" approved="yes">
+        <source>Position changed on the same page</source>
+        <target state="final">Die Position wurde auf derselben Seite geändert</target>
+      </trans-unit>
+      <trans-unit id="historyRow.stageComment" approved="yes">
+        <source>Comment</source>
+        <target state="final">Kommentar</target>
+      </trans-unit>
       <trans-unit id="rollback.plannedAction.insert" approved="yes">
         <source>The record has been deleted and will be restored again with the rollback.</source>
         <target state="final">Der Datensatz wurde gelöscht und wird nach der Wiederherstellung wieder vorhanden sein.</target>
@@ -138,6 +162,14 @@
       <trans-unit id="rollback.plannedAction.delete" approved="yes">
         <source>The record will be deleted with the rollback.</source>
         <target state="final">Der Datensatz wird mit der Wiederherstellung gelöscht.</target>
+      </trans-unit>
+      <trans-unit id="rollback.plannedAction.move" approved="yes">
+        <source>The record will be moved back to %s with the rollback.</source>
+        <target state="final">Der Datensatz wird mit dem Rollback zurück nach %s verschoben.</target>
+      </trans-unit>
+      <trans-unit id="rollback.plannedAction.moveWithinPage" approved="yes">
+        <source>The previous position of the record on this page will be restored.</source>
+        <target state="final">Die vorherige Position des Datensatzes auf dieser Seite wird wiederhergestellt.</target>
       </trans-unit>
       <trans-unit id="undelete" approved="yes">
         <source>undelete</source>

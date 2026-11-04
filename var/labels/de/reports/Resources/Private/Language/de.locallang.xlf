@@ -3,6 +3,18 @@
   <file source-language="en" datatype="plaintext" original="EXT:reports/Resources/Private/Language/locallang.xlf" date="2011-10-17T20:22:35Z" product-name="reports" target-language="de">
     <header/>
     <body>
+      <trans-unit id="mlang_tabs_tab" x-unused-since="14.0" approved="yes">
+        <source>Reports</source>
+        <target state="final">Berichte</target>
+      </trans-unit>
+      <trans-unit id="mlang_labels_tabdescr" x-unused-since="14.0" approved="yes">
+        <source>Access various system reports for monitoring and analyzing your TYPO3 installation including system status checks, database statistics, and custom reports provided by extensions.</source>
+        <target state="final">Zugriff auf verschiedene Systemberichte, um deine TYPO3-Installation zu überwachen und zu analysieren, darunter Systemstatusprüfungen, Datenbankstatistiken und benutzerdefinierte Berichte, die von Erweiterungen bereitgestellt werden.</target>
+      </trans-unit>
+      <trans-unit id="mlang_labels_tablabel" x-unused-since="14.0" approved="yes">
+        <source>System monitoring and analysis reports</source>
+        <target state="final">Systemüberwachungs- und Analyseberichte</target>
+      </trans-unit>
       <trans-unit id="reports_overview" approved="yes">
         <source>Reports overview</source>
         <target state="final">Report-Übersicht</target>
@@ -26,6 +38,18 @@
       <trans-unit id="link.openModuleWithTitle" approved="yes">
         <source>Open %1s</source>
         <target state="final">%1s öffnen</target>
+      </trans-unit>
+      <trans-unit id="recordStatistics.title" x-unused-since="14.0" approved="yes">
+        <source>Record Statistics</source>
+        <target state="final">Datensatzstatistiken</target>
+      </trans-unit>
+      <trans-unit id="recordStatistics.shortDescription" x-unused-since="14.0" approved="yes">
+        <source>Shows database record statistics</source>
+        <target state="final">Zeigt Datensatzstatistiken an</target>
+      </trans-unit>
+      <trans-unit id="recordStatistics.description" x-unused-since="14.0" approved="yes">
+        <source>Displays comprehensive statistics for records in the database including total pages, translated pages, hidden and deleted pages, page type distributions, and detailed table records with lost record detection. This report runs through the entire page tree.</source>
+        <target state="final">Zeigt umfassende Statistiken für Datensätze in der Datenbank an, darunter Gesamtseitenzahl, übersetzte Seiten, ausgeblendete und gelöschte Seiten, Seitenverteilungen und detaillierte Tabelleneinträge mit Erkennung verlorener Datensätze. Dieser Bericht durchläuft den gesamten Seitenbaum.</target>
       </trans-unit>
       <trans-unit id="contentStatistics.title" approved="yes">
         <source>Content Statistics</source>

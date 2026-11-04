@@ -19,6 +19,10 @@
         <source>Folder "%s" could not be deleted. It must be empty, as recursive deletion is not enabled.</source>
         <target state="final">Der Ordner "%s" konnte nicht gelöscht werden. Er muss leer sein, da das rekursive Löschen nicht aktiviert ist.</target>
       </trans-unit>
+      <trans-unit id="FileUtility.CouldNotDeleteDirectory1" x-unused-since="14.1" approved="yes">
+        <source>Could not delete directory "%s"! There might be a problem with write permissions.</source>
+        <target state="final">Verzeichnis "%s" konnte nicht gelöscht werden! Möglicherweise gibt es ein Problem mit den Schreibberechtigungen.</target>
+      </trans-unit>
       <trans-unit id="FileUtility.CouldNotDeleteFile" approved="yes">
         <source>File "%s" cannot not be deleted due to insufficent write permissions.</source>
         <target state="final">Die Datei "%s" kann aufgrund unzureichender Schreibrechte nicht gelöscht werden.</target>
@@ -111,6 +115,10 @@
         <source>File extension "%s" is not a supported text file format. Supported formats: %s.</source>
         <target state="final">Die Dateiendung "%s" ist kein unterstütztes Textdateiformat. Unterstützte Formate: %s.</target>
       </trans-unit>
+      <trans-unit id="FileUtility.FileExtensionIsNotzip" x-unused-since="14.1" approved="yes">
+        <source>File extension is not "zip".</source>
+        <target state="final">Dateierweiterung ist nicht "zip".</target>
+      </trans-unit>
       <trans-unit id="FileUtility.FileMovedTo" approved="yes">
         <source>File "%s" moved to "%s".</source>
         <target state="final">Datei "%s" wurde nach "%s" verschoben.</target>
@@ -118,6 +126,10 @@
       <trans-unit id="FileUtility.FileNameWasNotAllowed" approved="yes">
         <source>The file name %s is not allowed.</source>
         <target state="final">Der Dateiname %s ist nicht erlaubt.</target>
+      </trans-unit>
+      <trans-unit id="FileUtility.FileOrDestinationWasNotWithinYourMountpoints" x-unused-since="14.1" approved="yes">
+        <source>File "%s" or destination "%s" was not within your mountpoints!</source>
+        <target state="final">Datei "%s" oder Ziel "%s" liegt nicht innerhalb Ihrer Freigabepunkte!</target>
       </trans-unit>
       <trans-unit id="FileUtility.FileOrDirectoryExistedAlready" approved="yes">
         <source>File or directory "%s" already exists.</source>
@@ -150,6 +162,10 @@
       <trans-unit id="FileUtility.FileWasNotSaved" approved="yes">
         <source>File "%s" cannot be saved due to insufficent write permissions.</source>
         <target state="final">Die Datei "%s" kann aufgrund unzureichender Schreibrechte nicht gespeichert werden.</target>
+      </trans-unit>
+      <trans-unit id="FileUtility.FileWasNotSaved2" x-unused-since="14.1" approved="yes">
+        <source>File "%s" was not saved! File extension rejected!</source>
+        <target state="final">Datei "%s" wurde nicht gespeichert! Dateierweiterung zurückgewiesen!</target>
       </trans-unit>
       <trans-unit id="FileUtility.NoFileWasUploaded" approved="yes">
         <source>No file was uploaded.</source>
@@ -211,6 +227,10 @@
         <source>The uploaded file "%s" exceeds the maximum allowed file size.</source>
         <target state="final">Die hochgeladene Datei "%s" überschreitet die maximal zulässige Dateigröße.</target>
       </trans-unit>
+      <trans-unit id="FileUtility.UnzippingFileIn" x-unused-since="14.1" approved="yes">
+        <source>Unzipping file "%s" in "%s".</source>
+        <target state="final">Entpacken der Datei "%s" in "%s".</target>
+      </trans-unit>
       <trans-unit id="FileUtility.UploadedFileCouldNotBeMoved" approved="yes">
         <source>Uploaded file could not be moved in "%s" due to insufficent write permissions.</source>
         <target state="final">Die hochgeladene Datei konnte aufgrund unzureichender Schreibrechte nicht in "%s" verschoben werden.</target>
@@ -270,6 +290,10 @@
       <trans-unit id="FileUtility.YouAreNotAllowedToRenameFiles" approved="yes">
         <source>Renaming files is not permitted.</source>
         <target state="final">Umbenennen von Dateien ist nicht zulässig.</target>
+      </trans-unit>
+      <trans-unit id="FileUtility.YouAreNotAllowedToUnzipFiles" x-unused-since="14.1" approved="yes">
+        <source>You are not allowed to unzip files.</source>
+        <target state="final">Sie haben keine Berechtigung, Dateien zu entpacken.</target>
       </trans-unit>
       <trans-unit id="FileUtility.YouAreNotAllowedToUploadFiles" approved="yes">
         <source>Uploading files is not permitted.</source>

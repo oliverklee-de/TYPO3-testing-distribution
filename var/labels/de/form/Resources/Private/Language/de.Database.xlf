@@ -476,16 +476,24 @@
         <target state="final">Das Formular kann nicht gespeichert werden:</target>
       </trans-unit>
       <trans-unit id="formEditor.modals.validationErrors.dialogTitle" approved="yes">
-        <source>Alert</source>
-        <target state="final">Warnung</target>
+        <source>Form configuration needs attention</source>
+        <target state="final">Prüfe deine Formular-Konfiguration</target>
       </trans-unit>
       <trans-unit id="formEditor.modals.validationErrors.dialogMessage" approved="yes">
-        <source>Some elements are not configured properly. Please check the following elements:</source>
-        <target state="final">Einige Elemente wurden nicht richtig konfiguriert. Bitte prüfen Sie die folgenden Elemente:</target>
+        <source>The following elements need to be configured. Select an element to open its settings:</source>
+        <target state="final">Die folgenden Elemente müssen konfiguriert sein. Wählen Sie ein Element, um seine Einstellungen zu öffnen:</target>
+      </trans-unit>
+      <trans-unit id="formEditor.modals.validationErrors.identifier" approved="yes">
+        <source>Identifier</source>
+        <target state="final">Identifikator</target>
+      </trans-unit>
+      <trans-unit id="formEditor.modals.validationErrors.type" approved="yes">
+        <source>Type</source>
+        <target state="final">Typ</target>
       </trans-unit>
       <trans-unit id="formEditor.modals.validationErrors.confirmButton" approved="yes">
-        <source>OK</source>
-        <target state="final">OK</target>
+        <source>Close</source>
+        <target state="final">Schließen</target>
       </trans-unit>
       <trans-unit id="formEditor.modals.insertElements.dialogTitle" approved="yes">
         <source>New element</source>
@@ -561,7 +569,11 @@
       </trans-unit>
       <trans-unit id="formEditor.elements.TextMixin.editor.pattern.description" approved="yes">
         <source>Additional client-side validation as JavaScript regular expression</source>
-        <target state="final">Zusätzliche Client-seitige Validierung als regulärer Ausdruck in JavaScript</target>
+        <target state="final">Zusätzliche Client-seitige Validierung als Regulärer Ausdruck in JavaScript</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.TextMixin.editor.pattern.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>Additional client-side validation as JavaScript regular expression</source>
+        <target state="final">Zusätzliche Client-seitige Validierung als Regulärer Ausdruck in JavaScript</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.TextMixin.editor.step.label" approved="yes">
         <source>Step</source>
@@ -625,7 +637,11 @@
       </trans-unit>
       <trans-unit id="formEditor.elements.TextMixin.validators.Alphanumeric.editor.validationErrorMessage.description" approved="yes">
         <source>Error message which is shown if the validation does not succeed</source>
-        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt.</target>
+        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.TextMixin.validators.Alphanumeric.editor.validationErrorMessage.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>Error message which is shown if the validation does not succeed</source>
+        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.TextMixin.validators.Text.editor.header.label" approved="yes">
         <source>Non-XML text</source>
@@ -637,7 +653,11 @@
       </trans-unit>
       <trans-unit id="formEditor.elements.TextMixin.validators.Text.editor.validationErrorMessage.description" approved="yes">
         <source>Error message which is shown if the validation does not succeed</source>
-        <target state="final">Fehlermeldung, die angezeigt wird, wenn die Validierung nicht erfolgreich ist</target>
+        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.TextMixin.validators.Text.editor.validationErrorMessage.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>Error message which is shown if the validation does not succeed</source>
+        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.TextMixin.validators.StringLength.editor.header.label" approved="yes">
         <source>String length</source>
@@ -649,7 +669,11 @@
       </trans-unit>
       <trans-unit id="formEditor.elements.TextMixin.validators.StringLength.editor.validationErrorMessage.description" approved="yes">
         <source>Error message which is shown if the validation does not succeed</source>
-        <target state="final">Fehlermeldung, die angezeigt wird, wenn die Validierung nicht erfolgreich ist</target>
+        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.TextMixin.validators.StringLength.editor.validationErrorMessage.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>Error message which is shown if the validation does not succeed</source>
+        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.TextMixin.validators.EmailAddress.editor.header.label" approved="yes">
         <source>Email</source>
@@ -661,7 +685,11 @@
       </trans-unit>
       <trans-unit id="formEditor.elements.TextMixin.validators.EmailAddress.editor.validationErrorMessage.description" approved="yes">
         <source>Error message which is shown if the validation does not succeed</source>
-        <target state="final">Fehlermeldung, die angezeigt wird, wenn die Validierung nicht erfolgreich ist</target>
+        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.TextMixin.validators.EmailAddress.editor.validationErrorMessage.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>Error message which is shown if the validation does not succeed</source>
+        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.TextMixin.validators.Integer.editor.header.label" approved="yes">
         <source>Integer number</source>
@@ -673,7 +701,11 @@
       </trans-unit>
       <trans-unit id="formEditor.elements.TextMixin.validators.Integer.editor.validationErrorMessage.description" approved="yes">
         <source>Error message which is shown if the validation does not succeed</source>
-        <target state="final">Fehlermeldung, die angezeigt wird, wenn die Validierung nicht erfolgreich ist</target>
+        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.TextMixin.validators.Integer.editor.validationErrorMessage.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>Error message which is shown if the validation does not succeed</source>
+        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.TextMixin.validators.Float.editor.header.label" approved="yes">
         <source>Floating-point number</source>
@@ -685,7 +717,11 @@
       </trans-unit>
       <trans-unit id="formEditor.elements.TextMixin.validators.Float.editor.validationErrorMessage.description" approved="yes">
         <source>Error message which is shown if the validation does not succeed</source>
-        <target state="final">Fehlermeldung, die angezeigt wird, wenn die Validierung nicht erfolgreich ist</target>
+        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.TextMixin.validators.Float.editor.validationErrorMessage.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>Error message which is shown if the validation does not succeed</source>
+        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.TextMixin.validators.Number.editor.header.label" approved="yes">
         <source>Number</source>
@@ -701,7 +737,11 @@
       </trans-unit>
       <trans-unit id="formEditor.elements.TextMixin.validators.NumberRange.editor.validationErrorMessage.description" approved="yes">
         <source>Error message which is shown if the validation does not succeed</source>
-        <target state="final">Fehlermeldung, die angezeigt wird, wenn die Validierung nicht erfolgreich ist</target>
+        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.TextMixin.validators.NumberRange.editor.validationErrorMessage.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>Error message which is shown if the validation does not succeed</source>
+        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.TextMixin.validators.RegularExpression.editor.header.label" approved="yes">
         <source>Regular expression</source>
@@ -713,7 +753,11 @@
       </trans-unit>
       <trans-unit id="formEditor.elements.TextMixin.validators.RegularExpression.editor.regex.description" approved="yes">
         <source>Enter a valid PHP PCRE regular expression here.</source>
-        <target state="final">Füge hier einen validen regulären PHP-PCRE-Ausdruck ein.</target>
+        <target state="final">Geben Sie hier einen validen regulären PHP-PCRE-Ausdruck ein.</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.TextMixin.validators.RegularExpression.editor.regex.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>Enter a valid PHP PCRE regular expression here.</source>
+        <target state="final">Geben Sie hier einen validen regulären PHP-PCRE-Ausdruck ein.</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.TextMixin.validators.RegularExpression.editor.validationErrorMessage.label" approved="yes">
         <source>Custom error message</source>
@@ -721,7 +765,11 @@
       </trans-unit>
       <trans-unit id="formEditor.elements.TextMixin.validators.RegularExpression.editor.validationErrorMessage.description" approved="yes">
         <source>Error message which is shown if the validation does not succeed</source>
-        <target state="final">Fehlermeldung, die angezeigt wird, wenn die Validierung nicht erfolgreich ist</target>
+        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.TextMixin.validators.RegularExpression.editor.validationErrorMessage.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>Error message which is shown if the validation does not succeed</source>
+        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.MultiSelectionMixin.validators.Count.editor.header.label" approved="yes">
         <source>Number of submitted values</source>
@@ -733,7 +781,11 @@
       </trans-unit>
       <trans-unit id="formEditor.elements.MultiSelectionMixin.validators.Count.editor.validationErrorMessage.description" approved="yes">
         <source>Error message which is shown if the validation does not succeed</source>
-        <target state="final">Fehlermeldung, die angezeigt wird, wenn die Validierung nicht erfolgreich ist</target>
+        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.MultiSelectionMixin.validators.Count.editor.validationErrorMessage.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>Error message which is shown if the validation does not succeed</source>
+        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.SelectionMixin.editor.inactiveOption.label" approved="yes">
         <source>First option (empty value)</source>
@@ -741,7 +793,11 @@
       </trans-unit>
       <trans-unit id="formEditor.elements.SelectionMixin.editor.inactiveOption.description" approved="yes">
         <source>If set, this label will be shown as first option.</source>
-        <target state="final">Wenn gesetzt, wird diese Bezeichnung als erste Option angezeigt.</target>
+        <target state="final">Wenn gesetzt, wird dies Bezeichnung als erste Option angezeigt.</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.SelectionMixin.editor.inactiveOption.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>If set, this label will be shown as first option.</source>
+        <target state="final">Wenn gesetzt, wird dies Bezeichnung als erste Option angezeigt.</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.SelectionMixin.editor.options.label" approved="yes">
         <source>Choices</source>
@@ -841,7 +897,11 @@
       </trans-unit>
       <trans-unit id="formEditor.elements.Form.finisher.EmailToSender.editor.recipients.description" approved="yes">
         <source>The email addresses and names of the website visitors to which the email should be sent.</source>
-        <target state="final">Die E-Mail-Adressen und Namen der Website-Besucher an welche die E-Mail gesendet werden soll.</target>
+        <target state="final">Die E-Mail Adressen und Namen der Websitebesucher an die die E-Mail gesendet werden soll.</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.Form.finisher.EmailToSender.editor.recipients.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>The email addresses and names of the website visitors to which the email should be sent.</source>
+        <target state="final">Die E-Mail Adressen und Namen der Websitebesucher an die die E-Mail gesendet werden soll.</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.Form.finisher.EmailToSender.editor.recipients.gridColumns.value.title" approved="yes">
         <source>Email Address</source>
@@ -857,7 +917,11 @@
       </trans-unit>
       <trans-unit id="formEditor.elements.Form.finisher.EmailToSender.editor.senderAddress.description" approved="yes">
         <source>The email address of the sender (e.g. your company's email address) which appears in the website visitor email client.</source>
-        <target state="final">Die E-Mail Adresse des Absenders (z.B. die E-Mail Adresse deiner Firma) welche im E-Mail Programm des Besuchers erscheint.</target>
+        <target state="final">Die E-Mail Adresse des Absenders (z.B. die E-Mail Adresse ihrer Firma) welche im E-Mail Programm des Besuchers erscheint.</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.Form.finisher.EmailToSender.editor.senderAddress.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>The email address of the sender (e.g. your company's email address) which appears in the website visitor email client.</source>
+        <target state="final">Die E-Mail Adresse des Absenders (z.B. die E-Mail Adresse ihrer Firma) welche im E-Mail Programm des Besuchers erscheint.</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.Form.finisher.EmailToSender.editor.senderName.label" approved="yes">
         <source>Sender name</source>
@@ -865,7 +929,11 @@
       </trans-unit>
       <trans-unit id="formEditor.elements.Form.finisher.EmailToSender.editor.senderName.description" approved="yes">
         <source>The name of the sender (e.g. your company's name) which appears in the website visitor email client.</source>
-        <target state="final">Der Name des Absenders (z.B. der Name deiner Firma), welche als Absender im E-Mail Programm des Webseitenbesuchers erscheint.</target>
+        <target state="final">Der Name des Absenders (z.B. der Name Ihrer Firma), welche als Absender im E-Mail Programm des Webseitenbesuchers erscheint.</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.Form.finisher.EmailToSender.editor.senderName.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>The name of the sender (e.g. your company's name) which appears in the website visitor email client.</source>
+        <target state="final">Der Name des Absenders (z.B. der Name Ihrer Firma), welche als Absender im E-Mail Programm des Webseitenbesuchers erscheint.</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.Form.finisher.EmailToSender.editor.replyToRecipients.label" approved="yes">
         <source>Reply-To Recipients</source>
@@ -885,7 +953,11 @@
       </trans-unit>
       <trans-unit id="formEditor.elements.Form.finisher.EmailToSender.editor.addHtmlPart.description" approved="yes">
         <source>If enabled, the email will contain a plaintext and an HTML part, otherwise only a plaintext part.</source>
-        <target state="final">Wenn aktiviert, enthält die E-Mail einen Klartext und einen HTML-Teil, ansonsten nur einen Klartext-Teil.</target>
+        <target state="final">Wenn aktiviert, dann enthält die E-Mail einen plaintext und einen HTML-Teil, sonst nur einen plaintext Teil.</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.Form.finisher.EmailToSender.editor.addHtmlPart.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>If enabled, the email will contain a plaintext and an HTML part, otherwise only a plaintext part.</source>
+        <target state="final">Wenn aktiviert, dann enthält die E-Mail einen plaintext und einen HTML-Teil, sonst nur einen plaintext Teil.</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.Form.finisher.EmailToSender.editor.attachUploads.label" approved="yes">
         <source>Attach uploads</source>
@@ -911,6 +983,10 @@
         <source>The title, being shown in the Email. The title is rendered in the header section right above the email body. Do not confuse this field with the subject of your email.</source>
         <target state="final">Der Titel, der in der E-Mail angezeigt wird. Der Titel wird in der Kopfzeile direkt über dem E-Mail-Text dargestellt. Verwechsle dieses Feld nicht mit dem Betreff Ihrer E-Mail.</target>
       </trans-unit>
+      <trans-unit id="formEditor.elements.Form.finisher.EmailToSender.editor.title.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>The title, being shown in the Email. The title is rendered in the header section right above the email body. Do not confuse this field with the subject of your email.</source>
+        <target state="final">Der Titel, der in der E-Mail angezeigt wird. Der Titel wird in der Kopfzeile direkt über dem E-Mail-Text dargestellt. Verwechsle dieses Feld nicht mit dem Betreff Ihrer E-Mail.</target>
+      </trans-unit>
       <trans-unit id="formEditor.elements.Form.finisher.EmailToReceiver.editor.header.label" approved="yes">
         <source>Email to receiver (you)</source>
         <target state="final">E-Mail an Empfänger (Sie)</target>
@@ -933,7 +1009,11 @@
       </trans-unit>
       <trans-unit id="formEditor.elements.Form.finisher.EmailToReceiver.editor.recipients.description" approved="yes">
         <source>The email addresses and names of the recipients to which the email should be sent (e.g. your company's email addresses).</source>
-        <target state="final">Die E-Mail Adresse und die Namen der Empfänger, an welche die E-Mail gesendet werden soll (z.B. die E-Mail Adressen deiner Firma).</target>
+        <target state="final">Die E-Mail Adresse und die Namen der Empfänger, an welche die E-Mail gesendet werden soll (z.B. die E-Mail Adressen Ihrer Firma).</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.Form.finisher.EmailToReceiver.editor.recipients.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>The email addresses and names of the recipients to which the email should be sent (e.g. your company's email addresses).</source>
+        <target state="final">Die E-Mail Adresse und die Namen der Empfänger, an welche die E-Mail gesendet werden soll (z.B. die E-Mail Adressen Ihrer Firma).</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.Form.finisher.EmailToReceiver.editor.senderAddress.label" approved="yes">
         <source>Sender address</source>
@@ -943,11 +1023,19 @@
         <source>The email address of the sender which appears in your email client. Use the "insert formelement identifier" dropdown if you need to select a form element which contains the website visitor's email address instead.</source>
         <target state="final">Die E-Mail-Adresse des Absenders, die in deinem E-Mail-Client angezeigt wird. Verwende das Dropdown-Menü „Formularelement-ID einfügen“, wenn du stattdessen ein Formularelement auswählen möchtest, dass die E-Mail-Adresse des Website-Besuchers enthält.</target>
       </trans-unit>
+      <trans-unit id="formEditor.elements.Form.finisher.EmailToReceiver.editor.senderAddress.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>The email address of the sender which appears in your email client. Use the "insert formelement identifier" dropdown if you need to select a form element which contains the website visitor's email address instead.</source>
+        <target state="final">Die E-Mail-Adresse des Absenders, die in deinem E-Mail-Client angezeigt wird. Verwende das Dropdown-Menü „Formularelement-ID einfügen“, wenn du stattdessen ein Formularelement auswählen möchtest, dass die E-Mail-Adresse des Website-Besuchers enthält.</target>
+      </trans-unit>
       <trans-unit id="formEditor.elements.Form.finisher.EmailToReceiver.editor.senderName.label" approved="yes">
         <source>Sender name</source>
         <target state="final">Name des Absenders</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.Form.finisher.EmailToReceiver.editor.senderName.description" approved="yes">
+        <source>The name of the sender which appears in your email client. Use the "insert formelement identifier" dropdown if you need to choose one or more form elements which contain the website visitor's name</source>
+        <target state="final">Der Name des Absenders, der in deinem E-Mail-Client angezeigt wird. Verwende das Dropdown-Menü „Formularelement-ID einfügen“, wenn du ein oder mehrere Formularelemente auswählen möchtest, die den Namen des Website-Besuchers enthalten.</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.Form.finisher.EmailToReceiver.editor.senderName.fieldExplanationText" x-unused-since="14.2" approved="yes">
         <source>The name of the sender which appears in your email client. Use the "insert formelement identifier" dropdown if you need to choose one or more form elements which contain the website visitor's name</source>
         <target state="final">Der Name des Absenders, der in deinem E-Mail-Client angezeigt wird. Verwende das Dropdown-Menü „Formularelement-ID einfügen“, wenn du ein oder mehrere Formularelemente auswählen möchtest, die den Namen des Website-Besuchers enthalten.</target>
       </trans-unit>
@@ -969,7 +1057,11 @@
       </trans-unit>
       <trans-unit id="formEditor.elements.Form.finisher.EmailToReceiver.editor.addHtmlPart.description" approved="yes">
         <source>If enabled, the email will contain a plaintext and an HTML part, otherwise only a plaintext part.</source>
-        <target state="final">Wenn aktiviert, enthält die E-Mail einen Klartext und einen HTML-Teil, ansonsten nur einen Klartext-Teil.</target>
+        <target state="final">Wenn aktiviert, dann enthält die E-Mail einen plaintext und einen HTML-Teil, sonst nur einen plaintext Teil.</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.Form.finisher.EmailToReceiver.editor.addHtmlPart.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>If enabled, the email will contain a plaintext and an HTML part, otherwise only a plaintext part.</source>
+        <target state="final">Wenn aktiviert, dann enthält die E-Mail einen plaintext und einen HTML-Teil, sonst nur einen plaintext Teil.</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.Form.finisher.EmailToReceiver.editor.attachUploads.label" approved="yes">
         <source>Attach uploads</source>
@@ -993,7 +1085,11 @@
       </trans-unit>
       <trans-unit id="formEditor.elements.Form.finisher.EmailToReceiver.editor.title.description" approved="yes">
         <source>The title, being shown in the Email. The title is rendered in the header section right above the email body. Do not confuse this field with the subject of your email.</source>
-        <target state="final">Der Titel, der in der E-Mail angezeigt wird. Der Titel wird in der Kopfzeile direkt über dem E-Mail-Text dargestellt. Verwechsel dieses Feld nicht mit dem Betreff deiner E-Mail.</target>
+        <target state="final">Der Titel, der in der E-Mail angezeigt wird. Der Titel wird in der Kopfzeile direkt über dem E-Mail-Text dargestellt. Verwechsle dieses Feld nicht mit dem Betreff Ihrer E-Mail.</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.Form.finisher.EmailToReceiver.editor.title.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>The title, being shown in the Email. The title is rendered in the header section right above the email body. Do not confuse this field with the subject of your email.</source>
+        <target state="final">Der Titel, der in der E-Mail angezeigt wird. Der Titel wird in der Kopfzeile direkt über dem E-Mail-Text dargestellt. Verwechsle dieses Feld nicht mit dem Betreff Ihrer E-Mail.</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.Form.finisher.Redirect.editor.header.label" approved="yes">
         <source>Redirect to a page</source>
@@ -1023,6 +1119,10 @@
         <source>You can use a content element identifier as URL fragment or set a custom fragment identifier.</source>
         <target state="final">Du kannst eine Inhaltselement-UID als URL-Fragment verwenden oder ein benutzerdefiniertes Fragment festlegen.</target>
       </trans-unit>
+      <trans-unit id="formEditor.elements.Form.finisher.Redirect.editor.fragment.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>You can use a content element identifier as URL fragment or set a custom fragment identifier.</source>
+        <target state="final">Du kannst eine Inhaltselement-UID als URL-Fragment verwenden oder ein benutzerdefiniertes Fragment festlegen.</target>
+      </trans-unit>
       <trans-unit id="formEditor.elements.Form.finisher.DeleteUploads.editor.header.label" approved="yes">
         <source>Delete uploads</source>
         <target state="final">Uploads löschen</target>
@@ -1045,7 +1145,11 @@
       </trans-unit>
       <trans-unit id="formEditor.elements.Form.finisher.Confirmation.editor.message.description" approved="yes">
         <source>Will be ignored if "Content element" is set</source>
-        <target state="final">Wird ignoriert, wenn "Inhaltselement" gesetzt ist</target>
+        <target state="final">Wird nicht beachtet, wenn "Inhalts Element" gesetzt ist</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.Form.finisher.Confirmation.editor.message.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>Will be ignored if "Content element" is set</source>
+        <target state="final">Wird nicht beachtet, wenn "Inhalts Element" gesetzt ist</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.Form.finisher.Closure.editor.header.label" approved="yes">
         <source>Execute a closure</source>
@@ -1241,7 +1345,11 @@
       </trans-unit>
       <trans-unit id="formEditor.elements.FormElement.editor.requiredValidator.validationErrorMessage.description" approved="yes">
         <source>Error message which is shown if the validation does not succeed</source>
-        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt.</target>
+        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.FormElement.editor.requiredValidator.validationErrorMessage.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>Error message which is shown if the validation does not succeed</source>
+        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.FormElement.validators.DateRange.editor.header.label" approved="yes">
         <source>Date range</source>
@@ -1280,6 +1388,10 @@
         <target state="final">Anzahl Spalten für Grid-Bereich "{@viewPortLabel}"</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.FormElement.editor.gridColumnViewPortConfiguration.numbersOfColumnsToUse.description" approved="yes">
+        <source>Leave empty for auto calculation</source>
+        <target state="final">Leerlassen für automatische Berechnung</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.FormElement.editor.gridColumnViewPortConfiguration.numbersOfColumnsToUse.fieldExplanationText" x-unused-since="14.2" approved="yes">
         <source>Leave empty for auto calculation</source>
         <target state="final">Leerlassen für automatische Berechnung</target>
       </trans-unit>
@@ -1435,6 +1547,10 @@
         <source>Specify the number of days between each occurrence of this event.</source>
         <target state="final">Anzahl Tage zwischen zwei Wiederholungen dieses Events</target>
       </trans-unit>
+      <trans-unit id="formEditor.elements.Date.editor.step.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>Specify the number of days between each occurrence of this event.</source>
+        <target state="final">Anzahl Tage zwischen zwei Wiederholungen dieses Events</target>
+      </trans-unit>
       <trans-unit id="formEditor.elements.Date.editor.step.label" approved="yes">
         <source>Frequency</source>
         <target state="final">Häufigkeit</target>
@@ -1454,6 +1570,14 @@
       <trans-unit id="formEditor.elements.DatePicker.validators.DateRange.editor.maximum" approved="yes">
         <source>Maximum date</source>
         <target state="final">Enddatum</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.DatePicker.validators.DateRange.editor.minimum.placeholder" approved="yes">
+        <source>A date in format Y-m-d (e.g 2018-03-17)</source>
+        <target state="final">Ein Datum im Format Y-m-d (z.B. 2018-03-17)</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.DatePicker.validators.DateRange.editor.maximum.placeholder" approved="yes">
+        <source>A date in format Y-m-d (e.g 2018-03-17)</source>
+        <target state="final">Ein Datum im Format Y-m-d (z.B. 2018-03-17)</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.Password.label" approved="yes">
         <source>Password</source>
@@ -1535,9 +1659,53 @@
         <source>An element for creating a dropdown list for selecting a single option</source>
         <target state="final">Ein Element zur Erstellung einer Dropdown-Liste für die Auswahl einer einzelnen Option</target>
       </trans-unit>
+      <trans-unit id="formEditor.elements.DatePicker.label" approved="yes">
+        <source>Date picker (jQuery)</source>
+        <target state="final">Datumsauswahl (jQuery)</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.DatePicker.description" approved="yes">
+        <source>A text field for selecting a date via a calendar interface</source>
+        <target state="final">Ein Textfeld zur Auswahl eines Datums über eine Kalenderschnittstelle</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.DatePicker.editor.dateFormat.label" approved="yes">
+        <source>Date format</source>
+        <target state="final">Datumsformat</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.DatePicker.editor.enableDatePicker.label" approved="yes">
+        <source>Enable datepicker (needs jQuery UI)</source>
+        <target state="final">Datumsauswahl aktivieren (erfordert jQuery UI)</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.DatePicker.editor.displayTimeSelector.label" approved="yes">
+        <source>Display time selector</source>
+        <target state="final">Zeitauswahl anzeigen</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.DatePicker.editor.validators.label" approved="yes">
+        <source>Validators</source>
+        <target state="final">Validatoren</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.DatePicker.editor.validators.EmptyValue.label" approved="yes">
+        <source>Add validator</source>
+        <target state="final">Validator hinzufügen</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.DatePicker.editor.validators.DateTime.label" approved="yes">
+        <source>Date/time</source>
+        <target state="final">Datum/Uhrzeit</target>
+      </trans-unit>
       <trans-unit id="formEditor.elements.DatePicker.validators.DateTime.editor.header.label" approved="yes">
         <source>Date/time</source>
         <target state="final">Datum/Uhrzeit</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.DatePicker.validators.DateTime.editor.validationErrorMessage.label" approved="yes">
+        <source>Custom error message</source>
+        <target state="final">Benutzerdefinierte Fehlermeldung</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.DatePicker.validators.DateTime.editor.validationErrorMessage.description" approved="yes">
+        <source>Error message which is shown if the validation does not succeed</source>
+        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt</target>
+      </trans-unit>
+      <trans-unit id="formEditor.elements.DatePicker.validators.DateTime.editor.validationErrorMessage.fieldExplanationText" x-unused-since="14.2" approved="yes">
+        <source>Error message which is shown if the validation does not succeed</source>
+        <target state="final">Fehlermeldung die angezeigt wird, wenn die Validierung fehlschlägt</target>
       </trans-unit>
       <trans-unit id="formEditor.elements.StaticText.label" approved="yes">
         <source>Static text</source>
@@ -1605,8 +1773,8 @@ Your servers' maximum upload file size is {0}. Be aware setting higher values ca
 If you need higher values contact your administrator for help.
         </source>
         <target state="final">
-Die maximale Dateigrösse ist beim Server auf {0} eingestellt. Bitte beachten Sie, dass höhere Werte beim Absenden des Formulars Fehler verursachen können.
- Wenn Sie höhere Werte benötigen, kontaktieren Sie bitte ihren Administrator für Hilfe.
+Die maximale Dateigröße für Uploads auf deinem Server beträgt {0}. Bitte beachte, dass die Einstellung höherer Werte zu Fehlern beim Absenden des Formulars führen kann.
+Wenn du höhere Werte benötigst, wende dich bitte an deinen Administrator.
         </target>
       </trans-unit>
       <trans-unit id="formEditor.elements.FileUpload.editor.allowedMimeTypes.doc" approved="yes">
@@ -1697,6 +1865,14 @@ Die maximale Dateigrösse ist beim Server auf {0} eingestellt. Bitte beachten Si
         <source>Remove</source>
         <target state="final">Entfernen</target>
       </trans-unit>
+      <trans-unit id="formEditor.stage.toolbar.new_element.inside" x-unused-since="14.2" approved="yes">
+        <source>Inside</source>
+        <target state="final">Innen</target>
+      </trans-unit>
+      <trans-unit id="formEditor.stage.toolbar.new_element.after" x-unused-since="14.2" approved="yes">
+        <source>After</source>
+        <target state="final">Nach</target>
+      </trans-unit>
       <trans-unit id="formEditor.inspector.editor.formelement_selector.title" approved="yes">
         <source>Insert formelement identifier</source>
         <target state="final">Formularelement-Kennung einfügen</target>
@@ -1752,6 +1928,14 @@ Die maximale Dateigrösse ist beim Server auf {0} eingestellt. Bitte beachten Si
       <trans-unit id="formManager.storage.database.description" approved="yes">
         <source>Store the form as a record in the database. Recommended for most use cases, because it treats forms as user-generated content and allows integrated versioning.</source>
         <target state="final">Speichere das Formular als Datensatz in der Datenbank. Dies ist für die meisten Anwendungsfälle empfohlen, da es Formulare als benutzergenerierte Inhalte behandelt und integrierte Versionierung ermöglicht.</target>
+      </trans-unit>
+      <trans-unit id="formManager.storage.fileMount.label" approved="yes">
+        <source>File (deprecated)</source>
+        <target state="final">Datei (veraltet)</target>
+      </trans-unit>
+      <trans-unit id="formManager.storage.fileMount.description" approved="yes">
+        <source>Store the form as a YAML file. This option will be removed in a future TYPO3 version. Use "Database" instead. Files can still be provided within extensions.</source>
+        <target state="final">Speichere das Formular als YAML-Datei. Diese Option wird in einer zukünftigen TYPO3-Version entfernt. Verwende stattdessen "Datenbank". Dateien können weiterhin innerhalb von Erweiterungen bereitgestellt werden.</target>
       </trans-unit>
       <trans-unit id="formManager.storage.extension.label" approved="yes">
         <source>Extension</source>

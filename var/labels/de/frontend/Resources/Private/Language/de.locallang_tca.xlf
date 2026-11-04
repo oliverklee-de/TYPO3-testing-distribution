@@ -3,6 +3,138 @@
   <file source-language="en" datatype="plaintext" original="EXT:frontend/Resources/Private/Language/locallang_tca.xlf" date="2011-10-17T20:22:32Z" product-name="cms" target-language="de">
     <header/>
     <body>
+      <trans-unit id="mod_tx_cms_webinfo_page" x-unused-since="14.0" approved="yes">
+        <source>Pagetree Overview</source>
+        <target state="final">Seitenbaumübersicht</target>
+      </trans-unit>
+      <trans-unit id="mod_tx_cms_webinfo_page.description" x-unused-since="14.0" approved="yes">
+        <source>View page records and settings in a tree structure with detailed metadata.</source>
+        <target state="final">Seiten-Datensätze und Einstellungen in einer Baumstruktur mit detaillierten Metadaten anzeigen.</target>
+      </trans-unit>
+      <trans-unit id="mod_tx_cms_webinfo_lang" x-unused-since="14.0" approved="yes">
+        <source>Localization Overview</source>
+        <target state="final">Übersetzungsübersicht</target>
+      </trans-unit>
+      <trans-unit id="mod_tx_cms_webinfo_lang.description" x-unused-since="14.0" approved="yes">
+        <source>Check translation status and manage localized content for pages.</source>
+        <target state="final">Übersetzungsstatus überprüfen und lokalisierte Inhalte für Seiten verwalten.</target>
+      </trans-unit>
+      <trans-unit id="pages.palettes.standard" x-unused-since="14.0" approved="yes">
+        <source>Page</source>
+        <target state="final">Seite</target>
+      </trans-unit>
+      <trans-unit id="pages.palettes.title" x-unused-since="14.0" approved="yes">
+        <source>Title</source>
+        <target state="final">Titel</target>
+      </trans-unit>
+      <trans-unit id="pages.palettes.visibility" x-unused-since="14.0" approved="yes">
+        <source>Visibility</source>
+        <target state="final">Sichtbarkeit</target>
+      </trans-unit>
+      <trans-unit id="pages.palettes.access" x-unused-since="14.0" approved="yes">
+        <source>Publish Dates and Access Rights</source>
+        <target state="final">Veröffentlichungsdaten und Zugriffsrechte</target>
+      </trans-unit>
+      <trans-unit id="pages.palettes.abstract" x-unused-since="14.0" approved="yes">
+        <source>Abstract</source>
+        <target state="final">Zusammenfassung</target>
+      </trans-unit>
+      <trans-unit id="pages.palettes.metatags" x-unused-since="14.0" approved="yes">
+        <source>Meta Tags</source>
+        <target state="final">Meta-Tags</target>
+      </trans-unit>
+      <trans-unit id="pages.palettes.editorial" x-unused-since="14.0" approved="yes">
+        <source>Editorial</source>
+        <target state="final">Redaktion</target>
+      </trans-unit>
+      <trans-unit id="pages.palettes.layout" x-unused-since="14.0" approved="yes">
+        <source>Page Layout</source>
+        <target state="final">Seitenlayout</target>
+      </trans-unit>
+      <trans-unit id="pages.palettes.module" x-unused-since="14.0" approved="yes">
+        <source>Use as Container</source>
+        <target state="final">Benutze als Container</target>
+      </trans-unit>
+      <trans-unit id="pages.palettes.replace" x-unused-since="14.0" approved="yes">
+        <source>Replace Content</source>
+        <target state="final">Ersetze den Inhalt</target>
+      </trans-unit>
+      <trans-unit id="pages.palettes.links" x-unused-since="14.0" approved="yes">
+        <source>Links to this Page</source>
+        <target state="final">Links zu dieser Seite</target>
+      </trans-unit>
+      <trans-unit id="pages.palettes.caching" x-unused-since="14.0" approved="yes">
+        <source>Caching</source>
+        <target state="final">Caching</target>
+      </trans-unit>
+      <trans-unit id="pages.palettes.language" x-unused-since="14.0" approved="yes">
+        <source>Language</source>
+        <target state="final">Sprache</target>
+      </trans-unit>
+      <trans-unit id="pages.palettes.miscellaneous" x-unused-since="14.0" approved="yes">
+        <source>Miscellaneous</source>
+        <target state="final">Sonstige</target>
+      </trans-unit>
+      <trans-unit id="pages.palettes.media" x-unused-since="14.0" approved="yes">
+        <source>Files</source>
+        <target state="final">Dateien</target>
+      </trans-unit>
+      <trans-unit id="pages.palettes.storage" x-unused-since="14.0" approved="yes">
+        <source>General Record Storage Page</source>
+        <target state="final">Allgemeine Datensatzsammlung</target>
+      </trans-unit>
+      <trans-unit id="pages.palettes.config" x-unused-since="14.0" approved="yes">
+        <source>Page TSconfig</source>
+        <target state="final">Seiten-TSconfig</target>
+      </trans-unit>
+      <trans-unit id="pages.doktype_formlabel" x-unused-since="14.2" approved="yes">
+        <source>Type</source>
+        <target state="final">Typ</target>
+      </trans-unit>
+      <trans-unit id="pages.doktype.I.0" x-unused-since="14.2" approved="yes">
+        <source>Advanced</source>
+        <target state="final">Erweitert</target>
+      </trans-unit>
+      <trans-unit id="pages.doktype.I.2" x-unused-since="14.2" approved="yes">
+        <source>Shortcut</source>
+        <target state="final">Verweis</target>
+      </trans-unit>
+      <trans-unit id="pages.doktype.I.3" x-unused-since="14.2" approved="yes">
+        <source>Not in Menu</source>
+        <target state="final">Nicht im Menü</target>
+      </trans-unit>
+      <trans-unit id="pages.doktype.I.4" x-unused-since="14.2" approved="yes">
+        <source>Backend User Section</source>
+        <target state="final">Backend-Benutzerbereich</target>
+      </trans-unit>
+      <trans-unit id="pages.doktype.I.5" x-unused-since="14.2" approved="yes">
+        <source>Mount Point</source>
+        <target state="final">Einstiegspunkt</target>
+      </trans-unit>
+      <trans-unit id="pages.doktype.I.7" x-unused-since="14.2" approved="yes">
+        <source>Menu Separator</source>
+        <target state="final">Trennzeichen für Menü</target>
+      </trans-unit>
+      <trans-unit id="pages.doktype.link" x-unused-since="14.2" approved="yes">
+        <source>Link</source>
+        <target state="final">Link</target>
+      </trans-unit>
+      <trans-unit id="pages.doktype.I.8" x-unused-since="14.0" approved="yes">
+        <source>Link to External URL</source>
+        <target state="final">Link zu externer URL</target>
+      </trans-unit>
+      <trans-unit id="pages.doktype.div.page" x-unused-since="14.2" approved="yes">
+        <source>Page</source>
+        <target state="final">Seite</target>
+      </trans-unit>
+      <trans-unit id="pages.doktype.div.link" x-unused-since="14.2" approved="yes">
+        <source>Link</source>
+        <target state="final">Link</target>
+      </trans-unit>
+      <trans-unit id="pages.doktype.div.special" x-unused-since="14.2" approved="yes">
+        <source>Special</source>
+        <target state="final">Spezial</target>
+      </trans-unit>
       <trans-unit id="pages.title_formlabel" approved="yes">
         <source>Page Title</source>
         <target state="final">Seitentitel</target>
@@ -88,6 +220,10 @@
         <target state="final">Linkziel</target>
       </trans-unit>
       <trans-unit id="pages.url" approved="yes">
+        <source>URL</source>
+        <target state="final">URL</target>
+      </trans-unit>
+      <trans-unit id="pages.url_formlabel" x-unused-since="14.0" approved="yes">
         <source>URL</source>
         <target state="final">URL</target>
       </trans-unit>
@@ -415,6 +551,10 @@
         <source>Groups</source>
         <target state="final">Benutzergruppen:</target>
       </trans-unit>
+      <trans-unit id="fe_users.tabs.personalData" x-unused-since="14.0" approved="yes">
+        <source>Personal Data</source>
+        <target state="final">Persönliche Daten</target>
+      </trans-unit>
       <trans-unit id="fe_users.tabs.access" approved="yes">
         <source>Access</source>
         <target state="final">Zugriff</target>
@@ -493,7 +633,9 @@
 			 	This isn't used very often nowadays and it's often easier to understand and maintain the site by extracting TypoScript configuration to files
 				and to load the full set in a single main TypoScript record.
             </source>
-        <target state="final">Fügen Sie zusätzliche TypoScript Datensätze hinzu, die sich woanders im Seitenbaum befinden. Dies kann verwendet werden, um die gleichen TypoScript-Einträge an mehreren Stellen in einem Seitenbaum zu laden. Dies wird heutzutage nicht sehr oft verwendet und es ist oft einfacher, die Seite zu verstehen und zu pflegen, indem Sie die TypoScript-Konfiguration in Dateien auslagern und den kompletten Datensatz in einem einzigen Haupt-TypoScript-Datensatz laden.
+        <target state="final">Füge zusätzliche TypoScript-Datensätze ein, die sich an anderer Stelle im Seitenbaum befinden. Auf diese Weise können dieselben TypoScript-Datensätze an mehreren Stellen im Seitenbaum geladen werden.
+                 Diese Vorgehensweise wird heutzutage nicht mehr sehr häufig verwendet, und oft ist es einfacher, die Website zu verstehen und zu pflegen, indem man die TypoScript-Konfiguration in separate Dateien auslagert
+                und den gesamten Satz in einem einzigen zentralen TypoScript-Datensatz lädt.
             </target>
       </trans-unit>
       <trans-unit id="sys_template.includeStaticAfterBasedOn" approved="yes">
@@ -545,6 +687,10 @@
       <trans-unit id="sys_template.tabs.files" approved="yes">
         <source>Resources</source>
         <target state="final">Ressourcen</target>
+      </trans-unit>
+      <trans-unit id="sys_template.tabs.options" x-unused-since="14.0" approved="yes">
+        <source>Advanced Options</source>
+        <target state="final">Erweiterte Optionen</target>
       </trans-unit>
       <trans-unit id="sys_template.tabs.access" approved="yes">
         <source>Access</source>

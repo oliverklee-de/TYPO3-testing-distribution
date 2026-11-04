@@ -17,7 +17,7 @@
       </trans-unit>
       <trans-unit id="cache.clear_pages" approved="yes">
         <source>Clear frontend cache</source>
-        <target state="final">Frontendcache leeren</target>
+        <target state="final">Frontend-Cache leeren</target>
       </trans-unit>
     </body>
   </file>

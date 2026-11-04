@@ -3,6 +3,18 @@
   <file source-language="en" datatype="plaintext" original="EXT:reports/Resources/Private/Language/locallang_reports.xlf" date="2011-10-17T20:22:35Z" product-name="reports" target-language="de">
     <header/>
     <body>
+      <trans-unit id="status_report_title" x-unused-since="14.0" approved="yes">
+        <source>Status Report</source>
+        <target state="final">Statusbericht</target>
+      </trans-unit>
+      <trans-unit id="status_report_description" x-unused-since="14.0" approved="yes">
+        <source>Get a status report about your site's operation and any detected problems.</source>
+        <target state="final">Erhalten Sie einen Statusbericht über Ihre Website und erkannte Probleme.</target>
+      </trans-unit>
+      <trans-unit id="status_report_explanation" x-unused-since="14.0" approved="yes">
+        <source>Here you can find a short overview of your site's parameters as well as any problems detected with your installation. It may be useful to copy and paste this information into support requests filed on TYPO3's support mailing lists and project issue trackers.</source>
+        <target state="final">Hier findest du einen kompakten Überblick über die Parameter deiner Website sowie über mögliche Probleme, die bei deiner Installation festgestellt wurden. Es kann hilfreich sein, diese Informationen zu kopieren und in Support-Anfragen auf den Support-Mailinglisten von TYPO3 und in den Issue-Trackern des Projekts einzufügen.</target>
+      </trans-unit>
       <trans-unit id="status_ok" approved="yes">
         <source>OK</source>
         <target state="final">OK</target>

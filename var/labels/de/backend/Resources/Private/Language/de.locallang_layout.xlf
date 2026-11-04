@@ -391,6 +391,10 @@
         <source>This content is also shown on: %s</source>
         <target state="final">Dieser Inhalt wird auch angezeigt auf: %s</target>
       </trans-unit>
+      <trans-unit id="pageIsExternalLinkMessage" x-unused-since="14.0" approved="yes">
+        <source>Page is a link to the following external URL: %s</source>
+        <target state="final">Die Seite ist ein Link zu der folgenden externen URL: %s</target>
+      </trans-unit>
       <trans-unit id="pageIsInternalLinkMessage" approved="yes">
         <source>Page is a link to the following page: %s</source>
         <target state="final">Die Seite ist ein Link zu der folgenden Seite: %s</target>
@@ -410,6 +414,14 @@
       <trans-unit id="pageIsMisconfiguredParentPageMessage" approved="yes">
         <source>Page is configured to be a link to the parent page but there is actually no such page accessible in the frontend.</source>
         <target state="final">Die Seite ist als Link zur Überseite konfiguriert, aber es gibt im Frontend keine solche erreichbare Seite.</target>
+      </trans-unit>
+      <trans-unit id="pageIsMisconfiguredExternalLinkMessage" x-unused-since="14.0" approved="yes">
+        <source>Page is configured to be an external link but there is actually no URL defined.</source>
+        <target state="final">Die Seite ist als externer Link konfiguriert, aber es ist keine URL definiert.</target>
+      </trans-unit>
+      <trans-unit id="goToListModule" x-unused-since="14.3.1" approved="yes">
+        <source>Go to record module</source>
+        <target state="final">Gehe zum Datensatzmodul</target>
       </trans-unit>
       <trans-unit id="goToRecordsModule" approved="yes">
         <source>Go to records module</source>
@@ -516,9 +528,9 @@
           This means that moving an element or setting meta information like start- or endtime will be taken from the original content and you will not be able to set these values on a translated content element.&lt;br&gt;
           &lt;strong&gt;Use this when your workflow demands a strict translation workflow.&lt;/strong&gt;
         </source>
-        <target state="final">Beim Übersetzen von Inhalten wird eine direkte Verbindung zwischen der Originalsprache und der Sprache, in die du übersetzt, hergestellt.&lt;br&gt;
-Das bedeutet, dass beim Verschieben eines Elements oder beim Setzen von Metainformationen wie Start- oder Endzeit vom Ursprungselement ausgegangen wird und du diese Werte bei einem übersetzten Inhaltselement nicht setzen kannst.&lt;br&gt;
-					&lt;strong&gt;Verwende diese Möglichkeit, wenn dein Arbeitsablauf einen strikten Übersetzungsworkflow erfordert.&lt;/strong&gt;
+        <target state="final">Durch die Übersetzung von Inhalten wird eine direkte Verbindung zwischen der Originalsprache und der Zielsprache hergestellt.&lt;br&gt;
+          Das bedeutet, dass das Verschieben eines Elements oder das Festlegen von Metainformationen wie Start- oder Endzeit aus dem Originalinhalt übernommen wird und du diese Werte für ein übersetztes Inhaltselement nicht festlegen kannst.&lt;br&gt;
+          &lt;strong&gt;Verwende diese Option, wenn dein Arbeitsablauf einen strengen Übersetzungsworkflow erfordert.&lt;/strong&gt;
         </target>
       </trans-unit>
       <trans-unit id="localize.educate.copy" approved="yes">
@@ -527,8 +539,8 @@ Das bedeutet, dass beim Verschieben eines Elements oder beim Setzen von Metainfo
           &lt;strong&gt;Use this when you want to have freedom in designing your translated website.&lt;/strong&gt;
         </source>
         <target state="final">Beim Kopieren von Inhalten werden die Inhaltselemente aus der Ausgangssprache übernommen und Kopien in einer anderen Sprache erstellt.&lt;br&gt;
-					Du wirst Inhaltselemente frei bewegen können, aber du wirst nicht die Möglichkeit haben, das Element mit Änderungen zu vergleichen, die in der Ausgangssprache gemacht wurden.&lt;br&gt;
-					&lt;strong&gt;Verwende diese Möglichkeit, wenn du Freiheit beim Entwurf deiner übersetzten Website wünscht.&lt;/strong&gt;
+          Das bedeutet, dass du die Inhaltselemente frei verschieben kannst, jedoch nicht den Vorteil hast, später Änderungen in der Ausgangssprache vergleichen zu können.&lt;br&gt;
+          &lt;strong&gt;Verwende diese Option, wenn du bei der Gestaltung deiner übersetzten Website flexibel sein möchtest.&lt;/strong&gt;
         </target>
       </trans-unit>
       <trans-unit id="window.localization.mixed_mode.title" approved="yes">

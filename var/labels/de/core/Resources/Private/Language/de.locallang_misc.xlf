@@ -39,7 +39,7 @@
         <source>Create a new page</source>
         <target state="final">Neue Seite erstellen</target>
       </trans-unit>
-      <trans-unit id="insertNewPageHere" x-unused-since="15.0" approved="yes">
+      <trans-unit id="insertNewPageHere" approved="yes">
         <source>Insert the new page here</source>
         <target state="final">Neue Seite hier einfügen</target>
       </trans-unit>

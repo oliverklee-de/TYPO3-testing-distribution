@@ -63,6 +63,10 @@
         <source>[Not Tracked]</source>
         <target state="final">[Nicht geprüft]</target>
       </trans-unit>
+      <trans-unit id="user_not_found" approved="yes">
+        <source>[Not Found]</source>
+        <target state="final">[Nicht gefunden]</target>
+      </trans-unit>
       <trans-unit id="no_qrcode" approved="yes">
         <source>Not enough information for generating a QR Code.</source>
         <target state="final">Nicht genügend Informationen zum Generieren eines QR-Codes.</target>

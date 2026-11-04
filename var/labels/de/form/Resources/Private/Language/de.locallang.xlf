@@ -7,6 +7,14 @@
         <source>Uploaded image</source>
         <target state="final">Hochgeladenes Bild</target>
       </trans-unit>
+      <trans-unit id="element.DatePicker.properties.timeSelectorHourLabel" approved="yes">
+        <source>Hour</source>
+        <target state="final">Stunde</target>
+      </trans-unit>
+      <trans-unit id="element.DatePicker.properties.timeSelectorMinuteLabel" approved="yes">
+        <source>Minute</source>
+        <target state="final">Minute</target>
+      </trans-unit>
       <trans-unit id="validation.error.1221560910" approved="yes">
         <source>This field is mandatory.</source>
         <target state="final">Das ist ein Pflichtfeld.</target>
