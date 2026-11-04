@@ -89,7 +89,7 @@
       </trans-unit>
       <trans-unit id="submodule.pageTitle.usedProvider" approved="yes">
         <source>Used provider</source>
-        <target state="final">Verwendeter Anbieter</target>
+        <target state="final">Verwendeter Provider</target>
       </trans-unit>
       <trans-unit id="submodule.pageTitle.title" approved="yes">
         <source>Title</source>
@@ -101,7 +101,7 @@
       </trans-unit>
       <trans-unit id="submodule.pageTitle.skippedProviders" approved="yes">
         <source>Skipped providers (provided no title)</source>
-        <target state="final">Übersprungene Anbieter (ohne Titel)</target>
+        <target state="final">Übersprungene Provider (ohne Titel)</target>
       </trans-unit>
       <trans-unit id="submodule.pageTitle.name" approved="yes">
         <source>Name</source>
