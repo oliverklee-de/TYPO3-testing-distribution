@@ -27,7 +27,7 @@
         <source>Subtitle</source>
         <target state="final">Untertitel</target>
       </trans-unit>
-      <trans-unit id="fieldNavitle" approved="yes">
+      <trans-unit id="fieldNavTitle" approved="yes">
         <source>Navigation title</source>
         <target state="final">Navigationstitel</target>
       </trans-unit>
