@@ -371,6 +371,10 @@
         <source>Failure: No file uploaded - was it too big? Check system log.</source>
         <target state="final">Fehler: Es wurde keine Datei übertragen! (Datei zu groß?) Weitere Angaben in Systemprotokoll.</target>
       </trans-unit>
+      <trans-unit id="importdata_upload_invalidExtension" approved="yes">
+        <source>Only import files with the extensions "t3d" or "xml" can be uploaded.</source>
+        <target state="final">Es können nur Import-Dateien mit den Erweiterungen "t3d" oder "xml" hochgeladen werden.</target>
+      </trans-unit>
       <trans-unit id="importdata_upload" approved="yes">
         <source>Upload</source>
         <target state="final">Hochladen</target>
