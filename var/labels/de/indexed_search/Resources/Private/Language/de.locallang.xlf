@@ -499,6 +499,10 @@
         <source>Not indexed</source>
         <target state="final">Nicht indexiert</target>
       </trans-unit>
+      <trans-unit id="administration.indexingDisabled" approved="yes">
+        <source>Indexing disabled for this page</source>
+        <target state="final">Indexierung für diese Seite deaktiviert</target>
+      </trans-unit>
       <trans-unit id="administration.document.words" approved="yes">
         <source>Words found on this page</source>
         <target state="final">Auf dieser Seite gefundene Wörter</target>

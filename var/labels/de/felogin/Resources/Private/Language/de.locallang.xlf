@@ -50,6 +50,10 @@ Eine andere Möglichkeit ist, dass die Cookies in Ihrem Webbrowser deaktiviert s
         <source>This is your current status</source>
         <target state="final">Das ist Ihr aktueller Status</target>
       </trans-unit>
+      <trans-unit id="cookie_warning" x-unused-since="12.3" approved="yes">
+        <source>Warning: There is a possibility that cookies are not enabled in your web browser! If your login disappears on your next click that is the case and you should enable cookies (or accept cookies from this website) immediately!</source>
+        <target state="final">Warnung: Es besteht die Möglichkeit, dass in Ihrem Browser Cookies deaktiviert sind! Sollte trotz erfolgreicher Anmeldung beim nächsten Klick wieder die Anmeldeseite erscheinen, so sind Cookies deaktiviert. Sie sollten daher umgehend Cookies akzeptieren, entweder generell für alle Websites oder nur für diese spezielle.</target>
+      </trans-unit>
       <trans-unit id="username" approved="yes">
         <source>Username</source>
         <target state="final">Benutzername:</target>

@@ -3,6 +3,30 @@
   <file source-language="en" datatype="plaintext" original="EXT:backend/Resources/Private/Language/locallang_pagetsconfig.xlf" date="2023-01-19T14:41:00Z" product-name="cms" target-language="de">
     <header/>
     <body>
+      <trans-unit id="module.pagetsconfig.title" x-unused-since="14.0" approved="yes">
+        <source>Page TSconfig</source>
+        <target state="final">Page TSconfig</target>
+      </trans-unit>
+      <trans-unit id="module.pagetsconfig.description" x-unused-since="14.0" approved="yes">
+        <source>The page TSconfig module lets you manage configuration overrides for editors and option display throughout the Backend.</source>
+        <target state="final">Mit dem Page TSconfig Modul können Sie Konfigurationsüberschreibungen für Redakteure und die Anzeige von Optionen im gesamten Backend verwalten.</target>
+      </trans-unit>
+      <trans-unit id="module.pagetsconfig.shortDescription" x-unused-since="14.0" approved="yes">
+        <source>Page TSconfig tools</source>
+        <target state="final">Page TSconfig Tools</target>
+      </trans-unit>
+      <trans-unit id="module.pagetsconfig_pages" x-unused-since="14.0" approved="yes">
+        <source>Pages containing page TSconfig</source>
+        <target state="final">Seiten, die Page TSconfig enthalten</target>
+      </trans-unit>
+      <trans-unit id="module.pagetsconfig_active" x-unused-since="14.0" approved="yes">
+        <source>Active page TSconfig</source>
+        <target state="final">Aktive Page TSconfig</target>
+      </trans-unit>
+      <trans-unit id="module.pagetsconfig_includes" x-unused-since="14.0" approved="yes">
+        <source>Included page TSconfig</source>
+        <target state="final">Eingebundene Page TSconfig</target>
+      </trans-unit>
       <trans-unit id="module.pagetsconfig.noAccess" approved="yes">
         <source>Access to this module denied.</source>
         <target state="final">Zugriff auf dieses Modul verweigert.</target>
@@ -50,6 +74,10 @@
       <trans-unit id="module.pagetsconfig_active.panel.header.conditions" approved="yes">
         <source>Conditions</source>
         <target state="final">Bedingungen</target>
+      </trans-unit>
+      <trans-unit id="module.pagetsconfig_active.panel.header.numberOfSearchMatches" x-unused-since="14.2" approved="yes">
+        <source>%s search match(es)</source>
+        <target state="final">%s Suchergebnis(se)</target>
       </trans-unit>
       <trans-unit id="module.pagetsconfig_active.panel.info.conditionActiveCount.multiple" approved="yes">
         <source>%s active conditions</source>

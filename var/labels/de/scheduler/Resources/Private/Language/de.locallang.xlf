@@ -45,8 +45,8 @@
 					By default, the command to run in composer mode is `vendor/bin/typo3 scheduler:run`.
                 </source>
         <target state="final">
-					Das System läuft im Composer-Modus, der Pfad zur ausführbaren `typo3`-Datei konnte nicht zuverlässig ermittelt werden.
-					Standardmäßig lautet der Befehl zur Ausführung im Composer-Modus `vendor/bin/typo3 scheduler:run`.
+					Das System läuft im Composer-Modus; der Pfad zur ausführbaren Datei `typo3` konnte nicht zuverlässig ermittelt werden.
+					Standardmäßig lautet der im Composer-Modus auszuführende Befehl `vendor/bin/typo3 scheduler:run`.
                 </target>
       </trans-unit>
       <trans-unit id="hdg.lastRun" approved="yes">
@@ -594,8 +594,8 @@
         <target state="final">Müllsammlung des Caching-Frameworks</target>
       </trans-unit>
       <trans-unit id="cachingFrameworkGarbageCollection.description" approved="yes">
-        <source>This task calls the garbage collection of configured caching framework caches which use one of the selected backends. This will free some space in cache backends which do not have an internal garbage collection. In case of the default database backend it is advisable to run this task once a day when the database is mostly idle.</source>
-        <target state="final">Dieser Task ruft die Müllsammlung der Caches des konfigurierten Caching-Frameworks auf. Dies gibt Platz in Cache-Backends freigeben, die keine interne Müllsammlung haben. Im Fall des Standard-Datenbank-Backends ist es ratsam, diesen Task einmal täglich auszuführen, bevorzugt wenn die Datenbank weitestgehend leerläuft.</target>
+        <source>Calls garbage collection of caching framework caches which use one of the selected backends. This will free up space in cache backends which do not have internal garbage collection. For the default database backend, this task should be run once a day when the database is most likely to be idle.</source>
+        <target state="final">Ruft die Müllsammlung der Caching-Framework-Caches auf, welche eines der ausgewählten Backends nutzen. Das gibt Speicherplatz in Cache-Backends frei, die keine interne Müllsammlung besitzen. Für das Standard-Datenbank-Backend sollte diese Aufgabe einmal täglich zu einer Zeit ausgeführt werden, in der die Datenbank am wahrscheinlichsten unbeschäftigt ist.</target>
       </trans-unit>
       <trans-unit id="fileIndexing.name" approved="yes">
         <source>[OBSOLETE] File Abstraction Layer: Indexing job</source>
@@ -626,16 +626,16 @@
         <target state="final">Tabellen-Müllsammlung</target>
       </trans-unit>
       <trans-unit id="tableGarbageCollection.description" approved="yes">
-        <source>Task to delete old entries from specific tables like sys_log.</source>
-        <target state="final">Aufgabe zum Löschen alter Einträge aus bestimmten Tabellen wie sys_log.</target>
+        <source>Deletes old entries from specific tables like sys_log.</source>
+        <target state="final">Entfernt alte Einträge von ausgewählten Tabellen wie sys_log.</target>
       </trans-unit>
       <trans-unit id="recyclerGarbageCollection.name" approved="yes">
         <source>Fileadmin garbage collection</source>
         <target state="final">Müllsammlung für den Ordner fileadmin</target>
       </trans-unit>
       <trans-unit id="recyclerGarbageCollection.description" approved="yes">
-        <source>This task empties all "_recycler_" folders below fileadmin. This helps free some space in the file system.</source>
-        <target state="final">Dieser Task leert alle Order mit dem Namen "_recycler_" im Ordner fileadmin. So können Sie Speicherplatz im Dateisystem freigeben.</target>
+        <source>Empties all "_recycler_" folders under fileadmin. This helps free up space in the file system.</source>
+        <target state="final">Leert alle "_recycler_"-Ordner unter fileadmin. Dadurch kann Speicherplatz im Dateisystem freigegeben werden.</target>
       </trans-unit>
       <trans-unit id="executeSchedulableCommandTask.name" approved="yes">
         <source>Execute console commands</source>
@@ -650,16 +650,16 @@
         <target state="final">MySQL-Datenbanktabellen optimieren</target>
       </trans-unit>
       <trans-unit id="optimizeDatabaseTable.description" approved="yes">
-        <source>This task executes "OPTIMIZE TABLE" statements on the selected database tables. This helps to reduce storage space and improve I/O efficiency. Warning: tables will be locked during the optimization process.</source>
-        <target state="final">Dieser Task führt "OPTIMIZE TABLE"-Anweisungen für die ausgewählten Datenbanktabellen aus. Dies trägt dazu bei, Speicherplatz zu sparen und die I/O-Effizienz zu verbessern. Warnung: Die Tabellen werden während des Optimierungsvorgangs gesperrt.</target>
+        <source>Executes "OPTIMIZE TABLE" statements on the selected database tables. This helps to reduce storage space and improve I/O efficiency. Please be aware that tables will be locked during the optimization process.</source>
+        <target state="final">Führt "OPTIMIZE TABLE"-Anweisungen auf ausgewählten Tabellen aus. Das hilft Speicherplatz zu sparen und die I/O-Effizienz zu verbessern. Bitte bedenke, dass die Tabellen während des Optimierungsprozesses gesperrt sein werden.</target>
       </trans-unit>
       <trans-unit id="ipAnonymization.name" approved="yes">
         <source>Anonymize IP addresses in database tables</source>
         <target state="final">IP-Adressen in Datenbanktabellen anonymisieren</target>
       </trans-unit>
       <trans-unit id="ipAnonymization.description" approved="yes">
-        <source>This task anonymizes the IP addresses from specific tables like sys_log to enforce the privacy of the persisted data.</source>
-        <target state="final">Diese Aufgabe anonymisiert die IP-Adressen aus bestimmten Tabellen wie sys_log, um den Datenschutz der gespeicherten Daten zu gewährleisten.</target>
+        <source>Anonymizes the IP addresses from specific tables like sys_log to enforce the privacy of the persisted data.</source>
+        <target state="final">Anonymisiert IP-Adressen von ausgewählten Tabellen wie sys_log um den Schutz der persistierten, personenbezogenen Daten zu gewährleisten.</target>
       </trans-unit>
       <trans-unit id="label.ipAnonymization.table" approved="yes">
         <source>Table to anonymize</source>
@@ -732,6 +732,14 @@
       <trans-unit id="msg.group.notification.error.message" approved="yes">
         <source>Could not create group</source>
         <target state="final">Konnte Gruppe nicht erstellen</target>
+      </trans-unit>
+      <trans-unit id="scheduler.form.palettes.settings" x-unused-since="14.0" approved="yes">
+        <source>Settings</source>
+        <target state="final">Einstellungen</target>
+      </trans-unit>
+      <trans-unit id="scheduler.form.palettes.timing" x-unused-since="14.0" approved="yes">
+        <source>Timing</source>
+        <target state="final">Timing</target>
       </trans-unit>
       <trans-unit id="editableGroupName.input.field.label" approved="yes">
         <source>Enter a group name</source>

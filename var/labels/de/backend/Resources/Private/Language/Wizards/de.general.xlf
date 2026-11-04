@@ -11,6 +11,10 @@
         <source>Cancel</source>
         <target state="final">Abbrechen</target>
       </trans-unit>
+      <trans-unit id="wizard.buttons.close" approved="yes">
+        <source>Close</source>
+        <target state="final">Schließen</target>
+      </trans-unit>
       <trans-unit id="wizard.buttons.next" approved="yes">
         <source>Next</source>
         <target state="final">Weiter</target>

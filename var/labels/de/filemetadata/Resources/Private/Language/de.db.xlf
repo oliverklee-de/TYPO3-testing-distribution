@@ -177,12 +177,52 @@
         <target state="final">Höhe</target>
       </trans-unit>
       <!-- sys_file_metadata tabs -->
+      <trans-unit id="tabs.metadata" x-unused-since="14.0" approved="yes">
+        <source>Metadata</source>
+        <target state="final">Metadaten</target>
+      </trans-unit>
+      <trans-unit id="tabs.camera" x-unused-since="14.0" approved="yes">
+        <source>Camera Data</source>
+        <target state="final">Kameradaten</target>
+      </trans-unit>
+      <trans-unit id="tabs.audio" x-unused-since="14.0" approved="yes">
+        <source>Audio</source>
+        <target state="final">Audio</target>
+      </trans-unit>
+      <trans-unit id="tabs.video" x-unused-since="14.0" approved="yes">
+        <source>Video</source>
+        <target state="final">Video</target>
+      </trans-unit>
       <!-- sys_file_metadata placeholder -->
       <trans-unit id="placeholder.keywords" approved="yes">
         <source>Keyword #1, keyword #2, ...</source>
         <target state="final">Schlüsselwort #1, Schlüsselwort #2, ...</target>
       </trans-unit>
       <!-- sys_file_metadata palette -->
+      <trans-unit id="palette.metrics" x-unused-since="14.0" approved="yes">
+        <source>Metrics</source>
+        <target state="final">Metriken</target>
+      </trans-unit>
+      <trans-unit id="palette.geo_location" x-unused-since="14.0" approved="yes">
+        <source>Geo Location</source>
+        <target state="final">Geo-Lokalisierung</target>
+      </trans-unit>
+      <trans-unit id="palette.visibility" x-unused-since="14.0" approved="yes">
+        <source>Visibility</source>
+        <target state="final">Sichtbarkeit</target>
+      </trans-unit>
+      <trans-unit id="palette.content_date" x-unused-since="14.0" approved="yes">
+        <source>Content Date</source>
+        <target state="final">Datum des Inhalts</target>
+      </trans-unit>
+      <trans-unit id="palette.accessibility" x-unused-since="14.0" approved="yes">
+        <source>Accessibility</source>
+        <target state="final">Barrierefreiheit</target>
+      </trans-unit>
+      <trans-unit id="palette.gps" x-unused-since="14.0" approved="yes">
+        <source>GPS</source>
+        <target state="final">GPS</target>
+      </trans-unit>
       <!-- fe_groups fields -->
       <trans-unit id="fe_groups.files" approved="yes">
         <source>Allowed files</source>

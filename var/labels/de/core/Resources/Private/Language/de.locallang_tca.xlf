@@ -207,6 +207,18 @@
         <source>Unavailable Languages</source>
         <target state="final">Nicht verfügbare Sprachen</target>
       </trans-unit>
+      <trans-unit id="be_users.tabs.permissions" x-unused-since="14.0" approved="yes">
+        <source>Module Permissions</source>
+        <target state="final">Modul-Berechtigungen</target>
+      </trans-unit>
+      <trans-unit id="be_users.tabs.mounts_and_workspaces" x-unused-since="14.0" approved="yes">
+        <source>Mounts</source>
+        <target state="final">Freigaben</target>
+      </trans-unit>
+      <trans-unit id="be_users.tabs.options" x-unused-since="14.0" approved="yes">
+        <source>Options</source>
+        <target state="final">Optionen</target>
+      </trans-unit>
       <trans-unit id="be_users.tabs.extended" approved="yes">
         <source>Extended</source>
         <target state="final">Erweitert</target>
@@ -214,6 +226,26 @@
       <trans-unit id="be_users.tabs.access" approved="yes">
         <source>Access</source>
         <target state="final">Zugriff</target>
+      </trans-unit>
+      <trans-unit id="be_users.tabs.personal_data" x-unused-since="14.0" approved="yes">
+        <source>Personal Data</source>
+        <target state="final">Persönliche Daten</target>
+      </trans-unit>
+      <trans-unit id="be_users.tabs.permissionRecords" x-unused-since="14.0" approved="yes">
+        <source>Record Permissions</source>
+        <target state="final">Datensatz-Berechtigungen</target>
+      </trans-unit>
+      <trans-unit id="be_users.palettes.account" x-unused-since="14.0" approved="yes">
+        <source>Account</source>
+        <target state="final">Benutzerkonto</target>
+      </trans-unit>
+      <trans-unit id="be_users.palettes.authentication" x-unused-since="14.0" approved="yes">
+        <source>Authentication</source>
+        <target state="final">Authentifizierung</target>
+      </trans-unit>
+      <trans-unit id="be_users.palettes.permissionLanguages" x-unused-since="14.0" approved="yes">
+        <source>Language permissions</source>
+        <target state="final">Sprachberechtigungen</target>
       </trans-unit>
       <trans-unit id="be_users.user_settings" approved="yes">
         <source>User Settings</source>
@@ -270,6 +302,34 @@
       <trans-unit id="be_groups.subgroup" approved="yes">
         <source>Inherit settings from groups</source>
         <target state="final">Einstellungen von Gruppen übernehmen</target>
+      </trans-unit>
+      <trans-unit id="be_groups.tabs.record_permissions" x-unused-since="14.0" approved="yes">
+        <source>Record Permissions</source>
+        <target state="final">Datensatz-Berechtigungen</target>
+      </trans-unit>
+      <trans-unit id="be_groups.tabs.module_permissions" x-unused-since="14.0" approved="yes">
+        <source>Module Permissions</source>
+        <target state="final">Modul-Berechtigungen</target>
+      </trans-unit>
+      <trans-unit id="be_groups.tabs.mounts_and_workspaces" x-unused-since="14.0" approved="yes">
+        <source>Mounts</source>
+        <target state="final">Freigaben</target>
+      </trans-unit>
+      <trans-unit id="be_groups.palettes.authentication" x-unused-since="14.0" approved="yes">
+        <source>Authentication</source>
+        <target state="final">Authentifizierung</target>
+      </trans-unit>
+      <trans-unit id="be_groups.palettes.permissionGeneral" x-unused-since="14.0" approved="yes">
+        <source>General permissions</source>
+        <target state="final">Allgemeine Berechtigungen</target>
+      </trans-unit>
+      <trans-unit id="be_groups.palettes.permissionLanguages" x-unused-since="14.0" approved="yes">
+        <source>Language permissions</source>
+        <target state="final">Sprachberechtigungen</target>
+      </trans-unit>
+      <trans-unit id="be_groups.palettes.permissionSpecific" x-unused-since="14.0" approved="yes">
+        <source>Specific permissions</source>
+        <target state="final">Spezifische Berechtigungen</target>
       </trans-unit>
       <trans-unit id="be_groups.fileoper_perms" approved="yes">
         <source>Fileoperation permissions</source>
@@ -366,6 +426,10 @@
       <trans-unit id="be_groups.fileoper_perms_diroper_perms_delete" approved="yes">
         <source>Directory: Delete recursively (rm -Rf)</source>
         <target state="final">Verzeichnis: Rekursiv löschen</target>
+      </trans-unit>
+      <trans-unit id="be_groups.tabs.options" x-unused-since="14.0" approved="yes">
+        <source>Options</source>
+        <target state="final">Optionen</target>
       </trans-unit>
       <trans-unit id="be_groups.tabs.extended" approved="yes">
         <source>Extended</source>
@@ -470,6 +534,18 @@
       <trans-unit id="pages.nav_hide_toggle_formlabel" approved="yes">
         <source>Page enabled in menus</source>
         <target state="final">Seite in Menüs aktiviert</target>
+      </trans-unit>
+      <trans-unit id="doktype.I.0" x-unused-since="14.2" approved="yes">
+        <source>Standard</source>
+        <target state="final">Standard</target>
+      </trans-unit>
+      <trans-unit id="doktype.I.1" x-unused-since="14.2" approved="yes">
+        <source>SysFolder</source>
+        <target state="final">Ordner</target>
+      </trans-unit>
+      <trans-unit id="doktype.I.folder" x-unused-since="14.2" approved="yes">
+        <source>Folder</source>
+        <target state="final">Ordner</target>
       </trans-unit>
       <trans-unit id="title" approved="yes">
         <source>Page title</source>
@@ -806,6 +882,10 @@
       <trans-unit id="sys_category.tabs.category" approved="yes">
         <source>Categories</source>
         <target state="final">Kategorien</target>
+      </trans-unit>
+      <trans-unit id="sys_category.tabs.items" x-unused-since="14.0" approved="yes">
+        <source>Items</source>
+        <target state="final">Elemente</target>
       </trans-unit>
     </body>
   </file>

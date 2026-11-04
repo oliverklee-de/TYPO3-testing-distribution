@@ -43,9 +43,17 @@
         <source>You can select one of your most recently edited records from this list</source>
         <target state="final">Aus dieser Liste können die zuletzt bearbeiteten Datensätze ausgewählt werden</target>
       </trans-unit>
+      <trans-unit id="noDocuments_pagemodule" x-unused-since="14.0" approved="yes">
+        <source>the Web&gt;Page module</source>
+        <target state="final">das Modul Web&gt;Seite</target>
+      </trans-unit>
       <trans-unit id="noDocuments_OR" approved="yes">
         <source>or</source>
         <target state="final">oder</target>
+      </trans-unit>
+      <trans-unit id="noDocuments_listmodule" x-unused-since="14.0" approved="yes">
+        <source>the Web&gt;List module</source>
+        <target state="final">das Modul Web&gt;Liste</target>
       </trans-unit>
       <trans-unit id="noEditForm" approved="yes">
         <source>Edit form could not be loaded</source>
@@ -151,6 +159,18 @@
         <source>You currently have unsaved changes which will be discarded if you close without saving.</source>
         <target state="final">Du hast noch nicht gespeicherte Änderungen, die verloren gehen, wenn du schließt, ohne zu speichern.</target>
       </trans-unit>
+      <trans-unit id="label.confirm.add_record_unsaved_parent.title" approved="yes">
+        <source>Save before creating a new record?</source>
+        <target state="final">Speichern vor dem Erstellen eines neuen Datensatzes?</target>
+      </trans-unit>
+      <trans-unit id="label.confirm.add_record_unsaved_parent.content" approved="yes">
+        <source>This record has not been saved yet, so a new related record could not be linked back to it. Save it first to create and link a new record, or discard your changes to cancel.</source>
+        <target state="final">Dieser Datensatz wurde noch nicht gespeichert, daher konnte kein neuer zugehöriger Datensatz mit ihm verknüpft werden. Speichere ihn zunächst, um einen neuen Datensatz anzulegen und zu verknüpfen, oder verwerfe deine Änderungen, um den Vorgang abzubrechen.</target>
+      </trans-unit>
+      <trans-unit id="buttons.confirm.add_record_unsaved_parent.save" approved="yes">
+        <source>Save and continue</source>
+        <target state="final">Speichern und fortfahren</target>
+      </trans-unit>
       <trans-unit id="buttons.confirm.delete_file.no" approved="yes">
         <source>Cancel</source>
         <target state="final">Abbrechen</target>
@@ -158,6 +178,10 @@
       <trans-unit id="buttons.confirm.delete_file.yes" approved="yes">
         <source>Yes, delete this file</source>
         <target state="final">Ja, diese Datei löschen</target>
+      </trans-unit>
+      <trans-unit id="buttons.confirm.delete_folder.no" approved="yes">
+        <source>Cancel</source>
+        <target state="final">Abbrechen</target>
       </trans-unit>
       <trans-unit id="buttons.confirm.delete_folder.yes" approved="yes">
         <source>Yes, delete this folder</source>

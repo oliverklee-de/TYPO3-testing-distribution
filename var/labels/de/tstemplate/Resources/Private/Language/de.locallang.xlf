@@ -3,6 +3,38 @@
   <file source-language="en" datatype="plaintext" original="EXT:tstemplate/Resources/Private/Language/locallang.xlf" date="2011-10-17T20:22:37Z" product-name="tstemplate" target-language="de">
     <header/>
     <body>
+      <trans-unit id="module.typoscript.title" x-unused-since="14.0" approved="yes">
+        <source>TypoScript</source>
+        <target state="final">TypoScript</target>
+      </trans-unit>
+      <trans-unit id="module.typoscript.shortDescription" x-unused-since="14.0" approved="yes">
+        <source>TypoScript tools</source>
+        <target state="final">TypoScript Werkzeuge</target>
+      </trans-unit>
+      <trans-unit id="module.typoscript.description" x-unused-since="14.0" approved="yes">
+        <source>Here you manage the TypoScript records which are in charge of the look of your website on the frontend. The module provides specialized features like a TypoScript tree, a constant editor and raw editing facilities.</source>
+        <target state="final">Hier verwaltest du die TypoScript-Datensätze, die für das Aussehen deiner Website im Frontend verantwortlich sind. Das Modul bietet spezielle Funktionen wie einen TypoScript-Baum, einen Konstanten-Editor und direkte Bearbeitungsmöglichkeiten.</target>
+      </trans-unit>
+      <trans-unit id="submodules.option.constantEditor" x-unused-since="14.0" approved="yes">
+        <source>Constant Editor</source>
+        <target state="final">Konstanten-Editor</target>
+      </trans-unit>
+      <trans-unit id="submodules.option.infoModify" x-unused-since="14.0" approved="yes">
+        <source>Edit TypoScript Record</source>
+        <target state="final">TypoScript Datensatz bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="submodules.option.active" x-unused-since="14.0" approved="yes">
+        <source>Active TypoScript</source>
+        <target state="final">Aktives TypoScript</target>
+      </trans-unit>
+      <trans-unit id="submodules.option.templateAnalyzer" x-unused-since="14.0" approved="yes">
+        <source>Included TypoScript</source>
+        <target state="final">Eingebundenes TypoScript</target>
+      </trans-unit>
+      <trans-unit id="submodules.option.typoscriptOverview" x-unused-since="14.0" approved="yes">
+        <source>TypoScript Overview</source>
+        <target state="final">TypoScript Übersicht</target>
+      </trans-unit>
       <trans-unit id="noRecordFound.infobox.title" approved="yes">
         <source>No TypoScript record on the current page</source>
         <target state="final">Kein TypoScript Datensatz auf der aktuellen Seite</target>

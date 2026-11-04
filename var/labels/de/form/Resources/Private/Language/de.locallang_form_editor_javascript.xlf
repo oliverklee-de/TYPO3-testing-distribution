@@ -19,6 +19,10 @@
         <source>Create new element before</source>
         <target state="final">Neues Element erstellen bevor</target>
       </trans-unit>
+      <trans-unit id="formEditor.stage.toolbar.new_element.inside" x-unused-since="14.2" approved="yes">
+        <source>Create new element inside</source>
+        <target state="final">Neues Element innerhalb erstellen</target>
+      </trans-unit>
       <trans-unit id="formEditor.stage.toolbar.remove" approved="yes">
         <source>Remove</source>
         <target state="final">Entfernen</target>

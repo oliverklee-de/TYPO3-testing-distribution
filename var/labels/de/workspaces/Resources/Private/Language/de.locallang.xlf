@@ -151,6 +151,18 @@
         <source>The server did not send any response whether the action was successful.</source>
         <target state="final">Der Server hat keine Rückmeldung gesendet, ob die Aktion erfolgreich war.</target>
       </trans-unit>
+      <trans-unit id="error.dispatch.title" approved="yes">
+        <source>Workspace action failed</source>
+        <target state="final">Workspace Aktion fehlgeschlagen</target>
+      </trans-unit>
+      <trans-unit id="error.dispatch.unavailable" approved="yes">
+        <source>The server could not be reached or sent an unexpected response. Please try again.</source>
+        <target state="final">Der Server war nicht erreichbar oder hat eine unerwartete Antwort gesendet. Bitte versuche es erneut.</target>
+      </trans-unit>
+      <trans-unit id="error.dispatch.unknown" approved="yes">
+        <source>The server reported an error without further details.</source>
+        <target state="final">Der Server hat einen Fehler gemeldet, ohne weitere Details anzugeben.</target>
+      </trans-unit>
       <trans-unit id="rowDetails" approved="yes">
         <source>Row details...</source>
         <target state="final">Zeilendetails...</target>
@@ -170,6 +182,10 @@
       <trans-unit id="column.last_change" approved="yes">
         <source>Last changed</source>
         <target state="final">Letzte Änderung</target>
+      </trans-unit>
+      <trans-unit id="column.last_change.value" approved="yes">
+        <source>{last_change, date, medium} {last_change, time, medium}</source>
+        <target state="final">{last_change, date, medium} {last_change, time, medium}</target>
       </trans-unit>
       <trans-unit id="column.editor.unknown" approved="yes">
         <source>Unknown</source>
@@ -287,6 +303,14 @@
         <source>Do you really want to discard all versions from page?</source>
         <target state="final">Tatsächlich alle Versionen von dieser Seite verwerfen?</target>
       </trans-unit>
+      <trans-unit id="window.publishAll.title" approved="yes">
+        <source>Publish all workspace versions of current page.</source>
+        <target state="final">Alle Workspace-Versionen der aktuellen Seite veröffentlichen.</target>
+      </trans-unit>
+      <trans-unit id="window.publishAll.message" approved="yes">
+        <source>Do you really want to publish all versions from this page directly?</source>
+        <target state="final">Möchtest du wirklich alle Versionen dieser Seite direkt veröffentlichen?</target>
+      </trans-unit>
       <trans-unit id="window.massAction.title" approved="yes">
         <source>Prepare to start mass action</source>
         <target state="final">Stapelverarbeitung ausführen</target>
@@ -355,6 +379,10 @@
         <source>Summary of changes</source>
         <target state="final">Zusammenfassung der Änderungen</target>
       </trans-unit>
+      <trans-unit id="comment.tstamp.value" approved="yes">
+        <source>{tstamp, date, medium} {tstamp, time, medium}</source>
+        <target state="final">{tstamp, date, medium} {tstamp, time, medium}</target>
+      </trans-unit>
       <trans-unit id="window.recordChanges.tabs.comments" approved="yes">
         <source>Comments</source>
         <target state="final">Kommentare</target>
@@ -410,6 +438,10 @@
       <trans-unit id="label_doaction_publish" approved="yes">
         <source>Publish</source>
         <target state="final">Veröffentlichen</target>
+      </trans-unit>
+      <trans-unit id="label_doaction_publish_directly" approved="yes">
+        <source>Publish directly</source>
+        <target state="final">Direkt veröffentlichen</target>
       </trans-unit>
       <trans-unit id="label_doaction_discard" approved="yes">
         <source>Discard</source>

@@ -141,7 +141,7 @@
       </trans-unit>
       <trans-unit id="login.error.referrer" approved="yes">
         <source>TYPO3 relies on HTTP referrers for security reasons in the backend. It looks like your browser was not able to send this information, which may be due to privacy or security settings.</source>
-        <target state="final">TYPO3 stützt sich aus Sicherheitsgründen im Backend auf HTTP-Referrer. Es sieht so aus, als ob dein Browser diese Informationen nicht senden konnte, was möglicherweise an den Datenschutz- oder Sicherheitseinstellungen liegt.</target>
+        <target state="final">TYPO3 setzt aus Sicherheitsgründen im Backend auf HTTP-Referrer. Es sieht so aus, als ob dein Browser diese Informationen nicht senden konnte, was möglicherweise an den Datenschutz- oder Sicherheitseinstellungen liegt.</target>
       </trans-unit>
       <trans-unit id="login.process" approved="yes">
         <source>Verifying Login Data ...</source>
@@ -168,8 +168,7 @@
 				a base record has been deleted but the intermediate record from table %3$s with uid %4$s still points to it. To fix
 				this situation, either delete the intermediate record, or recover the deleted record using the recycler module.
 				</source>
-        <target state="final">Der Datensatz mit Uid %2$s aus Tabelle %1$s konnte nicht aus der Datenbank abgerufen werden. Diese Inkonsistenz kann auftreten, wenn ein Basis-Datensatz gelöscht wurde, während der Datensatz aus Tabelle %3$s mit Uid %4$s noch auf ihn verweist. Um dieses Problem zu beheben, lösche entweder den verweisenden Datensatz oder stelle den gelöschten Datensatz mit dem Papierkorb wieder her.
-				</target>
+        <target state="final">Der Datensatz mit Uid %2$s aus Tabelle %1$s konnte nicht aus der Datenbank abgerufen werden. Diese Inkonsistenz kann auftreten, wenn ein Basis-Datensatz gelöscht worden ist, während noch der Datensatz aus Tabelle %3$s mit Uid %4$s auf ihn verweist. Um dieses Problem zu beheben, löschen Sie entweder den verweisenden Datensatz oder stellen Sie den gelöschten Datensatz mit dem Papierkorb wieder her.</target>
       </trans-unit>
       <trans-unit id="modulemenu.label" approved="yes">
         <source>Module Menu</source>

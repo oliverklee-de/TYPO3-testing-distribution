@@ -75,6 +75,12 @@
         </source>
         <target state="final">Die Einrichtung einer Multi-Faktor-Authentifizierung (MFA) ist erforderlich, aber derzeit sind keine Anbieter verfügbar, die du aktivieren kannst. Dies könnte auf eine Fehlkonfiguration zurückzuführen sein. Wende dich daher bitte an deinen Administrator, um Unterstützung zu erhalten.</target>
       </trans-unit>
+      <trans-unit id="overview.noProviders.errorMessage" x-unused-since="14.0" approved="yes">
+        <source>
+          You are required to setup MFA but there are no providers to activate available. You should contact your administrator to solve this.
+        </source>
+        <target state="final">Du musst MFA einrichten, aber es sind keine Anbieter zur Aktivierung verfügbar. Wende dich an deinen Administrator, um dieses Problem zu beheben.</target>
+      </trans-unit>
       <trans-unit id="providerNotFound" approved="yes">
         <source>Selected MFA provider was not found</source>
         <target state="final">Der ausgewählte MFA-Provider wurde nicht gefunden</target>
@@ -204,6 +210,13 @@
           %s requires you setting up MFA to secure your account. Please select one of the available providers below.
         </source>
         <target state="final">%s erfordert die Einrichtung einer MFA, um dein Konto zu sichern. Bitte wähle einen der unten aufgeführten Anbieter aus.</target>
+      </trans-unit>
+      <trans-unit id="standalone.selection.noAvailableProviders" x-unused-since="14.0" approved="yes">
+        <source>
+          You are required to set up MFA. However, there are no MFA providers available for you to use. This might be a misconfiguration. Please get in touch with your administrator to find a solution.
+        </source>
+        <target state="final">Du musst MFA einrichten. Es stehen jedoch keine MFA-Anbieter zur Verfügung, die du verwenden kannst.
+Dies könnte eine Fehlkonfiguration sein. Bitte wende dich an deinen Administrator, um eine Lösung zu finden.</target>
       </trans-unit>
       <trans-unit id="standalone.selection.goBack" approved="yes">
         <source>Go back</source>

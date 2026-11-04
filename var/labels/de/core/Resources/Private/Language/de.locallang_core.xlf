@@ -21,7 +21,7 @@
       </trans-unit>
       <trans-unit id="labels.makeBookmark" approved="yes">
         <source>Create a bookmark to this record</source>
-        <target state="final">Lesezeichen für diesen Datensatz erstellen</target>
+        <target state="final">Ein Lesezeichen für diesen Datensatz erstellen</target>
       </trans-unit>
       <trans-unit id="labels.alreadyBookmarked" approved="yes">
         <source>This record is already bookmarked</source>
@@ -311,6 +311,10 @@
         <source>Download CSV file</source>
         <target state="final">CSV-Datei herunterladen</target>
       </trans-unit>
+      <trans-unit id="labels.clear_cache" x-unused-since="14.2" approved="yes">
+        <source>Clear cache for this page</source>
+        <target state="final">Cache dieser Seite löschen</target>
+      </trans-unit>
       <trans-unit id="labels.no_title" approved="yes">
         <source>No title</source>
         <target state="final">Kein Titel</target>
@@ -499,6 +503,18 @@
         <source>Edit multiple</source>
         <target state="final">Mehrere bearbeiten</target>
       </trans-unit>
+      <trans-unit id="labels.editMultiplePages" x-unused-since="14.2" approved="yes">
+        <source>Edit multiple pages</source>
+        <target state="final">Mehrere Seiten bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="labels.editMultipleRecords" x-unused-since="14.2" approved="yes">
+        <source>Edit multiple "%s" records on page "%s"</source>
+        <target state="final">Mehrere "%s" Datensätze auf Seite "%s " bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="labels.editMultipleRecordsRootLevel" x-unused-since="14.2" approved="yes">
+        <source>Edit multiple "%s" records on root level</source>
+        <target state="final">Mehrere "%s" Datensätze auf Root-Ebene bearbeiten</target>
+      </trans-unit>
       <trans-unit id="labels.records" approved="yes">
         <source>{count, plural, one {# record} other {# records}}</source>
         <target state="final">{count, plural, one {# Datensatz} other {# Datensätze}}</target>
@@ -526,6 +542,10 @@
       <trans-unit id="labels.items" approved="yes">
         <source>Available Items</source>
         <target state="final">Verfügbare Objekte</target>
+      </trans-unit>
+      <trans-unit id="labels.filter_items" approved="yes">
+        <source>Filter items</source>
+        <target state="final">Elemente filtern</target>
       </trans-unit>
       <trans-unit id="labels.remove_selected" approved="yes">
         <source>Remove selected items</source>
@@ -708,8 +728,8 @@
         <target state="final">Passwort generieren</target>
       </trans-unit>
       <trans-unit id="labels.generatePassword.failed" approved="yes">
-        <source>A password could not be generated</source>
-        <target state="final">Ein Passwort konnte nicht generiert werden</target>
+        <source>Password generation failed. This could be due to a misconfiguration issue; please check the Administration log for details or contact your system administrator.</source>
+        <target state="final">Die Passwortgenerierung ist fehlgeschlagen. Dies könnte auf eine fehlerhafte Konfiguration zurückzuführen sein; bitte überprüfe das Log auf weitere Details oder wende dich an deinen Systemadministrator.</target>
       </trans-unit>
       <trans-unit id="labels.new_section" approved="yes">
         <source>Create new</source>
@@ -998,6 +1018,18 @@
       <trans-unit id="file_upload.fileExtensionDisallowed" approved="yes">
         <source>Upload failed. The file extension "{0}" is not allowed.</source>
         <target state="final">Upload fehlgeschlagen. Die Dateiendung "{0}" ist nicht erlaubt.</target>
+      </trans-unit>
+      <trans-unit id="file_upload.notUploaded.title" approved="yes">
+        <source>Upload failed</source>
+        <target state="final">Hochladen fehlgeschlagen</target>
+      </trans-unit>
+      <trans-unit id="file_upload.notUploaded.extensionExpected" approved="yes">
+        <source>"{0}" was not uploaded. Allowed file extensions: {1}</source>
+        <target state="final">"{0}" wurde nicht hochgeladen. Erlaubte Dateiendungen: {1}</target>
+      </trans-unit>
+      <trans-unit id="file_upload.notUploaded.extensionDisallowed" approved="yes">
+        <source>"{0}" was not uploaded. The file extension "{1}" is not allowed.</source>
+        <target state="final">"{0}" wurde nicht hochgeladen. Die Dateiendung "{1}" ist nicht erlaubt.</target>
       </trans-unit>
       <trans-unit id="file_upload.uploadFailed" approved="yes">
         <source>Upload failed for "{0}"</source>
@@ -1402,6 +1434,58 @@
       <trans-unit id="rm.closeDoc" approved="yes">
         <source>Close</source>
         <target state="final">Schließen</target>
+      </trans-unit>
+      <trans-unit id="rm.clearCache_thisPage" x-unused-since="14.2" approved="yes">
+        <source>This page</source>
+        <target state="final">Diese Seite</target>
+      </trans-unit>
+      <trans-unit id="rm.clearCache_all" x-unused-since="14.2" approved="yes">
+        <source>Clear FE cache</source>
+        <target state="final">Alle Caches löschen</target>
+      </trans-unit>
+      <trans-unit id="rm.clearCache_pages" x-unused-since="14.2" approved="yes">
+        <source>Clear Page Cache</source>
+        <target state="final">Seiten-Cache löschen</target>
+      </trans-unit>
+      <trans-unit id="rm.clearCache_allTypo3Conf" x-unused-since="14.2" approved="yes">
+        <source>Clear cache in typo3conf/</source>
+        <target state="final">Konfigurations-Cache löschen</target>
+      </trans-unit>
+      <trans-unit id="rm.clearCacheMenu_all" x-unused-since="14.2" approved="yes">
+        <source>Clear all caches</source>
+        <target state="final">Alle Caches löschen</target>
+      </trans-unit>
+      <trans-unit id="rm.clearCacheMenu_pages" x-unused-since="14.2" approved="yes">
+        <source>Clear page content cache</source>
+        <target state="final">Seiteninhalts-Cache löschen</target>
+      </trans-unit>
+      <trans-unit id="rm.clearCacheMenu_allTypo3Conf" x-unused-since="14.2" approved="yes">
+        <source>Clear configuration cache</source>
+        <target state="final">Konfigurations-Cache löschen</target>
+      </trans-unit>
+      <trans-unit id="flushPageCachesTitle" x-unused-since="14.2" approved="yes">
+        <source>Flush frontend caches</source>
+        <target state="final">Frontend-Caches leeren</target>
+      </trans-unit>
+      <trans-unit id="flushPageCachesDescription" x-unused-since="14.2" approved="yes">
+        <source>Clear frontend and page-related caches.</source>
+        <target state="final">Frontend- und seitenbezogene Caches löschen.</target>
+      </trans-unit>
+      <trans-unit id="flushAllCachesTitle2" x-unused-since="14.2" approved="yes">
+        <source>Flush all caches</source>
+        <target state="final">Alle Caches leeren</target>
+      </trans-unit>
+      <trans-unit id="flushAllCachesDescription2" x-unused-since="14.2" approved="yes">
+        <source>Clear frontend and page-related caches, all system-related caches, including localization, extension configuration, file and opcode caches. Rebuilding these caches may take some time.</source>
+        <target state="final">Alle systembezogenen Caches löschen, inklusive des Lokalisierungs-, Erweiterungs-Konfigurations-, Datei und Opcode-Caches. Diese Caches wieder aufzubauen, kann einige Zeit in Anspruch nehmen.</target>
+      </trans-unit>
+      <trans-unit id="flushCaches.error" x-unused-since="14.2" approved="yes">
+        <source>An error occurred</source>
+        <target state="final">Es ist ein Fehler aufgetreten</target>
+      </trans-unit>
+      <trans-unit id="flushCaches.error.description" x-unused-since="14.2" approved="yes">
+        <source>An error occurred while clearing the cache. Some caches may not have been cleared successfully.</source>
+        <target state="final">Beim Leeren des Caches ist ein Fehler aufgetreten. Einige Caches wurden möglicherweise nicht erfolgreich gelöscht.</target>
       </trans-unit>
       <trans-unit id="rm.adminFunctions" approved="yes">
         <source>Admin functions</source>
@@ -1899,6 +1983,10 @@
         <source>Missing ISO code for language "%s" (UID %d), please edit the language record and set it.</source>
         <target state="final">Fehlender ISO-Code für Sprache "%s" (UID %d). Bitte bearbeiten Sie den Sprachdatensatz und setzen Sie den ISO-Code.</target>
       </trans-unit>
+      <trans-unit id="error.misconfiguredPasswordRules" x-unused-since="14.2" approved="yes">
+        <source>No password could be generated due to misconfigured password rules.</source>
+        <target state="final">Aufgrund falsch konfigurierter Passwortregeln konnte kein Passwort generiert werden.</target>
+      </trans-unit>
       <trans-unit id="labels.deleteTitle" approved="yes">
         <source>Revert to default Constant</source>
         <target state="final">Konstante auf Standardeinstellung zurücksetzen</target>
@@ -1943,6 +2031,10 @@
         <source>Open context menu for record: %s</source>
         <target state="final">Kontextmenü für Datensatz öffnen: %s</target>
       </trans-unit>
+      <trans-unit id="labels.invalidSiteSets" approved="yes">
+        <source>Invalid site sets</source>
+        <target state="final">Ungültiges Site-Set</target>
+      </trans-unit>
       <trans-unit id="error.site.invalidSetDependencies" approved="yes">
         <source>This site depends on invalid site sets</source>
         <target state="final">Diese Site hängt von ungültigen Site-Sets ab</target>
@@ -1954,6 +2046,10 @@
       <trans-unit id="error.siteSet.missingDependency" approved="yes">
         <source>Site set '%1$s' is disabled: Missing dependency '%2$s'</source>
         <target state="final">Site-Set '%1$s' ist deaktiviert: fehlende Abhängigkeit '%2$s'</target>
+      </trans-unit>
+      <trans-unit id="error.siteSet.circularDependency" approved="yes">
+        <source>Site set '%1$s' is disabled: Circular dependency '%2$s'</source>
+        <target state="final">Site Set '%1$s' ist deaktiviert. Circular dependency '%2$s'</target>
       </trans-unit>
       <trans-unit id="error.siteSet.invalidSettingsDefinitions" approved="yes">
         <source>Site set '%1$s' is disabled due to invalid settings definitions: %2$s</source>
@@ -1990,6 +2086,10 @@
       <trans-unit id="labels.noSelectableItemsAvailable" approved="yes">
         <source>No selectable items available. Check TCA, related records and TSconfig.</source>
         <target state="final">Keine auswählbaren Elemente verfügbar. Überprüfe TCA, verwandte Datensätze und TSconfig.</target>
+      </trans-unit>
+      <trans-unit id="size_in_bytes" approved="yes">
+        <source>{numberOfBytes, plural, one {# byte} other {# bytes}}</source>
+        <target state="final">{numberOfBytes, plural, one {# Byte} other {# Bytes}}</target>
       </trans-unit>
     </body>
   </file>

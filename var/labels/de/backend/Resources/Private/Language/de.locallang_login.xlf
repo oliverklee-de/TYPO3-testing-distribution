@@ -63,6 +63,14 @@
         <source>For more information or further help click here</source>
         <target state="final">Weitere Informationen und Hilfe erhältst du hier</target>
       </trans-unit>
+      <trans-unit id="warranty.by" x-unused-since="12.4" approved="yes">
+        <source>Warranty is supplied by %s; %sdetails about licenses.%s</source>
+        <target state="final">Die Garantie wird von %s gewährt; %sDetails zu Lizenzen.%s</target>
+      </trans-unit>
+      <trans-unit id="no.warranty" x-unused-since="12.4" approved="yes">
+        <source>TYPO3 CMS comes with ABSOLUTELY NO WARRANTY; %sdetails about licenses.%s</source>
+        <target state="final">TYPO3 CMS kommt mit ABSOLUT KEINER GARANTIE; %sDetails zu Lizenzen.%s</target>
+      </trans-unit>
       <trans-unit id="typo3.cms" approved="yes">
         <source>TYPO3 CMS</source>
         <target state="final">TYPO3 CMS</target>
@@ -86,6 +94,10 @@
       <trans-unit id="extension.trademark" approved="yes">
         <source>TYPO3 is a registered %strademark%s.</source>
         <target state="final">TYPO3 ist eine registrierte %sMarke%s.</target>
+      </trans-unit>
+      <trans-unit id="details.link" x-unused-since="12.4" approved="yes">
+        <source>Go to %s for details.</source>
+        <target state="final">Weitere Informationen erhalten Sie unter %s.</target>
       </trans-unit>
       <trans-unit id="free.software" approved="yes">
         <source>This is free software, and you are welcome to redistribute it under certain conditions; %sdetails about licenses.%s</source>

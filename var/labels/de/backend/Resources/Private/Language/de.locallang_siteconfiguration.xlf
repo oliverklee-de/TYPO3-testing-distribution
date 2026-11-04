@@ -27,6 +27,10 @@
         <source>Open the documentation</source>
         <target state="final">Öffne die Dokumentation</target>
       </trans-unit>
+      <trans-unit id="overview.noSiteConfiguration" x-unused-since="14.0" approved="yes">
+        <source>This site does not have a configuration, yet.</source>
+        <target state="final">Diese Seite wurde noch nicht konfiguriert.</target>
+      </trans-unit>
       <trans-unit id="overview.addSiteConfiguration" approved="yes">
         <source>Add new site configuration for this site</source>
         <target state="final">Neue Site-Konfiguration für diese Seite hinzufügen</target>
@@ -302,6 +306,10 @@
       <trans-unit id="labels.detail" approved="yes">
         <source>View Site Configuration "%s"</source>
         <target state="final">Website-Konfiguration „%s“ anzeigen</target>
+      </trans-unit>
+      <trans-unit id="labels.edit" x-unused-since="14.2" approved="yes">
+        <source>Edit Site Configuration "%s"</source>
+        <target state="final">Site-Konfiguration "%s" bearbeiten</target>
       </trans-unit>
       <trans-unit id="contextMenu.editSiteSettings" approved="yes">
         <source>Edit Site Settings</source>

@@ -3,6 +3,38 @@
   <file source-language="en" datatype="plaintext" original="EXT:backend/Resources/Private/Language/locallang_sitesettings.xlf" date="2024-09-10T12:13:00Z" product-name="backend" target-language="de">
     <header/>
     <body>
+      <trans-unit id="overview.title" x-unused-since="14.0" approved="yes">
+        <source>Site Settings Overview</source>
+        <target state="final">Übersicht über die Site-Einstellungen</target>
+      </trans-unit>
+      <trans-unit id="overview.setSummary" x-unused-since="14.0" approved="yes">
+        <source>Sets (%d)</source>
+        <target state="final">Sets (%d)</target>
+      </trans-unit>
+      <trans-unit id="overview.customSettingsSummary" x-unused-since="14.0" approved="yes">
+        <source>Custom Settings (%d)</source>
+        <target state="final">Benutzerdefinierte Einstellungen (%d)</target>
+      </trans-unit>
+      <trans-unit id="overview.editSettings" x-unused-since="14.0" approved="yes">
+        <source>Edit Settings</source>
+        <target state="final">Einstellungen bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="overview.message.notEditable" x-unused-since="14.0" approved="yes">
+        <source>The sets of this site do not provide any configurable settings.</source>
+        <target state="final">Die Sets dieser Site bieten keine anpassbaren Einstellungen an.</target>
+      </trans-unit>
+      <trans-unit id="overview.noSiteSettingsExists.title" x-unused-since="14.0" approved="yes">
+        <source>No configurable Site Settings found</source>
+        <target state="final">Keine anpassbaren Site-Einstellungen gefunden</target>
+      </trans-unit>
+      <trans-unit id="overview.noSiteSettingsExists.message" x-unused-since="14.0" approved="yes">
+        <source>See the documentation for instructions on defining settings via site sets.</source>
+        <target state="final">Anweisungen zur Änderung von Einstellungen über Site-Sets findest du in der Dokumentation.</target>
+      </trans-unit>
+      <trans-unit id="overview.noSiteSettingsExists.button-documentation-label" x-unused-since="14.0" approved="yes">
+        <source>Open the documentation</source>
+        <target state="final">Dokumentation öffnen</target>
+      </trans-unit>
       <trans-unit id="edit.headline" approved="yes">
         <source>Site Settings for "%s"</source>
         <target state="final">Einstellungen für Site "%s"</target>

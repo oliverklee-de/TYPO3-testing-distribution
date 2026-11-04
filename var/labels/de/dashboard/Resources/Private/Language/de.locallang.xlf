@@ -111,11 +111,35 @@
         <source>Add dashboard</source>
         <target state="final">Dashboard hinzufügen</target>
       </trans-unit>
-      <trans-unit id="dashboard.add.button.close" approved="yes">
+      <trans-unit id="dashboard.wizard.preset.title" approved="yes">
+        <source>Preset</source>
+        <target state="final">Voreinstellung</target>
+      </trans-unit>
+      <trans-unit id="dashboard.wizard.preset.headline" approved="yes">
+        <source>Select a preset</source>
+        <target state="final">Voreinstellung auswählen</target>
+      </trans-unit>
+      <trans-unit id="dashboard.wizard.preset.loadError" approved="yes">
+        <source>The dashboard presets could not be loaded.</source>
+        <target state="final">Die Dashboard-Voreinstellungen konnten nicht geladen werden.</target>
+      </trans-unit>
+      <trans-unit id="dashboard.wizard.title.title" approved="yes">
+        <source>Title</source>
+        <target state="final">Titel</target>
+      </trans-unit>
+      <trans-unit id="dashboard.wizard.success.title" approved="yes">
+        <source>Dashboard created</source>
+        <target state="final">Dashboard erstellt</target>
+      </trans-unit>
+      <trans-unit id="dashboard.wizard.success.message" approved="yes">
+        <source>The dashboard has been created and is now being opened.</source>
+        <target state="final">Das Dashboard wurde erstellt und wird nun geöffnet.</target>
+      </trans-unit>
+      <trans-unit id="dashboard.add.button.close" x-unused-since="14.3" approved="yes">
         <source>Close</source>
         <target state="final">Schließen</target>
       </trans-unit>
-      <trans-unit id="dashboard.add.button.ok" approved="yes">
+      <trans-unit id="dashboard.add.button.ok" x-unused-since="14.3" approved="yes">
         <source>Add Dashboard</source>
         <target state="final">Dashboard hinzufügen</target>
       </trans-unit>

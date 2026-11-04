@@ -15,6 +15,14 @@
         <source>New form name</source>
         <target state="final">Neuer Formularname</target>
       </trans-unit>
+      <trans-unit id="formManager.form_save_path" x-unused-since="14.2" approved="yes">
+        <source>Storage</source>
+        <target state="final">Speicherort</target>
+      </trans-unit>
+      <trans-unit id="formManager.form_save_path_description" x-unused-since="14.2" approved="yes">
+        <source>Select the storage where your form definition will be saved.</source>
+        <target state="final">Wähle den Speicherort aus, an dem deine Formulardefinition gespeichert werden soll.</target>
+      </trans-unit>
       <trans-unit id="formManager.form_storageLocation" approved="yes">
         <source>Location</source>
         <target state="final">Ort</target>

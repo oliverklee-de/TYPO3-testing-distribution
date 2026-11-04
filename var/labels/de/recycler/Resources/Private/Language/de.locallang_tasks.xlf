@@ -8,7 +8,7 @@
         <target state="final">Gelöschte Datensätze entfernen</target>
       </trans-unit>
       <trans-unit id="cleanerTaskDescription" approved="yes">
-        <source>Deletes rows from the database which are flagged "deleted"</source>
+        <source>Deletes rows from the database which are flagged as "deleted"</source>
         <target state="final">Löscht Zeilen, die als gelöscht markiert sind, aus der Datenbank</target>
       </trans-unit>
       <trans-unit id="cleanerTaskPeriod" approved="yes">

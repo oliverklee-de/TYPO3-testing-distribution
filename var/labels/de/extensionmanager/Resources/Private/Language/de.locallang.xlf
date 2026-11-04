@@ -129,10 +129,11 @@
         </source>
         <target state="final">
           Zukünftige TYPO3-Versionen erfordern, dass alle Erweiterungen in deiner TYPO3-Installation eine
-          composer.json-Datei in deinem Erweiterungsverzeichnis enthalten. Dies ist erforderlich, um den
-          Composer-basierten Paketnamen, den relevanten Erweiterungsschlüssel und die Abhängigkeiten zu anderen Paketen /
-          Erweiterungen korrekt zu erkennen. Nachfolgend findest du eine Liste der Erweiterungen in Ihrer TYPO3-Installation, die derzeit diese Anforderungen nicht erfüllen
-          und daher Anpassungen an deiner composer.json-Datei erfordern.
+          "composer.json"-Datei in ihrem Erweiterungsverzeichnis enthalten. Dies ist erforderlich, um den
+          Composer-basierten Paketnamen, den entsprechenden Extension Key und die Abhängigkeiten zu
+          anderen Paketen bzw. Erweiterungen korrekt zu erkennen. Nachfolgend findest du eine Liste der
+          Erweiterungen in deiner TYPO3-Installation, die derzeit diese Anforderungen nicht erfüllen und daher
+          Anpassungen an ihrer „composer.json“-Datei erfordern.
         </target>
       </trans-unit>
       <trans-unit id="extensionList.composerStatus.thirdParty" approved="yes">
@@ -141,7 +142,9 @@
           version from TER which probably already contains a valid composer.json file.
         </source>
         <target state="final">
-          Für Erweiterungen von Drittanbietern, die aus dem TER geladen wurden, ist es hilfreich, auf die neueste Version aus dem TER zu aktualisieren da diese möglicherweise bereits eine gültige composer.json Datei enthält.
+          Bei Erweiterungen von Drittanbietern, die aus dem TER abgerufen wurden, ist es sinnvoll, ein Update auf
+          die neueste Version aus dem TER durchzuführen, die wahrscheinlich bereits eine gültige composer.json-Datei
+          enthält.
         </target>
       </trans-unit>
       <trans-unit id="extensionList.composerStatus.missingManifest" approved="yes">
@@ -156,7 +159,12 @@
           This is especially helpful in case your TYPO3 installation contains custom extensions.
         </source>
         <target state="final">
-          Um dich bei der Erstellung einer gültigen composer.json-Datei für deine Erweiterungen zu unterstützen, sendet TYPO3 den Inhalt deiner ext_emconf.php Inhalt an TYPO3.org (TER). TYPO3.org wird dann die Abhängigkeiten auflösen und einen gültigen composer.json-Vorschlag zurückgeben, der in das entsprechende Extension-Verzeichnis kopiert werden kann. Dies ist besonders hilfreich, wenn deine TYPO3-Installation eigene Erweiterungen enthält.
+          Um dich bei der Erstellung einer gültigen composer.json-Datei für deine Erweiterungen zu unterstützen,
+          sendet TYPO3 den Inhalt deiner ext_emconf.php an TYPO3.org (TER). TYPO3.org ermittelt daraufhin deine
+          Abhängigkeiten und gibt einen gültigen composer.json-Vorschlag zurück, der in das entsprechende
+          Erweiterungsverzeichnis kopiert werden kann.
+          Dies ist insbesondere dann hilfreich, wenn deine TYPO3-Installation benutzerdefinierte Erweiterungen enthält.
+        
         </target>
       </trans-unit>
       <trans-unit id="extensionList.composerStatus.additionalInformation" approved="yes">
@@ -355,15 +363,19 @@
           </strong>
 				]]></source>
         <target state="final"><![CDATA[
-          <p>Wenn du die Erweiterung wirklich aktivierst, werden alle Abhängigkeitsprüfungen deaktiviert.</p>
+          <p>Wenn du die Erweiterung dennoch aktivierst, werden alle Prüfungen der Abhängigkeiten deaktiviert.</p>
           <ul>
-            <li>Es wird versucht, erforderliche Erweiterungen aus dem TER abzurufen (sofern sie noch nicht im System vorhanden sind)</li>
-            <li>Prüfungen auf Versionsabhängigkeiten werden übersprungen</li>
+            <li>Es wird versucht, erforderliche Erweiterungen aus dem TER abzurufen (sofern sie noch nicht im System vorhanden sind).</li>
+            <li>Prüfungen auf Versionsabhängigkeiten werden übersprungen.</li>
           </ul>
           <strong>
             Beachte, dass die Aktivierung einer Erweiterung ohne Abhängigkeitsprüfungen deine TYPO3-Installation unbrauchbar machen kann. In einem solchen Fall ist ein manueller Eingriff erforderlich.
           </strong>
 				]]></target>
+      </trans-unit>
+      <trans-unit id="dependencyCheck.unresolvedDependencies.question" x-unused-since="14.0" approved="yes">
+        <source>Are you sure you want to proceed?</source>
+        <target state="final">Tatsächlich fortfahren?</target>
       </trans-unit>
       <trans-unit id="dependencyCheck.unresolvedDependencies.proceed" approved="yes">
         <source>Activate the extension</source>
@@ -392,6 +404,10 @@
       <trans-unit id="downloadExtension.dependencies.resolveAutomatically" approved="yes">
         <source>Shall these dependencies be resolved automatically?</source>
         <target state="final">Sollen diese Abhängigkeiten automatisch aufgelöst werden?</target>
+      </trans-unit>
+      <trans-unit id="downloadExtension.dependencies.errorTitle" approved="yes">
+        <source>Dependencies could not be resolved</source>
+        <target state="final">Abhängigkeiten konnten nicht aufgelöst werden</target>
       </trans-unit>
       <trans-unit id="dependencyCheck.modalTitle.activate" approved="yes">
         <source>Activate Extension "%s"</source>
@@ -573,6 +589,10 @@
         <source>Get preconfigured distribution</source>
         <target state="final">Vorkonfigurierte Distribution erhalten</target>
       </trans-unit>
+      <trans-unit id="extensionList.installDistribution" x-unused-since="14.2" approved="yes">
+        <source>Install</source>
+        <target state="final">Distribution installieren</target>
+      </trans-unit>
       <trans-unit id="extensionList.installImpexp" approved="yes">
         <source>Please install the Import/Export (impexp) extension to enable distribution support.</source>
         <target state="final">Bitte installieren Sie die Import/Export-Erweiterung (impexp), um Distributionen benutzen zu können.</target>
@@ -607,7 +627,7 @@
       </trans-unit>
       <trans-unit id="extensionList.updateFromTer.lastUpdate.timeOfLastUpdate" approved="yes">
         <source>Time of last update: </source>
-        <target state="final">Zeit der letzten Aktualisierung: </target>
+        <target state="final">Datum des letzten Updates: </target>
       </trans-unit>
       <trans-unit id="extensionList.updateFromTer.lastUpdate.noTimeOfLastUpdate" approved="yes">
         <source>No last update time known.</source>
@@ -666,8 +686,8 @@
         <target state="final">Erweiterungsliste aktualisieren</target>
       </trans-unit>
       <trans-unit id="task.updateExtensionListTask.description" approved="yes">
-        <source>Update TER extension list on a regular basis. Once a day is a good interval.</source>
-        <target state="final">Aktualisieren der TER-Erweiterungsliste in regelmäßigem Interval. Einmal pro Tag ist ein gutes Interval.</target>
+        <source>Makes regular updates to TER extension list. Recommended interval is once a day.</source>
+        <target state="final">Führt regelmäßige Aktualisierungen der TER Extension-Liste durch. Empfohlenes Intervall ist einmal pro Tag.</target>
       </trans-unit>
       <trans-unit id="report.status.mainRepository.title" approved="yes">
         <source>Update status of typo3.org main repository extension list</source>
@@ -898,7 +918,12 @@
           folder. You can use the auto-generated proposal below and update the composer.json file extension.
         </source>
         <target state="final">
-          In zukünftigen Versionen von TYPO3 wird es für Extensions obligatorisch sein, eine composer.json Datei bereitzustellen. Diese wird benötigt, um eine Extension zu identifizieren und dient als Ersatz für die ext_emconf.php. Deshalb muss die composer.json Datei auch den Schlüssel der Erweiterung unter "extra &gt; typo3/cms &gt; extension-key" enthalten. Bitte füge eine composer.json, die die Eigenschaft extension-key enthält, in den entsprechenden Erweiterungs Ordner ein. Du kannst den unten stehenden automatisch generierten Vorschlag verwenden und die Erweiterung der composer.json Datei aktualisieren.
+          In zukünftigen Versionen von TYPO3 müssen Erweiterungen zwingend eine composer.json-Datei bereitstellen.
+          Diese wird zur Identifizierung einer Erweiterung benötigt und ersetzt die Datei ext_emconf.php. Daher
+          muss die composer.json-Datei auch den Extension-Key unter "extra &gt; typo3/cms &gt; extension-key" enthalten.
+          Bitte füge eine "composer.json"-Datei einschließlich der Eigenschaft "extension-key" im entsprechenden
+          Erweiterungsordner hinzu. Du kannst den unten stehenden automatisch generierten Vorschlag verwenden und
+          die "composer.json"-Datei entsprechend anpassen.
         </target>
       </trans-unit>
       <trans-unit id="extensionComposerStatus.manifest.title" approved="yes">
@@ -910,7 +935,7 @@
           Please verify its contents, adjust it to your needs and and put it into typo3conf/ext/%s/composer.json.
         </source>
         <target state="final">
-          Bitte überprüfen Sie den Inhalt, passen Sie ihn an Ihre Bedürfnisse an und fügen Sie ihn in typo3conf/ext/%s/composer.json ein.
+          Bitte überprüfe den Inhalt, passe ihn an deine Bedürfnisse an und speichere ihn in typo3conf/ext/%s/composer.json.
         </target>
       </trans-unit>
       <trans-unit id="extensionComposerStatus.manifest.error" approved="yes">
@@ -924,7 +949,9 @@
           composer.json or try again later.
         </source>
         <target state="final">
-          TYPO3 konnte keine composer.json Verbesserungen vorschlagen. Dies könnte auf eine ungültige composer.json oder auf Netzwerkprobleme bei der Anfrage an die TER API sein. Bitte prüfe, ob bereits eine ungültige composer.json Datei existiert oder versuche es später erneut.
+          TYPO3 konnte keinen Vorschlag für die Datei "composer.json" erstellen. Dies könnte an einer ungültigen
+          "composer.json"-Datei oder an Netzwerkproblemen beim Aufruf der TER-API liegen. Bitte überprüfe, ob
+          bereits eine ungültige "composer.json"-Datei vorhanden ist, oder versuche es später erneut.
         </target>
       </trans-unit>
     </body>
